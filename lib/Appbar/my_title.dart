@@ -145,10 +145,9 @@ class _MyTitleState extends State<MyTitle> with SingleTickerProviderStateMixin {
           indicator: UnderlineIndicator(
             strokeCap: StrokeCap.round,
             borderSide: BorderSide(
+              width: 3.0,
               color: Color(0xff2bc877),
-              width: 3,
             ),
-            insets: EdgeInsets.only(right: 10,left: 10),
           ),
         ),
       ),
