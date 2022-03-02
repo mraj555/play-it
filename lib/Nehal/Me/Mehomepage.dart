@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Myapp extends StatefulWidget {
-  const Myapp({Key? key}) : super(key: key);
+class Myme extends StatefulWidget {
+  const Myme({Key? key}) : super(key: key);
 
   @override
   _MyappState createState() => _MyappState();
 }
 
-class _MyappState extends State<Myapp> {
+class _MyappState extends State<Myme> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -25,7 +25,7 @@ class _MyappState extends State<Myapp> {
                   GestureDetector(
                     child: Container(
                       child: ClipRRect(
-                        child: Image.asset("assets/AA2.jpg"),
+                        child: Image.asset("assets/me/AA2.jpg"),
                       ),
                     ),
                     onTap: () {},
@@ -33,7 +33,7 @@ class _MyappState extends State<Myapp> {
                   GestureDetector(
                     child: Container(
                       child: ClipRRect(
-                        child: Image.asset("assets/AA1.jpg"),
+                        child: Image.asset("assets/me/AA1.jpg"),
                       ),
                     ),
                     onTap: () {},
@@ -72,7 +72,7 @@ class _MyappState extends State<Myapp> {
                                           ),
                                           child: ClipRRect(
                                             child:
-                                            Image.asset('assets/AA4.png'),
+                                            Image.asset('assets/me/AA4.png'),
                                           ),
                                         ),
                                       ),
@@ -121,7 +121,7 @@ class _MyappState extends State<Myapp> {
                                             ),
                                             child: ClipRRect(
                                               child:
-                                              Image.asset('assets/AA5.png'),
+                                              Image.asset('assets/me/AA5.png'),
                                             ),
                                           ),
                                         ),
