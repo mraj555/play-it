@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import 'package:underline_indicator/underline_indicator.dart';
 
 import 'my_search.dart';
@@ -88,37 +86,10 @@ class _MyTitleState extends State<MyTitle> with SingleTickerProviderStateMixin {
           ),
         ),
         elevation: 0,
-        title: Stack(
-          children: [
-            Row(
-              children: [
-                Text(
-                  'PLAY',
-                  style: GoogleFonts.archivoBlack(
-                    color: Colors.white,
-                    fontSize: 21,
-                  ),
-                ),
-                Text(
-                  'it',
-                  style: GoogleFonts.archivoBlack(
-                    color: Colors.white,
-                    fontSize: 19,
-                  ),
-                ),
-              ],
-            ),
-            Positioned(
-              left: size.width * 0.166,
-              top: size.width * 0.022,
-              width: 4.4,
-              child: Container(
-                height: 3.5,
-                width: 3,
-                color: Colors.red,
-              ),
-            ),
-          ],
+        title: Image.asset(
+          'assets/Icons/logo.png',
+          height: 96,
+          width: 96,
         ),
         actions: [
           IconButton(
@@ -135,7 +106,10 @@ class _MyTitleState extends State<MyTitle> with SingleTickerProviderStateMixin {
           ),
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.download),
+            icon: ImageIcon(
+              AssetImage('assets/Icons/download_1.png'),
+              size: 24,
+            ),
             splashRadius: 20,
           ),
         ],

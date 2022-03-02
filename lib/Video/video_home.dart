@@ -28,37 +28,10 @@ class _HomeVideoState extends State<HomeVideo> {
             ),
           ),
           elevation: 0,
-          title: Stack(
-            children: [
-              Row(
-                children: [
-                  Text(
-                    'PLAY',
-                    style: GoogleFonts.archivoBlack(
-                      color: Colors.white,
-                      fontSize: 21,
-                    ),
-                  ),
-                  Text(
-                    'it',
-                    style: GoogleFonts.archivoBlack(
-                      color: Colors.white,
-                      fontSize: 19,
-                    ),
-                  ),
-                ],
-              ),
-              Positioned(
-                left: size.width * 0.166,
-                top: size.width * 0.022,
-                width: 4.4,
-                child: Container(
-                  height: 3.5,
-                  width: 3,
-                  color: Colors.red,
-                ),
-              ),
-            ],
+          title: Image.asset(
+            'assets/Icons/logo.png',
+            height: 96,
+            width: 96,
           ),
           actions: [
             IconButton(
