@@ -31,6 +31,7 @@ class _HomeState extends State<Home> {
   ];
   var namecontroller = TextEditingController();
   var name = '';
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -193,7 +194,6 @@ class _HomeState extends State<Home> {
                       color: Colors.grey[100],
                     ),
                   ),
-
                 ],
               ),
             ),
@@ -217,7 +217,10 @@ class _HomeState extends State<Home> {
                     children: [
                       IconButton(
                         onPressed: () {
-                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>Home()), (route) => false);
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(builder: (context) => Home()),
+                              (route) => false);
                         },
                         icon: Icon(
                           Icons.arrow_back_outlined,
