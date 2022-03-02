@@ -29,13 +29,18 @@ class _MyappState extends State<Myme> {
         body: ListView(
           children: [
             Container(
-              height: 430,
-              color: Colors.white,
+              height: size.height * 0.46,
+              color: Colors.black,
               child: Column(
                 children: [
                   GestureDetector(
                     child: Container(
+                      margin:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.03),
                       child: ClipRRect(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(10),
+                        ),
                         child: Image.asset("assets/me/AA2.jpg"),
                       ),
                     ),
@@ -43,115 +48,16 @@ class _MyappState extends State<Myme> {
                   ),
                   GestureDetector(
                     child: Container(
+                      margin:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.03),
                       child: ClipRRect(
+                        borderRadius: BorderRadius.vertical(
+                          bottom: Radius.circular(10),
+                        ),
                         child: Image.asset("assets/me/AA1.jpg"),
                       ),
                     ),
                     onTap: () {},
-                  ),
-                  Container(
-                    height: 70,
-                    child: Row(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: Colors.grey.withOpacity(0.8),
-                          ),
-                          height: 55,
-                          width: 150,
-                          child: Stack(
-                            children: [
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 2.5, left: 10),
-                                    child: Card(
-                                      shadowColor: Colors.black,
-                                      elevation: 10,
-                                      child: Container(
-                                        width: 40,
-                                        height: 40,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                          BorderRadius.circular(5),
-                                          color:
-                                          Colors.white.withOpacity(0.6),
-                                        ),
-                                        child: ClipRRect(
-                                          child:
-                                          Image.asset('assets/me/AA4.png'),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 5),
-                                    child: Text(
-                                      'File Transfer',
-                                      style: GoogleFonts.inter(
-                                          textStyle:
-                                          TextStyle(color: Colors.white)),
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: Container(
-                            height: 55,
-                            width: 150,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Colors.grey.withOpacity(0.8),
-                            ),
-                            child: Stack(
-                              children: [
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 2.5, left: 10),
-                                      child: Card(
-                                        shadowColor: Colors.black,
-                                        elevation: 10,
-                                        child: Container(
-                                          width: 40,
-                                          height: 40,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                            BorderRadius.circular(5),
-                                            color:
-                                            Colors.white.withOpacity(0.6),
-                                          ),
-                                          child: ClipRRect(
-                                            child:
-                                            Image.asset('assets/me/AA5.png'),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 5),
-                                      child: Text(
-                                        'Theme',
-                                        style: GoogleFonts.inter(
-                                            textStyle: TextStyle(
-                                                color: Colors.white)),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 25),
