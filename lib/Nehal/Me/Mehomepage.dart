@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -10,6 +9,22 @@ class Myme extends StatefulWidget {
 }
 
 class _MyappState extends State<Myme> {
+  var _icons = [
+    Icons.download_outlined,
+    Icons.headset_mic_outlined,
+    Icons.folder_outlined,
+    Icons.access_time_outlined,
+    Icons.folder_outlined,
+  ];
+
+  var _names = [
+    'Downloads',
+    'MP3 Converter',
+    'Privacy',
+    'History',
+    'Media Manage',
+  ];
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -31,9 +46,9 @@ class _MyappState extends State<Myme> {
         body: ListView(
           children: [
             Container(
-              height: size.height * 0.5,
               color: Colors.black,
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   GestureDetector(
                     child: Container(
@@ -146,36 +161,44 @@ class _MyappState extends State<Myme> {
                   Container(
                     width: double.infinity,
                     child: Wrap(
-                      children: [
-                        Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            onTap: () {},
-                            splashFactory: InkRipple.splashFactory,
-                            splashColor: Colors.grey.withOpacity(0.3),
-                            child: Container(
-                              height: size.width * 0.25,
-                              width: size.width * 0.35,
-                              alignment: Alignment.center,
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(
-                                    Icons.download_outlined,
-                                    color: Colors.white.withOpacity(0.9),
-                                    size: 35,
-                                  ),
-                                  Text(
-                                    'Downloads',
-                                    style:
-                                        GoogleFonts.inter(color: Colors.white),
-                                  )
-                                ],
+                      children: List.generate(
+                        5,
+                        (index) {
+                          return Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              onTap: () {},
+                              splashFactory: InkRipple.splashFactory,
+                              splashColor: Colors.grey.withOpacity(0.3),
+                              child: Container(
+                                height: size.width * 0.25,
+                                width: size.width * 0.33,
+                                alignment: Alignment.center,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      _icons[index],
+                                      color: Colors.white.withOpacity(0.9),
+                                      size: 30,
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      _names[index],
+                                      style: GoogleFonts.inter(
+                                        color: Colors.white,
+                                      ),
+                                    )
+                                  ],
+                                ),
+
                               ),
                             ),
-                          ),
-                        ),
-                      ],
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ],
@@ -223,7 +246,7 @@ class _MyappState extends State<Myme> {
                   ),
                   Divider(
                     thickness: 0.1,
-                     indent: 60,
+                    indent: 60,
                     endIndent: 20,
                     height: 0,
                     color: Colors.white,
