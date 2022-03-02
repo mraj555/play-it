@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:play_it/download.dart';
+import 'package:play_it/Download/download.dart';
 
 class Home extends StatefulWidget {
   @override

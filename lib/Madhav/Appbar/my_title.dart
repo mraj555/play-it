@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:play_it/Appbar/my_search.dart';
+
 import 'package:underline_indicator/underline_indicator.dart';
+
+import 'my_search.dart';
 
 class MyTitle extends StatefulWidget {
   @override
@@ -74,10 +76,17 @@ class _MyTitleState extends State<MyTitle> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
       appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: NetworkImage(
+                  'https://64.media.tumblr.com/c90100fd260e77796e397f07d1771d34/fd850e41fad78fd6-86/s400x600/f15e520227c7dd8b471d729a48f26080712d8250.gifv'),
+              fit: BoxFit.fill,
+            ),
+          ),
+        ),
         elevation: 0,
-        backgroundColor: Colors.black,
         title: Stack(
           children: [
             Row(
@@ -125,28 +134,51 @@ class _MyTitleState extends State<MyTitle> with SingleTickerProviderStateMixin {
           ),
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.download_outlined),
+            icon: Icon(Icons.download),
             splashRadius: 20,
           ),
         ],
-        bottom: TabBar(
-          labelColor: Color(0xff2bc877),
-          unselectedLabelColor: Colors.white,
-          isScrollable: true,
-          controller: controller,
-          tabs: _tabs,
-          indicator: UnderlineIndicator(
-            borderSide: BorderSide(
-              width: 3.0,
-              color: Color(0xff2bc877),
-            ),
-            insets: EdgeInsets.symmetric(horizontal: 20.0),
-          ),
-        ),
+
+        // bottom: TabBar(
+        //   labelColor: Color(0xff2bc877),
+        //   unselectedLabelColor: Colors.white,
+        //   isScrollable: true,
+        //   controller: controller,
+        //   tabs: _tabs,
+        //   indicator: UnderlineIndicator(
+        //     borderSide: BorderSide(
+        //       width: 3.0,
+        //       color: Color(0xff2bc877),
+        //     ),
+        //     insets: EdgeInsets.symmetric(horizontal: 20.0),
+        //   ),
+        // ),
       ),
-      body: TabBarView(
-        controller: controller,
-        children: _tabpages,
+      body: Column(
+        children: [
+          Container(
+            child: TabBar(
+              labelColor: Color(0xff2bc877),
+              unselectedLabelColor: Colors.white,
+              isScrollable: true,
+              controller: controller,
+              tabs: _tabs,
+              indicator: UnderlineIndicator(
+                borderSide: BorderSide(
+                  width: 3.0,
+                  color: Color(0xff2bc877),
+                ),
+                insets: EdgeInsets.symmetric(horizontal: 20.0),
+              ),
+            ),
+          ),
+          Expanded(
+            child: TabBarView(
+              controller: controller,
+              children: _tabpages,
+            ),
+          ),
+        ],
       ),
     );
   }
