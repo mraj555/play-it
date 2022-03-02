@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:play_it/Appbar/my_search.dart';
+import 'package:underline_indicator/underline_indicator.dart';
 
 class MyTitle extends StatefulWidget {
   @override
@@ -134,7 +135,7 @@ class _MyTitleState extends State<MyTitle> with SingleTickerProviderStateMixin {
           isScrollable: true,
           controller: controller,
           tabs: _tabs,
-          indicator: UnderlineTabIndicator(
+          indicator: UnderlineIndicator(
             borderSide: BorderSide(
               width: 3.0,
               color: Color(0xff2bc877),
