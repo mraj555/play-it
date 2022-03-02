@@ -77,6 +77,15 @@ class _MyTitleState extends State<MyTitle> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: NetworkImage(
+                  'https://64.media.tumblr.com/c90100fd260e77796e397f07d1771d34/fd850e41fad78fd6-86/s400x600/f15e520227c7dd8b471d729a48f26080712d8250.gifv'),
+              fit: BoxFit.fill,
+            ),
+          ),
+        ),
         elevation: 0,
         title: Stack(
           children: [
@@ -129,24 +138,47 @@ class _MyTitleState extends State<MyTitle> with SingleTickerProviderStateMixin {
             splashRadius: 20,
           ),
         ],
-        bottom: TabBar(
-          labelColor: Color(0xff2bc877),
-          unselectedLabelColor: Colors.white,
-          isScrollable: true,
-          controller: controller,
-          tabs: _tabs,
-          indicator: UnderlineIndicator(
-            borderSide: BorderSide(
-              width: 3.0,
-              color: Color(0xff2bc877),
-            ),
-            insets: EdgeInsets.symmetric(horizontal: 20.0),
-          ),
-        ),
+
+        // bottom: TabBar(
+        //   labelColor: Color(0xff2bc877),
+        //   unselectedLabelColor: Colors.white,
+        //   isScrollable: true,
+        //   controller: controller,
+        //   tabs: _tabs,
+        //   indicator: UnderlineIndicator(
+        //     borderSide: BorderSide(
+        //       width: 3.0,
+        //       color: Color(0xff2bc877),
+        //     ),
+        //     insets: EdgeInsets.symmetric(horizontal: 20.0),
+        //   ),
+        // ),
       ),
-      body: TabBarView(
-        controller: controller,
-        children: _tabpages,
+      body: Column(
+        children: [
+          Container(
+            child: TabBar(
+              labelColor: Color(0xff2bc877),
+              unselectedLabelColor: Colors.white,
+              isScrollable: true,
+              controller: controller,
+              tabs: _tabs,
+              indicator: UnderlineIndicator(
+                borderSide: BorderSide(
+                  width: 3.0,
+                  color: Color(0xff2bc877),
+                ),
+                insets: EdgeInsets.symmetric(horizontal: 20.0),
+              ),
+            ),
+          ),
+          Expanded(
+            child: TabBarView(
+              controller: controller,
+              children: _tabpages,
+            ),
+          ),
+        ],
       ),
     );
   }
