@@ -5,7 +5,7 @@ import 'Download/homepage.dart';
 void main() {
   runApp(
     MaterialApp(
-      theme: ThemeData(brightness: Brightness.dark),
+      theme: ThemeData(scaffoldBackgroundColor: Colors.black),
       debugShowCheckedModeBanner: false,
       home: MyVideo(),
     ),
