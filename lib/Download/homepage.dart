@@ -85,7 +85,6 @@ class _HomeState extends State<Home> {
         body: ListView(
           children: [
             Container(
-              height: size.height * 0.2,
               margin: EdgeInsets.only(left: size.width * 0.05,right: size.width * 0.05, top: size.height * 0.03),
               child: Wrap(
                 // alignment: WrapAlignment.spaceEvenly,
@@ -122,20 +121,21 @@ class _HomeState extends State<Home> {
               ),
             ),
             SizedBox(
-              height: 40,
+              height: 30,
             ),
             Container(
-              margin: EdgeInsets.only(left: 20, bottom: 10),
+              margin: EdgeInsets.only(left: size.width * 0.05, bottom: size.height * 0.05),
               child: Text(
-                'Book Mark',
+                'BookMark',
                 style: TextStyle(color: Colors.white, fontSize: 15),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: size.width * 0.09),
               child: Row(
                 children: [
                   FloatingActionButton(
+                    mini: true,
                     backgroundColor: Colors.grey,
                     onPressed: () => showDialog(
                       context: context,
