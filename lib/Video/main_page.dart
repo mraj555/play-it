@@ -16,6 +16,8 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin {
   TabController? _tabController;
 
+  PageController _pageController = PageController();
+
   var _tabs = [
     Tab(
       icon: ImageIcon(
