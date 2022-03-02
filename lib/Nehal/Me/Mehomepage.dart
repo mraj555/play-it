@@ -18,22 +18,28 @@ class _MyappState extends State<Myme> {
         body: ListView(
           children: [
             Container(
-              height: 410,
+              height: 430,
               color: Colors.black,
               child: Column(
                 children: [
                   GestureDetector(
-                    child: Container(
-                      child: ClipRRect(
-                        child: Image.asset("assets/me/AA2.jpg"),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 40,left: 8,right: 8),
+                      child: Container(
+                        child: ClipRRect(
+                          child: Image.asset("assets/me/AA2.jpg"),
+                        ),
                       ),
                     ),
                     onTap: () {},
                   ),
                   GestureDetector(
-                    child: Container(
-                      child: ClipRRect(
-                        child: Image.asset("assets/me/AA1.jpg"),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8,right: 8),
+                      child: Container(
+                        child: ClipRRect(
+                          child: Image.asset("assets/me/AA1.jpg"),
+                        ),
                       ),
                     ),
                     onTap: () {},
@@ -298,7 +304,9 @@ class _MyappState extends State<Myme> {
                     ),
                   ),
                   Divider(
-                    height: 2,
+                     indent: 60,
+                    endIndent: 20,
+                    height: 0,
                     color: Colors.white,
                   ),
                   ListTile(
@@ -312,6 +320,8 @@ class _MyappState extends State<Myme> {
                     ),
                   ),
                   Divider(
+                    indent: 60,
+                    endIndent: 20,
                     height: 2,
                     color: Colors.white,
                   ),
@@ -326,6 +336,8 @@ class _MyappState extends State<Myme> {
                     ),
                   ),
                   Divider(
+                    indent: 60,
+                    endIndent: 20,
                     height: 2,
                     color: Colors.white,
                   ),
@@ -341,6 +353,8 @@ class _MyappState extends State<Myme> {
                     ),
                   ),
                   Divider(
+                    indent: 60,
+                    endIndent: 20,
                     height: 2,
                     color: Colors.white,
                   ),
