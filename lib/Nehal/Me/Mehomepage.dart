@@ -31,14 +31,14 @@ class _MyappState extends State<Myme> {
         body: ListView(
           children: [
             Container(
-              height: size.height * 0.46,
+              height: size.height * 0.5,
               color: Colors.black,
               child: Column(
                 children: [
                   GestureDetector(
                     child: Container(
                       margin:
-                          EdgeInsets.symmetric(horizontal: size.width * 0.03),
+                          EdgeInsets.symmetric(horizontal: size.width * 0.04),
                       child: ClipRRect(
                         borderRadius: BorderRadius.vertical(
                           top: Radius.circular(10),
@@ -51,7 +51,7 @@ class _MyappState extends State<Myme> {
                   GestureDetector(
                     child: Container(
                       margin:
-                          EdgeInsets.symmetric(horizontal: size.width * 0.03),
+                          EdgeInsets.symmetric(horizontal: size.width * 0.04),
                       child: ClipRRect(
                         borderRadius: BorderRadius.vertical(
                           bottom: Radius.circular(10),
@@ -60,6 +60,88 @@ class _MyappState extends State<Myme> {
                       ),
                     ),
                     onTap: () {},
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      right: size.width * 0.04,
+                      left: size.width * 0.04,
+                      top: size.width * 0.04,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: size.width * 0.44,
+                          height: size.height * 0.08,
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.all(3),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.withOpacity(0.5),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                height: 35,
+                                width: 35,
+                                margin: EdgeInsets.only(right: 8),
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Image.asset(
+                                  'assets/me/transfer.png',
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Text(
+                                'File Transfer',
+                                style: GoogleFonts.inter(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: size.width * 0.44,
+                          height: size.height * 0.08,
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.all(3),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.withOpacity(0.5),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                height: 35,
+                                width: 35,
+                                margin: EdgeInsets.only(right: 8),
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: Colors.greenAccent,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Image.asset(
+                                  'assets/me/theme.png',
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Text(
+                                'Featured Theme',
+                                style: GoogleFonts.inter(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 25),
