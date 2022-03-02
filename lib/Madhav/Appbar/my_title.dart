@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:play_it/Appbar/my_search.dart';
+
 import 'package:underline_indicator/underline_indicator.dart';
+
+import 'my_search.dart';
 
 class MyTitle extends StatefulWidget {
   @override
@@ -74,10 +76,8 @@ class _MyTitleState extends State<MyTitle> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.black,
         title: Stack(
           children: [
             Row(
@@ -125,7 +125,7 @@ class _MyTitleState extends State<MyTitle> with SingleTickerProviderStateMixin {
           ),
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.download_outlined),
+            icon: Icon(Icons.download),
             splashRadius: 20,
           ),
         ],
