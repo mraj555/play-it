@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:play_it/Download/download.dart';
+import 'package:play_it/Madhav/Appbar/my_title.dart';
+import 'package:play_it/Nehal/Me/Mehomepage.dart';
+
+import '../Download/homepage.dart';
 
 class MyVideo extends StatefulWidget {
   const MyVideo({Key? key}) : super(key: key);
@@ -7,7 +12,7 @@ class MyVideo extends StatefulWidget {
   _MyVideoState createState() => _MyVideoState();
 }
 
-class _MyVideoState extends State<MyVideo> {
+class _MyVideoState extends State<MyVideo> with SingleTickerProviderStateMixin {
   TabController? _tabController;
 
   var _tabs = [
@@ -31,23 +36,24 @@ class _MyVideoState extends State<MyVideo> {
 
   var _tabView = [
     Text('Video'),
-
+    MyTitle(),
+    Home(),
+    Myme(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(
+      length: _tabs.length,
+      vsync: this,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-              image: NetworkImage(
-                  'https://64.media.tumblr.com/c90100fd260e77796e397f07d1771d34/fd850e41fad78fd6-86/s400x600/f15e520227c7dd8b471d729a48f26080712d8250.gifv'),
-              fit: BoxFit.fill,
-            )),
-          ),
-        ),
         body: TabBarView(
           controller: _tabController,
           children: _tabView,
