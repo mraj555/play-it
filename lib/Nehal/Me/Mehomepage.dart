@@ -212,7 +212,6 @@ class _MyappState extends State<Myme> {
                     ),
                   ),
                   Divider(
-                    thickness: 0.1,
                      indent: 60,
                     endIndent: 20,
                     height: 0,
@@ -229,7 +228,6 @@ class _MyappState extends State<Myme> {
                     ),
                   ),
                   Divider(
-                    thickness: 0.1,
                     indent: 60,
                     endIndent: 20,
                     height: 2,
@@ -246,7 +244,6 @@ class _MyappState extends State<Myme> {
                     ),
                   ),
                   Divider(
-                    thickness: 0.1,
                     indent: 60,
                     endIndent: 20,
                     height: 2,
@@ -264,7 +261,6 @@ class _MyappState extends State<Myme> {
                     ),
                   ),
                   Divider(
-                    thickness: 0.1,
                     indent: 60,
                     endIndent: 20,
                     height: 2,
