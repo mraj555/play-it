@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:play_it/Madhav/Appbar/my_title.dart';
 import 'package:play_it/Nehal/Me/Mehomepage.dart';
+import 'package:play_it/Video/video_home.dart';
 
 import '../Download/homepage.dart';
 
-class MyVideo extends StatefulWidget {
-  const MyVideo({Key? key}) : super(key: key);
+class MainPage extends StatefulWidget {
+  const MainPage({Key? key}) : super(key: key);
 
   @override
-  _MyVideoState createState() => _MyVideoState();
+  _MainPageState createState() => _MainPageState();
 }
 
-class _MyVideoState extends State<MyVideo> with SingleTickerProviderStateMixin {
+class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin {
   TabController? _tabController;
 
   var _tabs = [
@@ -47,7 +48,7 @@ class _MyVideoState extends State<MyVideo> with SingleTickerProviderStateMixin {
   ];
 
   var _tabView = [
-    Text('Video'),
+    HomeVideo(),
     MyTitle(),
     Home(),
     Myme(),
@@ -77,7 +78,7 @@ class _MyVideoState extends State<MyVideo> with SingleTickerProviderStateMixin {
             tabs: _tabs,
             controller: _tabController,
             indicatorColor: Colors.transparent,
-            labelColor: Color(0xff30cc74),
+            labelColor: Color(0xff2bc877),
             unselectedLabelColor: Colors.white,
           ),
         ),

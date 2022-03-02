@@ -75,6 +75,7 @@ class _MyTitleState extends State<MyTitle> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
@@ -108,8 +109,8 @@ class _MyTitleState extends State<MyTitle> with SingleTickerProviderStateMixin {
               ],
             ),
             Positioned(
-              left: 71.4,
-              top: 9,
+              left: size.width * 0.166,
+              top: size.width * 0.022,
               width: 4.4,
               child: Container(
                 height: 3.5,
@@ -138,21 +139,6 @@ class _MyTitleState extends State<MyTitle> with SingleTickerProviderStateMixin {
             splashRadius: 20,
           ),
         ],
-
-        // bottom: TabBar(
-        //   labelColor: Color(0xff2bc877),
-        //   unselectedLabelColor: Colors.white,
-        //   isScrollable: true,
-        //   controller: controller,
-        //   tabs: _tabs,
-        //   indicator: UnderlineIndicator(
-        //     borderSide: BorderSide(
-        //       width: 3.0,
-        //       color: Color(0xff2bc877),
-        //     ),
-        //     insets: EdgeInsets.symmetric(horizontal: 20.0),
-        //   ),
-        // ),
       ),
       body: Column(
         children: [
