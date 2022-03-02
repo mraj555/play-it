@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:play_it/Download/download.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:play_it/Madhav/Appbar/my_title.dart';
 import 'package:play_it/Nehal/Me/Mehomepage.dart';
 
@@ -17,19 +17,31 @@ class _MyVideoState extends State<MyVideo> with SingleTickerProviderStateMixin {
 
   var _tabs = [
     Tab(
-      icon: Icon(Icons.video_library),
+      icon: ImageIcon(
+        AssetImage('assets/Icons/playit.png'),
+        size: 32,
+      ),
       text: 'VIDEO',
     ),
     Tab(
-      icon: Icon(Icons.audiotrack),
+      icon: ImageIcon(
+        AssetImage('assets/Icons/music.png'),
+        size: 32,
+      ),
       text: 'MUSIC',
     ),
     Tab(
-      icon: Icon(Icons.download_sharp),
+      icon: ImageIcon(
+        AssetImage('assets/Icons/download.png'),
+        size: 32,
+      ),
       text: 'DOWNLOAD',
     ),
     Tab(
-      icon: Icon(Icons.account_circle),
+      icon: ImageIcon(
+        AssetImage('assets/Icons/me.png'),
+        size: 32,
+      ),
       text: 'ME',
     ),
   ];
@@ -61,8 +73,12 @@ class _MyVideoState extends State<MyVideo> with SingleTickerProviderStateMixin {
         bottomNavigationBar: Material(
           color: Colors.black,
           child: TabBar(
+            labelStyle: GoogleFonts.inter(fontSize: 10),
             tabs: _tabs,
             controller: _tabController,
+            indicatorColor: Colors.transparent,
+            labelColor: Color(0xff30cc74),
+            unselectedLabelColor: Colors.white,
           ),
         ),
       ),

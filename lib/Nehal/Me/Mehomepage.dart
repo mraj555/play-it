@@ -143,109 +143,35 @@ class _MyappState extends State<Myme> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 25),
+                  Container(
+                    width: double.infinity,
                     child: Wrap(
                       children: [
-                        Container(
-                          height: 75,
-                          width: 100,
+                        Material(
                           color: Colors.transparent,
-                          child: Column(
-                            children: [
-                              Icon(
-                                Icons.download_outlined,
-                                color: Colors.white.withOpacity(0.9),
-                                size: 35,
+                          child: InkWell(
+                            onTap: () {},
+                            splashFactory: InkRipple.splashFactory,
+                            splashColor: Colors.grey.withOpacity(0.3),
+                            child: Container(
+                              height: size.width * 0.25,
+                              width: size.width * 0.35,
+                              alignment: Alignment.center,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.download_outlined,
+                                    color: Colors.white.withOpacity(0.9),
+                                    size: 35,
+                                  ),
+                                  Text(
+                                    'Downloads',
+                                    style:
+                                        GoogleFonts.inter(color: Colors.white),
+                                  )
+                                ],
                               ),
-                              Text(
-                                'Downloads',
-                                style: GoogleFonts.inter(color: Colors.white),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Container(
-                            height: 80,
-                            width: 120,
-                            color: Colors.transparent,
-                            child: Column(
-                              children: [
-                                Icon(
-                                  Icons.headset,
-                                  color: Colors.white.withOpacity(0.9),
-                                  size: 35,
-                                ),
-                                Text(
-                                  'Mp3 Converter',
-                                  style: GoogleFonts.inter(color: Colors.white),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Container(
-                            height: 75,
-                            width: 100,
-                            color: Colors.transparent,
-                            child: Column(
-                              children: [
-                                Icon(
-                                  Icons.folder,
-                                  color: Colors.white.withOpacity(0.9),
-                                  size: 35,
-                                ),
-                                Text(
-                                  'Privacy',
-                                  style: GoogleFonts.inter(color: Colors.white),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 05, left: 55),
-                          child: Container(
-                            height: 75,
-                            width: 100,
-                            color: Colors.transparent,
-                            child: Column(
-                              children: [
-                                Icon(
-                                  Icons.history,
-                                  color: Colors.white.withOpacity(0.9),
-                                  size: 35,
-                                ),
-                                Text(
-                                  'History',
-                                  style: GoogleFonts.inter(color: Colors.white),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5, left: 10),
-                          child: Container(
-                            height: 75,
-                            width: 100,
-                            color: Colors.transparent,
-                            child: Column(
-                              children: [
-                                Icon(
-                                  Icons.perm_media_outlined,
-                                  color: Colors.white.withOpacity(0.9),
-                                  size: 35,
-                                ),
-                                Text(
-                                  'Media Manage',
-                                  style: GoogleFonts.inter(color: Colors.white),
-                                )
-                              ],
                             ),
                           ),
                         ),
