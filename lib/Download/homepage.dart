@@ -228,6 +228,8 @@ class _HomeState extends State<Home> {
                         height: 35,
                         width: 280,
                         child: TextField(
+                          autofocus: true,
+                          style: TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                               contentPadding: EdgeInsets.only(left: 10),
                               border: OutlineInputBorder(

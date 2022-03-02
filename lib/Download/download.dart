@@ -415,11 +415,25 @@ class _DownState extends State<Down> {
                     )
                   ],
                 ),
-                Pinput(
-                  keyboardType: TextInputType.number,
-                  closeKeyboardWhenCompleted: true,autofocus: true,
-                   useNativeKeyboard: true,
-                  focusedPinTheme: PinTheme(textStyle: TextStyle(fontSize: 20)),
+                Container(
+                  height: 100,
+                  child: Pinput(
+                    defaultPinTheme: PinTheme(
+                      width: 56,
+                      height: 56,
+                      textStyle: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w600),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                      showCursor: true,
+                    animationCurve: Curves.fastOutSlowIn,
+                    pinAnimationType: PinAnimationType.fade,
+                    keyboardType: TextInputType.number,
+                    closeKeyboardWhenCompleted: true,autofocus: true,
+                     useNativeKeyboard: true,
+                  ),
                 ),
               ],
             ),
