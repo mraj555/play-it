@@ -10,6 +10,10 @@ class Myme extends StatefulWidget {
 }
 
 class _MyappState extends State<Myme> {
+  List <IconData>_icon=[
+    Icons.download_outlined,
+
+  ];
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -20,17 +24,17 @@ class _MyappState extends State<Myme> {
           flexibleSpace: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(
-                      'https://64.media.tumblr.com/c90100fd260e77796e397f07d1771d34/fd850e41fad78fd6-86/s400x600/f15e520227c7dd8b471d729a48f26080712d8250.gifv'),
-                  fit: BoxFit.fill,
-                )),
+              image: NetworkImage(
+                  'https://64.media.tumblr.com/c90100fd260e77796e397f07d1771d34/fd850e41fad78fd6-86/s400x600/f15e520227c7dd8b471d729a48f26080712d8250.gifv'),
+              fit: BoxFit.fill,
+            )),
           ),
         ),
         body: ListView(
           children: [
             Container(
-              height: size.height * 0.46,
-              color: Colors.black,
+              height: size.height * 0.60,
+              color: Colors.red,
               child: Column(
                 children: [
                   GestureDetector(
@@ -60,6 +64,57 @@ class _MyappState extends State<Myme> {
                     onTap: () {},
                   ),
                   Padding(
+                    padding: EdgeInsets.only(
+                        top: 10,
+                        left: size.width * 0.03,
+                        right: size.width * 0.03),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                            height: size.height * 0.09,
+                            width: size.width * 0.46,
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: Colors.grey),
+                            child: Row(
+                              children: [
+                                ClipRRect(
+                                  child: Image.asset('assets/me/AA4.png'),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                Text(
+                                  'File Transfer',
+                                  style: GoogleFonts.inter(
+                                      color: Colors.white, fontSize: 11),
+                                )
+                              ],
+                            )),
+                        Container(
+                            height: size.height * 0.09,
+                            width: size.width * 0.45,
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: Colors.grey),
+                            child: Row(
+                              children: [
+                                ClipRRect(
+                                  child: Image.asset('assets/me/AA5.png'),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                Text(
+                                  'Featured Theme',
+                                  style: GoogleFonts.inter(
+                                      color: Colors.white, fontSize: 11),
+                                )
+                              ],
+                            )),
+                      ],
+                    ),
+                  ),
+                  Padding(
                     padding: const EdgeInsets.only(top: 25),
                     child: Wrap(
                       children: [
@@ -71,7 +126,7 @@ class _MyappState extends State<Myme> {
                             children: [
                               Icon(
                                 Icons.download_outlined,
-                                color: Colors.white.withOpacity(0.9),
+                                color: Colors.white,
                                 size: 35,
                               ),
                               Text(
@@ -82,7 +137,7 @@ class _MyappState extends State<Myme> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 10),
+                          padding: EdgeInsets.only(left: 10),
                           child: Container(
                             height: 80,
                             width: 120,
@@ -124,7 +179,7 @@ class _MyappState extends State<Myme> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 05, left: 55),
+                          padding:  EdgeInsets.only(top: 05, left: 55),
                           child: Container(
                             height: 75,
                             width: 100,
@@ -212,7 +267,7 @@ class _MyappState extends State<Myme> {
                     ),
                   ),
                   Divider(
-                     indent: 60,
+                    indent: 60,
                     endIndent: 20,
                     height: 0,
                     color: Colors.white,
