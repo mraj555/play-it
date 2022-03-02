@@ -21,6 +21,7 @@ class _MyappState extends State<Myme> {
       child: Scaffold(
         backgroundColor: Colors.grey.withOpacity(0.2),
         appBar: AppBar(
+          toolbarHeight: size.height * 0.06,
           flexibleSpace: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
