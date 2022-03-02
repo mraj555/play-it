@@ -17,13 +17,15 @@ class _MyappState extends State<Myme> {
       child: Scaffold(
         backgroundColor: Colors.grey.withOpacity(0.2),
         appBar: AppBar(
+          toolbarHeight: size.height * 0.06,
           flexibleSpace: Container(
             decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(
-                      'https://64.media.tumblr.com/c90100fd260e77796e397f07d1771d34/fd850e41fad78fd6-86/s400x600/f15e520227c7dd8b471d729a48f26080712d8250.gifv'),
-                  fit: BoxFit.fill,
-                )),
+              image: DecorationImage(
+                image: NetworkImage(
+                    'https://64.media.tumblr.com/c90100fd260e77796e397f07d1771d34/fd850e41fad78fd6-86/s400x600/f15e520227c7dd8b471d729a48f26080712d8250.gifv'),
+                fit: BoxFit.fill,
+              ),
+            ),
           ),
         ),
         body: ListView(
