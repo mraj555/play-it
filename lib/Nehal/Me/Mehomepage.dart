@@ -10,10 +10,20 @@ class Myme extends StatefulWidget {
 }
 
 class _MyappState extends State<Myme> {
-  List <IconData>_icon=[
+  List<IconData> _icon = [
     Icons.download_outlined,
-
+    Icons.headset,
+    Icons.folder,
+    Icons.history,
+    Icons.perm_media_outlined,
   ];
+ List name=[
+   'Downloads',
+   'Mp3 Converter',
+   'Privacy',
+   'History',
+   'Media Manage',
+ ];
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -73,6 +83,7 @@ class _MyappState extends State<Myme> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
+                            alignment: Alignment.center,
                             height: size.height * 0.09,
                             width: size.width * 0.46,
                             padding: EdgeInsets.all(10),
@@ -80,10 +91,20 @@ class _MyappState extends State<Myme> {
                                 borderRadius: BorderRadius.circular(5),
                                 color: Colors.grey),
                             child: Row(
+                              mainAxisSize: MainAxisSize.min,
                               children: [
-                                ClipRRect(
-                                  child: Image.asset('assets/me/AA4.png'),
-                                  borderRadius: BorderRadius.circular(5),
+                                Container(
+                                  margin: EdgeInsets.only(right: 12),
+                                  padding: EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: Colors.blue),
+                                  child: Image.asset(
+                                    'assets/me/transfer.png',
+                                    color: Colors.white,
+                                    height: 18,
+                                    width: 18,
+                                  ),
                                 ),
                                 Text(
                                   'File Transfer',
@@ -91,27 +112,41 @@ class _MyappState extends State<Myme> {
                                       color: Colors.white, fontSize: 11),
                                 )
                               ],
-                            )),
+                            ),
+                        ),
                         Container(
-                            height: size.height * 0.09,
-                            width: size.width * 0.45,
-                            padding: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: Colors.grey),
-                            child: Row(
-                              children: [
-                                ClipRRect(
-                                  child: Image.asset('assets/me/AA5.png'),
-                                  borderRadius: BorderRadius.circular(5),
+                          alignment: Alignment.center,
+                          height: size.height * 0.09,
+                          width: size.width * 0.46,
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: Colors.grey),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(right: 12),
+                                padding: EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: Colors.blue),
+                                child: Image.asset(
+                                  'assets/me/transfer.png',
+                                  color: Colors.white,
+                                  height: 18,
+                                  width: 18,
                                 ),
-                                Text(
-                                  'Featured Theme',
-                                  style: GoogleFonts.inter(
-                                      color: Colors.white, fontSize: 11),
-                                )
-                              ],
-                            )),
+                              ),
+                              Text(
+                                'File Transfer',
+                                style: GoogleFonts.inter(
+                                    color: Colors.white, fontSize: 11),
+                              )
+                            ],
+                          ),
+                        ),
+
                       ],
                     ),
                   ),
@@ -180,7 +215,7 @@ class _MyappState extends State<Myme> {
                           ),
                         ),
                         Padding(
-                          padding:  EdgeInsets.only(top: 05, left: 55),
+                          padding: EdgeInsets.only(top: 05, left: 55),
                           child: Container(
                             height: 75,
                             width: 100,
