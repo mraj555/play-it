@@ -12,7 +12,17 @@ class Myme extends StatefulWidget {
 class _MyappState extends State<Myme> {
   List <IconData>_icon=[
     Icons.download_outlined,
-
+    Icons.headset,
+    Icons.folder,
+    Icons.history,
+    Icons.perm_media_outlined,
+  ];
+  List name=[
+    'Download',
+    'MP3 Converter',
+    'Privacy',
+    'History',
+    'Media Manage',
   ];
   @override
   Widget build(BuildContext context) {
@@ -35,7 +45,7 @@ class _MyappState extends State<Myme> {
           children: [
             Container(
               height: size.height * 0.60,
-              color: Colors.red,
+              color: Colors.black,
               child: Column(
                 children: [
                   GestureDetector(
@@ -81,14 +91,15 @@ class _MyappState extends State<Myme> {
                                 color: Colors.grey),
                             child: Row(
                               children: [
-                                ClipRRect(
-                                  child: Image.asset('assets/me/AA4.png'),
-                                  borderRadius: BorderRadius.circular(5),
+                                Container(
+                                  margin: EdgeInsets.only(right: 10),
+                                  child: Image.asset('assets/me/transfer.png',height: 25,width: 25,),
+                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(8),color: Colors.blue),
                                 ),
                                 Text(
                                   'File Transfer',
                                   style: GoogleFonts.inter(
-                                      color: Colors.white, fontSize: 11),
+                                      color: Colors.white, fontSize: 12),
                                 )
                               ],
                             )),
@@ -101,9 +112,9 @@ class _MyappState extends State<Myme> {
                                 color: Colors.grey),
                             child: Row(
                               children: [
-                                ClipRRect(
-                                  child: Image.asset('assets/me/AA5.png'),
-                                  borderRadius: BorderRadius.circular(5),
+                                Container(
+                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(8),color: Colors.green),
+                                  child: Image.asset('assets/me/theme.png',color: Colors.white,),
                                 ),
                                 Text(
                                   'Featured Theme',
