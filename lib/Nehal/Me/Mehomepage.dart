@@ -218,11 +218,14 @@ class _MyappState extends State<Myme> {
                 child: Column(
                   children: [
                     ListTile(
-                      contentPadding: EdgeInsets.only(right: 10),
-                      leading: Image.network(
-                        "https://thumbs.dreamstime.com/b/glowing-neon-shield-vpn-wifi-wireless-internet-network-symbol-icon-isolated-brick-wall-background-protect-safety-182365307.jpg",
-                        height: 60,
-                        width: 60,
+                      contentPadding: EdgeInsets.only(left: 10),
+                      leading: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                          "https://sg-res.9appsdownloading.com/sg/res/jpg/5e/ad/0c6dd1530ee8268583681c94b5c7-sfq.jpg?x-oss-process=style/mq200",
+                          height: 30,
+                          width: 30,
+                        ),
                       ),
                       title: Text(
                         'LinkF|y VPN',
