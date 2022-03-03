@@ -10,7 +10,7 @@ void main() {
     MaterialApp(
       theme: ThemeData(scaffoldBackgroundColor: Colors.black),
       debugShowCheckedModeBanner: false,
-      home: Myme(),
+      home: MainPage(),
     ),
   );
 }
