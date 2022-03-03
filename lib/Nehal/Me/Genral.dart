@@ -10,7 +10,7 @@ class Mygeneral extends StatefulWidget {
 class _MygeneralState extends State<Mygeneral> {
   var switch1 = false;
   var switch2 = false;
-  var switch3 = false;
+  var switch3 = true;
 
   @override
   Widget build(BuildContext context) {

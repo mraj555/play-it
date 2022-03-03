@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:play_it/Nehal/Me/Genral.dart';
+import 'package:play_it/Nehal/Me/video.dart';
 
 class Mysettings extends StatefulWidget {
   const Mysettings({Key? key}) : super(key: key);
@@ -14,13 +15,13 @@ class _MyappState extends State<Mysettings> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xff0E0E0E),
         title: Text(
           'Settings',
           style: TextStyle(color: Colors.white, fontSize: 25),
         ),
       ),
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xff0E0E0E),
       body: ListView(
         children: [
           Column(
@@ -55,28 +56,33 @@ class _MyappState extends State<Mysettings> {
                   ),
                 ),
               ),
-              ListTile(
-                leading: Padding(
-                  padding: EdgeInsets.only(top: 5),
-                  child: Icon(
-                    Icons.play_circle_outline,
-                    color: Colors.white,
-                    size: 30,
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>Videopage()));
+                },
+                child: ListTile(
+                  leading: Padding(
+                    padding: EdgeInsets.only(top: 5),
+                    child: Icon(
+                      Icons.play_circle_outline,
+                      color: Colors.white,
+                      size: 30,
+                    ),
                   ),
-                ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.white,
-                  size: 15.5,
-                ),
-                title: Text(
-                  "Video",
-                  style: TextStyle(color: Colors.white),
-                ),
-                subtitle: Text(
-                  'Pop-up play, screen orientation, sontinuous playb...',
-                  style: TextStyle(
-                      color: Colors.white.withOpacity(0.5), fontSize: 12),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.white,
+                    size: 15.5,
+                  ),
+                  title: Text(
+                    "Video",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  subtitle: Text(
+                    'Pop-up play, screen orientation, sontinuous playb...',
+                    style: TextStyle(
+                        color: Colors.white.withOpacity(0.5), fontSize: 12),
+                  ),
                 ),
               ),
               ListTile(
