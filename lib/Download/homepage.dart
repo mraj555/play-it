@@ -245,10 +245,7 @@ class _HomeState extends State<Home> {
                     children: [
                       IconButton(
                         onPressed: () {
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(builder: (context) => Home()),
-                              (route) => false);
+                         Navigator.pop(context);
                         },
                         icon: Icon(
                           Icons.arrow_back_outlined,

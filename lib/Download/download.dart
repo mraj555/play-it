@@ -4,15 +4,11 @@ import 'package:pinput/pinput.dart';
 import 'package:play_it/Download/homepage.dart';
 
 class Down extends StatefulWidget {
-  const Down({Key? key}) : super(key: key);
-
   @override
   _DownState createState() => _DownState();
 }
-
 class _DownState extends State<Down> {
   var groupValue = 0;
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -25,8 +21,7 @@ class _DownState extends State<Down> {
               children: [
                 IconButton(
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Home()));
+                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>Home()), (route) => false);
                   },
                   icon: Icon(
                     Icons.arrow_back_outlined,
