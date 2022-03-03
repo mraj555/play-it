@@ -92,7 +92,7 @@ class _MyappState extends State<Myme> {
                           width: size.width * 0.44,
                           height: size.height * 0.08,
                           alignment: Alignment.center,
-                          padding: EdgeInsets.all(3),
+                          padding: EdgeInsets.all(size.width * 0.03),
                           decoration: BoxDecoration(
                             color: Colors.grey.withOpacity(0.5),
                             borderRadius: BorderRadius.circular(5),
@@ -101,8 +101,8 @@ class _MyappState extends State<Myme> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Container(
-                                height: 35,
-                                width: 35,
+                                height: size.height * 0.05,
+                                width: size.width * 0.1,
                                 margin: EdgeInsets.only(right: 8),
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
@@ -118,6 +118,7 @@ class _MyappState extends State<Myme> {
                                 'File Transfer',
                                 style: GoogleFonts.inter(
                                   color: Colors.white,
+                                  fontSize: size.width * 0.025,
                                 ),
                               ),
                             ],
@@ -127,7 +128,7 @@ class _MyappState extends State<Myme> {
                           width: size.width * 0.44,
                           height: size.height * 0.08,
                           alignment: Alignment.center,
-                          padding: EdgeInsets.all(3),
+                          padding: EdgeInsets.all(size.width * 0.03),
                           decoration: BoxDecoration(
                             color: Colors.grey.withOpacity(0.5),
                             borderRadius: BorderRadius.circular(5),
@@ -136,8 +137,8 @@ class _MyappState extends State<Myme> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Container(
-                                height: 35,
-                                width: 35,
+                                height: size.height * 0.05,
+                                width: size.width * 0.1,
                                 margin: EdgeInsets.only(right: 8),
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
@@ -153,6 +154,7 @@ class _MyappState extends State<Myme> {
                                 'Featured Theme',
                                 style: GoogleFonts.inter(
                                   color: Colors.white,
+                                  fontSize: size.width * 0.025,
                                 ),
                               ),
                             ],
