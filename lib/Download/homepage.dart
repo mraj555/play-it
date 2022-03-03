@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:play_it/download.dart';
+import 'package:play_it/Download/download.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -10,17 +10,15 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List _image1 = [
-    'https://png.pngtree.com/element_our/md/20180626/md_5b321c98efaa6.jpg',
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGSHnjhohZvjxf19zHrR8UKszTq5mIfH9YJQ&usqp=CAU',
-    'https://ichef.bbci.co.uk/news/976/cpsprodpb/E802/production/_89649395_instagram_logo_976.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/800px-Instagram_logo_2016.svg.png',
     'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/YouTube_social_white_square_%282017%29.svg/2048px-YouTube_social_white_square_%282017%29.svg.png',
-    'https://about.twitter.com/content/dam/about-twitter/en/brand-toolkit/brand-download-img-1.jpg.twimg.1920.jpg',
+    'https://media.socastsrm.com/wordpress/wp-content/blogs.dir/2162/files/2020/05/twittter.png',
     'https://image.winudf.com/v2/image/Y29tLmluZGlyLm1wM3R1YmlkeV9zY3JlZW5fM19lZzhrNnZxdw/screen-3.jpg?fakeurl=1&type=.jpg',
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8opJd7fcSRwYrFu028Ap7ZaLlzyiG5eANsN0V5yJlk_qupJk1DxDymuWnnOsyb5czKB8&usqp=CAU',
     'https://sg-res.9appsdownloading.com/sg/res/jpg/5e/ad/0c6dd1530ee8268583681c94b5c7-sfq.jpg?x-oss-process=style/mq200',
   ];
   List name1 = [
-    'Whatsapp',
     'Facebook',
     'Instagram',
     'Youtube',
@@ -31,82 +29,113 @@ class _HomeState extends State<Home> {
   ];
   var namecontroller = TextEditingController();
   var name = '';
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(
+                    'https://64.media.tumblr.com/c90100fd260e77796e397f07d1771d34/fd850e41fad78fd6-86/s400x600/f15e520227c7dd8b471d729a48f26080712d8250.gifv'),
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+          elevation: 0,
+          title: GestureDetector(
+            onTap: _opensearch,
+            child: Container(
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.only(left: 10),
+              height: size.height * 0.05,
+              margin: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  border: Border.all(width: 3, color: Colors.green)),
+              child: Icon(
+                Icons.search_rounded,
+                color: Colors.grey,
+                size: 18,
+              ),
+            ),
+          ),
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Down(),
+                  ),
+                  (route) => false,
+                );
+              },
+              icon: ImageIcon(
+                AssetImage('assets/Icons/download_1.png'),
+                size: 24,
+              ),
+              splashRadius: 20,
+            ),
+          ],
+        ),
         body: ListView(
           children: [
-            Row(
-              children: [
-                GestureDetector(
-                  onTap: _opensearch,
-                  child: Container(
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.only(left: 10),
-                      height: 40,
-                      width: 280,
-                      margin: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(width: 3, color: Colors.green)),
-                      child: Icon(
-                        Icons.search_rounded,
-                        color: Colors.grey,
-                        size: 18,
-                      )),
-                ),
-                IconButton(
-                    onPressed: () {
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => Down()),
-                          (route) => false);
-                    },
-                    icon: Icon(
-                      Icons.download,
-                      color: Colors.white,
-                    )),
-              ],
-            ),
             Container(
-              height: 200,
-              width: 200,
-              margin: EdgeInsets.only(top: 30),
+              margin: EdgeInsets.only(left: size.width * 0.05,right: size.width * 0.05, top: size.height * 0.03),
               child: Wrap(
-                runSpacing: 20,
+                // alignment: WrapAlignment.spaceEvenly,
+                runSpacing: size.width * 0.09,
+                spacing: size.width * 0.03,
                 children: List.generate(
                   _image1.length,
-                  (index) => Column(
+                      (index) => Container(
+                        width: size.width * 0.2,
+                        alignment: Alignment.center,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
-                        margin: EdgeInsets.only(left: 20, right: 20),
-                        child: CircleAvatar(
-                          radius: 25,
-                          backgroundImage: NetworkImage(_image1[index]),
+                        Container(
+                          child: CircleAvatar(
+                            radius: 23,
+                            backgroundImage: NetworkImage(_image1[index]),
+                          ),
                         ),
-                      ),
-                      Text(
-                        name1[index],
-                        style: TextStyle(color: Colors.grey),
-                      )
+                        SizedBox(
+                          height: 10,
+                        ),
+                        FittedBox(
+                          child: Text(
+                            name1[index],
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        )
                     ],
                   ),
+                      ),
                 ),
               ),
             ),
+            SizedBox(
+              height: 30,
+            ),
             Container(
-              margin: EdgeInsets.only(left: 20, bottom: 10),
+              margin: EdgeInsets.only(left: size.width * 0.05, bottom: size.height * 0.05),
               child: Text(
-                'Book Mark',
+                'BookMark',
                 style: TextStyle(color: Colors.white, fontSize: 15),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: size.width * 0.09),
               child: Row(
                 children: [
                   FloatingActionButton(
+                    mini: true,
                     backgroundColor: Colors.grey,
                     onPressed: () => showDialog(
                       context: context,
@@ -193,7 +222,6 @@ class _HomeState extends State<Home> {
                       color: Colors.grey[100],
                     ),
                   ),
-
                 ],
               ),
             ),
@@ -217,7 +245,10 @@ class _HomeState extends State<Home> {
                     children: [
                       IconButton(
                         onPressed: () {
-                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>Home()), (route) => false);
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(builder: (context) => Home()),
+                              (route) => false);
                         },
                         icon: Icon(
                           Icons.arrow_back_outlined,
@@ -228,6 +259,8 @@ class _HomeState extends State<Home> {
                         height: 35,
                         width: 280,
                         child: TextField(
+                          autofocus: true,
+                          style: TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                               contentPadding: EdgeInsets.only(left: 10),
                               border: OutlineInputBorder(

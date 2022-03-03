@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:play_it/Ridham/VIP_Page.dart';
@@ -11,36 +10,69 @@ class Myme extends StatefulWidget {
 }
 
 class _MyappState extends State<Myme> {
+  var _icons = [
+    Icons.download_outlined,
+    Icons.headset_mic_outlined,
+    Icons.folder_outlined,
+    Icons.access_time_outlined,
+    Icons.folder_outlined,
+  ];
+
+  var _names = [
+    'Downloads',
+    'MP3 Converter',
+    'Privacy',
+    'History',
+    'Media Manage',
+  ];
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.grey.withOpacity(0.2),
+        appBar: AppBar(
+          toolbarHeight: size.height * 0.06,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(
+                    'https://64.media.tumblr.com/c90100fd260e77796e397f07d1771d34/fd850e41fad78fd6-86/s400x600/f15e520227c7dd8b471d729a48f26080712d8250.gifv'),
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+        ),
         body: ListView(
           children: [
             Container(
-              height: 430,
               color: Colors.black,
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   GestureDetector(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 40,left: 8,right: 8),
-                      child: Container(
-                        child: ClipRRect(
-                          child: Image.asset("assets/me/AA2.jpg"),
+                    child: Container(
+                      margin:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.04),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(10),
                         ),
+                        child: Image.asset("assets/me/AA2.jpg"),
                       ),
                     ),
                     onTap: () {},
                   ),
                   GestureDetector(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 8,right: 8),
-                      child: Container(
-                        child: ClipRRect(
-                          child: Image.asset("assets/me/AA1.jpg"),
+                    child: Container(
+                      margin:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.04),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.vertical(
+                          bottom: Radius.circular(10),
                         ),
+                        child: Image.asset("assets/me/AA1.jpg"),
                       ),
                     ),
                     onTap: () {
@@ -48,219 +80,128 @@ class _MyappState extends State<Myme> {
                     },
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Container(
-                      height: 70,
-                      child: Row(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Colors.grey.withOpacity(0.8),
-                            ),
-                            height: 55,
-                            width: 150,
-                            child: Stack(
-                              children: [
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 2.5, left: 10),
-                                      child: Card(
-                                        shadowColor: Colors.black,
-                                        elevation: 10,
-                                        child: Container(
-                                          width: 40,
-                                          height: 40,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                            BorderRadius.circular(5),
-                                            color:
-                                            Colors.white.withOpacity(0.6),
-                                          ),
-                                          child: ClipRRect(
-                                            child:
-                                            Image.asset('assets/me/AA4.png'),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 5),
-                                      child: Text(
-                                        'File Transfer',
-                                        style: GoogleFonts.inter(
-                                            textStyle:
-                                            TextStyle(color: Colors.white)),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20),
-                            child: Container(
-                              height: 55,
-                              width: 150,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: Colors.grey.withOpacity(0.8),
-                              ),
-                              child: Stack(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 2.5, left: 10),
-                                        child: Card(
-                                          shadowColor: Colors.black,
-                                          elevation: 10,
-                                          child: Container(
-                                            width: 40,
-                                            height: 40,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                              BorderRadius.circular(5),
-                                              color:
-                                              Colors.white.withOpacity(0.6),
-                                            ),
-                                            child: ClipRRect(
-                                              child:
-                                              Image.asset('assets/me/AA5.png'),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 5),
-                                        child: Text(
-                                          'Theme',
-                                          style: GoogleFonts.inter(
-                                              textStyle: TextStyle(
-                                                  color: Colors.white)),
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                    padding: EdgeInsets.only(
+                      right: size.width * 0.04,
+                      left: size.width * 0.04,
+                      top: size.width * 0.04,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 25),
-                    child: Wrap(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          height: 75,
-                          width: 100,
-                          color: Colors.transparent,
-                          child: Column(
+                          width: size.width * 0.44,
+                          height: size.height * 0.08,
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.all(3),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.withOpacity(0.5),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
                             children: [
-                              Icon(
-                                Icons.download_outlined,
-                                color: Colors.white.withOpacity(0.9),
-                                size: 35,
+                              Container(
+                                height: 35,
+                                width: 35,
+                                margin: EdgeInsets.only(right: 8),
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Image.asset(
+                                  'assets/me/transfer.png',
+                                  color: Colors.white,
+                                ),
                               ),
                               Text(
-                                'Downloads',
-                                style: GoogleFonts.inter(color: Colors.white),
-                              )
+                                'File Transfer',
+                                style: GoogleFonts.inter(
+                                  color: Colors.white,
+                                ),
+                              ),
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Container(
-                            height: 80,
-                            width: 120,
-                            color: Colors.transparent,
-                            child: Column(
-                              children: [
-                                Icon(
-                                  Icons.headset,
-                                  color: Colors.white.withOpacity(0.9),
-                                  size: 35,
-                                ),
-                                Text(
-                                  'Mp3 Converter',
-                                  style: GoogleFonts.inter(color: Colors.white),
-                                )
-                              ],
-                            ),
+                        Container(
+                          width: size.width * 0.44,
+                          height: size.height * 0.08,
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.all(3),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.withOpacity(0.5),
+                            borderRadius: BorderRadius.circular(5),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Container(
-                            height: 75,
-                            width: 100,
-                            color: Colors.transparent,
-                            child: Column(
-                              children: [
-                                Icon(
-                                  Icons.folder,
-                                  color: Colors.white.withOpacity(0.9),
-                                  size: 35,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                height: 35,
+                                width: 35,
+                                margin: EdgeInsets.only(right: 8),
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: Colors.greenAccent,
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
-                                Text(
-                                  'Privacy',
-                                  style: GoogleFonts.inter(color: Colors.white),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 05, left: 55),
-                          child: Container(
-                            height: 75,
-                            width: 100,
-                            color: Colors.transparent,
-                            child: Column(
-                              children: [
-                                Icon(
-                                  Icons.history,
-                                  color: Colors.white.withOpacity(0.9),
-                                  size: 35,
+                                child: Image.asset(
+                                  'assets/me/theme.png',
+                                  color: Colors.white,
                                 ),
-                                Text(
-                                  'History',
-                                  style: GoogleFonts.inter(color: Colors.white),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5, left: 10),
-                          child: Container(
-                            height: 75,
-                            width: 100,
-                            color: Colors.transparent,
-                            child: Column(
-                              children: [
-                                Icon(
-                                  Icons.perm_media_outlined,
-                                  color: Colors.white.withOpacity(0.9),
-                                  size: 35,
+                              ),
+                              Text(
+                                'Featured Theme',
+                                style: GoogleFonts.inter(
+                                  color: Colors.white,
                                 ),
-                                Text(
-                                  'Media Manage',
-                                  style: GoogleFonts.inter(color: Colors.white),
-                                )
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
+                    ),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    child: Wrap(
+                      children: List.generate(
+                        5,
+                        (index) {
+                          return Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              onTap: () {},
+                              splashFactory: InkRipple.splashFactory,
+                              splashColor: Colors.grey.withOpacity(0.3),
+                              child: Container(
+                                height: size.width * 0.25,
+                                width: size.width * 0.33,
+                                alignment: Alignment.center,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      _icons[index],
+                                      color: Colors.white.withOpacity(0.9),
+                                      size: 30,
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      _names[index],
+                                      style: GoogleFonts.inter(
+                                        color: Colors.white,
+                                      ),
+                                    )
+                                  ],
+                                ),
+
+                              ),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ],
@@ -307,7 +248,8 @@ class _MyappState extends State<Myme> {
                     ),
                   ),
                   Divider(
-                     indent: 60,
+                    thickness: 0.1,
+                    indent: 60,
                     endIndent: 20,
                     height: 0,
                     color: Colors.white.withOpacity(0.3),
@@ -323,6 +265,7 @@ class _MyappState extends State<Myme> {
                     ),
                   ),
                   Divider(
+                    thickness: 0.1,
                     indent: 60,
                     endIndent: 20,
                     height: 2,
@@ -339,6 +282,7 @@ class _MyappState extends State<Myme> {
                     ),
                   ),
                   Divider(
+                    thickness: 0.1,
                     indent: 60,
                     endIndent: 20,
                     height: 2,
@@ -356,6 +300,7 @@ class _MyappState extends State<Myme> {
                     ),
                   ),
                   Divider(
+                    thickness: 0.1,
                     indent: 60,
                     endIndent: 20,
                     height: 2,

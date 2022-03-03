@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:play_it/homepage.dart';
+import 'package:pinput/pinput.dart';
+import 'package:play_it/Download/homepage.dart';
 
 class Down extends StatefulWidget {
   const Down({Key? key}) : super(key: key);
@@ -207,9 +208,14 @@ class _DownState extends State<Down> {
                       ),
                     ),
                     PopupMenuButton(
+                      onSelected: (value){
+                        if(value==0){
+                          _setpassword();
+                        }
+                      },
                       itemBuilder: (context) => [
                         PopupMenuItem(
-                          onTap: () => _setpassword(),
+                          value: 0,
                           child: Text('Set Password'),
                         ),
                       ],
@@ -386,24 +392,51 @@ class _DownState extends State<Down> {
   _setpassword() {
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (context) => Scaffold(
-          body: ListView(
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.arrow_back_outlined,
-                      color: Colors.white,
+      PageRouteBuilder(
+        pageBuilder: (context,_,__) => SafeArea(
+          child: Scaffold(
+            body: Column(
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(
+                        Icons.arrow_back_outlined,
+                        color: Colors.white,
+                      ),
                     ),
+                    Text(
+                      'Change Password ',
+                      style: TextStyle(fontSize: 20),
+                    )
+                  ],
+                ),
+                Container(
+                  height: 100,
+                  child: Pinput(
+                    defaultPinTheme: PinTheme(
+                      width: 56,
+                      height: 56,
+                      textStyle: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w600),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                      showCursor: true,
+                    animationCurve: Curves.fastOutSlowIn,
+                    pinAnimationType: PinAnimationType.fade,
+                    keyboardType: TextInputType.number,
+                    closeKeyboardWhenCompleted: true,autofocus: true,
+                     useNativeKeyboard: true,
                   ),
-                  Text('Change Password ')
-                ],
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
