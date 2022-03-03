@@ -115,7 +115,7 @@ class _MyappState extends State<Myme> {
                                 'File Transfer',
                                 style: GoogleFonts.inter(
                                   color: Colors.white,
-                                  fontSize: size.aspectRatio * 25,
+                                  fontSize: size.width * 0.025,
                                 ),
                               ),
                             ],
@@ -151,7 +151,7 @@ class _MyappState extends State<Myme> {
                                 'Featured Theme',
                                 style: GoogleFonts.inter(
                                   color: Colors.white,
-                                  fontSize: size.aspectRatio * 25,
+                                  fontSize: size.width * 0.025,
                                 ),
                               ),
                             ],
