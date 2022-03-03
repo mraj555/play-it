@@ -89,7 +89,7 @@ class _MyappState extends State<Myme> {
                           width: size.width * 0.44,
                           height: size.height * 0.08,
                           alignment: Alignment.center,
-                          padding: EdgeInsets.all(3),
+                          padding: EdgeInsets.all(size.width * 0.03),
                           decoration: BoxDecoration(
                             color: Colors.grey.withOpacity(0.5),
                             borderRadius: BorderRadius.circular(5),
@@ -125,7 +125,7 @@ class _MyappState extends State<Myme> {
                           width: size.width * 0.44,
                           height: size.height * 0.08,
                           alignment: Alignment.center,
-                          padding: EdgeInsets.all(3),
+                          padding: EdgeInsets.all(size.width * 0.03),
                           decoration: BoxDecoration(
                             color: Colors.grey.withOpacity(0.5),
                             borderRadius: BorderRadius.circular(5),
