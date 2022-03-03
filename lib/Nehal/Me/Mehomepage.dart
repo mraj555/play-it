@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:play_it/Ridham/VIP_Page.dart';
 
 class Myme extends StatefulWidget {
   const Myme({Key? key}) : super(key: key);
@@ -10,6 +10,22 @@ class Myme extends StatefulWidget {
 }
 
 class _MyappState extends State<Myme> {
+  var _icons = [
+    Icons.download_outlined,
+    Icons.headset_mic_outlined,
+    Icons.folder_outlined,
+    Icons.access_time_outlined,
+    Icons.folder_outlined,
+  ];
+
+  var _names = [
+    'Downloads',
+    'MP3 Converter',
+    'Privacy',
+    'History',
+    'Media Manage',
+  ];
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -29,14 +45,14 @@ class _MyappState extends State<Myme> {
         body: ListView(
           children: [
             Container(
-              height: size.height * 0.46,
               color: Colors.black,
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   GestureDetector(
                     child: Container(
                       margin:
-                          EdgeInsets.symmetric(horizontal: size.width * 0.03),
+                          EdgeInsets.symmetric(horizontal: size.width * 0.04),
                       child: ClipRRect(
                         borderRadius: BorderRadius.vertical(
                           top: Radius.circular(10),
@@ -49,7 +65,7 @@ class _MyappState extends State<Myme> {
                   GestureDetector(
                     child: Container(
                       margin:
-                          EdgeInsets.symmetric(horizontal: size.width * 0.03),
+                          EdgeInsets.symmetric(horizontal: size.width * 0.04),
                       child: ClipRRect(
                         borderRadius: BorderRadius.vertical(
                           bottom: Radius.circular(10),
@@ -57,115 +73,135 @@ class _MyappState extends State<Myme> {
                         child: Image.asset("assets/me/AA1.jpg"),
                       ),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Vip_Page()));
+                    },
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 25),
-                    child: Wrap(
+                    padding: EdgeInsets.only(
+                      right: size.width * 0.04,
+                      left: size.width * 0.04,
+                      top: size.width * 0.04,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          height: 75,
-                          width: 100,
-                          color: Colors.transparent,
-                          child: Column(
+                          width: size.width * 0.44,
+                          height: size.height * 0.08,
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.all(size.width * 0.03),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.withOpacity(0.5),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
                             children: [
-                              Icon(
-                                Icons.download_outlined,
-                                color: Colors.white.withOpacity(0.9),
-                                size: 35,
+                              Container(
+                                height: size.height * 0.05,
+                                width: size.width * 0.1,
+                                margin: EdgeInsets.only(right: 8),
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Image.asset(
+                                  'assets/me/transfer.png',
+                                  color: Colors.white,
+                                ),
                               ),
                               Text(
-                                'Downloads',
-                                style: GoogleFonts.inter(color: Colors.white),
-                              )
+                                'File Transfer',
+                                style: GoogleFonts.inter(
+                                  color: Colors.white,
+                                  fontSize: size.width * 0.025,
+                                ),
+                              ),
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Container(
-                            height: 80,
-                            width: 120,
-                            color: Colors.transparent,
-                            child: Column(
-                              children: [
-                                Icon(
-                                  Icons.headset,
-                                  color: Colors.white.withOpacity(0.9),
-                                  size: 35,
-                                ),
-                                Text(
-                                  'Mp3 Converter',
-                                  style: GoogleFonts.inter(color: Colors.white),
-                                )
-                              ],
-                            ),
+                        Container(
+                          width: size.width * 0.44,
+                          height: size.height * 0.08,
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.all(size.width * 0.03),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.withOpacity(0.5),
+                            borderRadius: BorderRadius.circular(5),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Container(
-                            height: 75,
-                            width: 100,
-                            color: Colors.transparent,
-                            child: Column(
-                              children: [
-                                Icon(
-                                  Icons.folder,
-                                  color: Colors.white.withOpacity(0.9),
-                                  size: 35,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                height: size.height * 0.05,
+                                width: size.width * 0.1,
+                                margin: EdgeInsets.only(right: 8),
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: Colors.greenAccent,
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
-                                Text(
-                                  'Privacy',
-                                  style: GoogleFonts.inter(color: Colors.white),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 05, left: 55),
-                          child: Container(
-                            height: 75,
-                            width: 100,
-                            color: Colors.transparent,
-                            child: Column(
-                              children: [
-                                Icon(
-                                  Icons.history,
-                                  color: Colors.white.withOpacity(0.9),
-                                  size: 35,
+                                child: Image.asset(
+                                  'assets/me/theme.png',
+                                  color: Colors.white,
                                 ),
-                                Text(
-                                  'History',
-                                  style: GoogleFonts.inter(color: Colors.white),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5, left: 10),
-                          child: Container(
-                            height: 75,
-                            width: 100,
-                            color: Colors.transparent,
-                            child: Column(
-                              children: [
-                                Icon(
-                                  Icons.perm_media_outlined,
-                                  color: Colors.white.withOpacity(0.9),
-                                  size: 35,
+                              ),
+                              Text(
+                                'Featured Theme',
+                                style: GoogleFonts.inter(
+                                  color: Colors.white,
+                                  fontSize: size.width * 0.025,
                                 ),
-                                Text(
-                                  'Media Manage',
-                                  style: GoogleFonts.inter(color: Colors.white),
-                                )
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
+                    ),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    child: Wrap(
+                      children: List.generate(
+                        5,
+                        (index) {
+                          return Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              onTap: () {},
+                              splashFactory: InkRipple.splashFactory,
+                              splashColor: Colors.grey.withOpacity(0.3),
+                              child: Container(
+                                height: size.width * 0.25,
+                                width: size.width * 0.33,
+                                alignment: Alignment.center,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      _icons[index],
+                                      color: Colors.white.withOpacity(0.9),
+                                      size: 30,
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      _names[index],
+                                      style: GoogleFonts.inter(
+                                        color: Colors.white,
+                                      ),
+                                    )
+                                  ],
+                                ),
+
+                              ),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ],
@@ -180,11 +216,14 @@ class _MyappState extends State<Myme> {
                 child: Column(
                   children: [
                     ListTile(
-                      contentPadding: EdgeInsets.only(right: 10),
-                      leading: Image.network(
-                        'https://thumbs.dreamstime.com/b/glowing-neon-shield-vpn-wifi-wireless-internet-network-symbol-icon-isolated-brick-wall-background-protect-safety-182365307.jpg',
-                        height: 60,
-                        width: 60,
+                      contentPadding: EdgeInsets.only(left: 10),
+                      leading: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                          "https://sg-res.9appsdownloading.com/sg/res/jpg/5e/ad/0c6dd1530ee8268583681c94b5c7-sfq.jpg?x-oss-process=style/mq200",
+                          height: 30,
+                          width: 30,
+                        ),
                       ),
                       title: Text(
                         'LinkF|y VPN',
@@ -213,10 +252,10 @@ class _MyappState extends State<Myme> {
                   ),
                   Divider(
                     thickness: 0.1,
-                     indent: 60,
+                    indent: 60,
                     endIndent: 20,
                     height: 0,
-                    color: Colors.white,
+                    color: Colors.white.withOpacity(0.3),
                   ),
                   ListTile(
                     leading: Icon(
@@ -233,7 +272,7 @@ class _MyappState extends State<Myme> {
                     indent: 60,
                     endIndent: 20,
                     height: 2,
-                    color: Colors.white,
+                    color: Colors.white.withOpacity(0.3),
                   ),
                   ListTile(
                     leading: Icon(
@@ -250,7 +289,7 @@ class _MyappState extends State<Myme> {
                     indent: 60,
                     endIndent: 20,
                     height: 2,
-                    color: Colors.white,
+                    color: Colors.white.withOpacity(0.3),
                   ),
                   ListTile(
                     leading: Icon(
@@ -268,7 +307,7 @@ class _MyappState extends State<Myme> {
                     indent: 60,
                     endIndent: 20,
                     height: 2,
-                    color: Colors.white,
+                    color: Colors.white.withOpacity(0.3),
                   ),
                 ]),
               ),
