@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:play_it/Nehal/Me/Audio.dart';
 import 'package:play_it/Nehal/Me/Genral.dart';
 import 'package:play_it/Nehal/Me/video.dart';
 
@@ -86,7 +87,9 @@ class _MyappState extends State<Mysettings> {
                 ),
               ),
               GestureDetector(
-
+               onTap: (){
+                 Navigator.push(context, MaterialPageRoute(builder: (context) =>Audiopage()));
+               },
                 child: ListTile(
                   leading: Padding(
                     padding: EdgeInsets.only(top: 5),
