@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:play_it/Nehal/Me/Settings.dart';
+import 'package:play_it/Ridham/Help_Page/Help_Page.dart';
 import 'package:play_it/Ridham/VIP_Page.dart';
 
 class Myme extends StatefulWidget {
@@ -261,14 +262,19 @@ class _MyappState extends State<Myme> {
                     height: 0,
                     color: Colors.white.withOpacity(0.3),
                   ),
-                  ListTile(
-                    leading: Icon(
-                      Icons.live_help_outlined,
-                      color: Colors.white,
-                    ),
-                    title: Text(
-                      "Help & Feedback",
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Help_Page()));
+                    },
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.live_help_outlined,
+                        color: Colors.white,
+                      ),
+                      title: Text(
+                        "Help & Feedback",
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
                     ),
                   ),
                   Divider(

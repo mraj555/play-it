@@ -34,7 +34,7 @@ class _VideopageState extends State<Videopage> {
           Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(right: 310),
+                padding: EdgeInsets.only(right: 300),
                 child: Text(
                   'Display',
                   style: TextStyle(color: Colors.green, fontSize: 14),
@@ -91,7 +91,7 @@ class _VideopageState extends State<Videopage> {
                 ),
               ),
               Padding(
-                padding:EdgeInsets.only(right: 310),
+                padding:EdgeInsets.only(right: 290),
                 child: Text('Playback',style: TextStyle(color: Colors.green),),
               ),
               ListTile(
