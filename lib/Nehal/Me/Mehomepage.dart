@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:play_it/Nehal/Me/Settings.dart';
 import 'package:play_it/Ridham/VIP_Page.dart';
 
 class Myme extends StatefulWidget {
@@ -242,15 +243,18 @@ class _MyappState extends State<Myme> {
                 color: Colors.black,
                 height: 300,
                 child: Column(children: [
-                  ListTile(
-                    leading: Icon(
-                      Icons.settings,
-                      color: Colors.white,
+                  GestureDetector(
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.settings,
+                        color: Colors.white,
+                      ),
+                      title: Text(
+                        "Settings",
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
                     ),
-                    title: Text(
-                      "Settings",
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
+                    onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>Mysettings()));},
                   ),
                   Divider(
                     thickness: 0.1,
