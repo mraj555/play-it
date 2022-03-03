@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:play_it/Ridham/VIP_Page.dart';
 
 class Myme extends StatefulWidget {
   const Myme({Key? key}) : super(key: key);
@@ -42,7 +43,9 @@ class _MyappState extends State<Myme> {
                         ),
                       ),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Vip_Page()));
+                    },
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 20),
@@ -274,7 +277,7 @@ class _MyappState extends State<Myme> {
                     ListTile(
                       contentPadding: EdgeInsets.only(right: 10),
                       leading: Image.network(
-                        'https://thumbs.dreamstime.com/b/glowing-neon-shield-vpn-wifi-wireless-internet-network-symbol-icon-isolated-brick-wall-background-protect-safety-182365307.jpg',
+                        "https://thumbs.dreamstime.com/b/glowing-neon-shield-vpn-wifi-wireless-internet-network-symbol-icon-isolated-brick-wall-background-protect-safety-182365307.jpg",
                         height: 60,
                         width: 60,
                       ),
@@ -307,7 +310,7 @@ class _MyappState extends State<Myme> {
                      indent: 60,
                     endIndent: 20,
                     height: 0,
-                    color: Colors.white,
+                    color: Colors.white.withOpacity(0.3),
                   ),
                   ListTile(
                     leading: Icon(
@@ -323,7 +326,7 @@ class _MyappState extends State<Myme> {
                     indent: 60,
                     endIndent: 20,
                     height: 2,
-                    color: Colors.white,
+                    color: Colors.white.withOpacity(0.3),
                   ),
                   ListTile(
                     leading: Icon(
@@ -339,7 +342,7 @@ class _MyappState extends State<Myme> {
                     indent: 60,
                     endIndent: 20,
                     height: 2,
-                    color: Colors.white,
+                    color: Colors.white.withOpacity(0.3),
                   ),
                   ListTile(
                     leading: Icon(
@@ -356,7 +359,7 @@ class _MyappState extends State<Myme> {
                     indent: 60,
                     endIndent: 20,
                     height: 2,
-                    color: Colors.white,
+                    color: Colors.white.withOpacity(0.3),
                   ),
                 ]),
               ),

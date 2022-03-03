@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:play_it/Madhav/Appbar/my_search.dart';
+import 'package:play_it/Madhav/Appbar/my_title.dart';
 import 'package:play_it/Nehal/Me/Mehomepage.dart';
 import 'package:play_it/homepage.dart';
 
