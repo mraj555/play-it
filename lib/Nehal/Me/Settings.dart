@@ -85,28 +85,31 @@ class _MyappState extends State<Mysettings> {
                   ),
                 ),
               ),
-              ListTile(
-                leading: Padding(
-                  padding: EdgeInsets.only(top: 5),
-                  child: Icon(
-                    Icons.headset_outlined,
-                    color: Colors.white,
-                    size: 30,
+              GestureDetector(
+
+                child: ListTile(
+                  leading: Padding(
+                    padding: EdgeInsets.only(top: 5),
+                    child: Icon(
+                      Icons.headset_outlined,
+                      color: Colors.white,
+                      size: 30,
+                    ),
                   ),
-                ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.white,
-                  size: 15.5,
-                ),
-                title: Text(
-                  "Audio",
-                  style: TextStyle(color: Colors.white),
-                ),
-                subtitle: Text(
-                  'Audio format, audio duration, nomedia folder set...',
-                  style: TextStyle(
-                      color: Colors.white.withOpacity(0.5), fontSize: 12),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.white,
+                    size: 15.5,
+                  ),
+                  title: Text(
+                    "Audio",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  subtitle: Text(
+                    'Audio format, audio duration, nomedia folder set...',
+                    style: TextStyle(
+                        color: Colors.white.withOpacity(0.5), fontSize: 12),
+                  ),
                 ),
               ),
               ListTile(
