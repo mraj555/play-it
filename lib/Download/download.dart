@@ -13,51 +13,38 @@ class _DownState extends State<Down> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: Text('Download'),
+          backgroundColor: Colors.black,
+          actions: [
+            IconButton(
+              onPressed: () => _Openfile(),
+              icon: Icon(
+                Icons.folder_open,
+                color: Colors.white,
+              ),
+            ),
+            IconButton(
+              onPressed: () => _openadd(),
+              icon: Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.settings_outlined,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>Home()), (route) => false);
-                  },
-                  icon: Icon(
-                    Icons.arrow_back_outlined,
-                    color: Colors.white,
-                  ),
-                ),
-                Text(
-                  'Download',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-                SizedBox(width: 80),
-                IconButton(
-                  onPressed: () => _Openfile(),
-                  icon: Icon(
-                    Icons.folder_open,
-                    color: Colors.white,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () => _openadd(),
-                  icon: Icon(
-                    Icons.add,
-                    color: Colors.white,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.settings_outlined,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
             SizedBox(
-              height: 250,
+              height: 240,
             ),
             Text(
               'No File',
@@ -65,11 +52,7 @@ class _DownState extends State<Down> {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => Home()),
-                  (route) => false,
-                );
+                Navigator.pop(context);
               },
               child: Text(
                 'Go To Download',
@@ -78,7 +61,7 @@ class _DownState extends State<Down> {
               style: ElevatedButton.styleFrom(primary: Colors.green),
             ),
             SizedBox(
-              height: 230,
+              height: 200,
             ),
             ListTile(
               onTap: () {},
@@ -107,11 +90,7 @@ class _DownState extends State<Down> {
                   children: [
                     IconButton(
                       onPressed: () {
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => Down()),
-                          (route) => false,
-                        );
+                        Navigator.pop(context);
                       },
                       icon: Icon(
                         Icons.arrow_back_outlined,
@@ -248,11 +227,7 @@ class _DownState extends State<Down> {
                       children: [
                         IconButton(
                           onPressed: () {
-                            Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(builder: (context) => Down()),
-                              (route) => false,
-                            );
+                            Navigator.pop(context);
                           },
                           icon: Icon(
                             Icons.arrow_back_outlined,
