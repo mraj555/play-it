@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -11,6 +12,19 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final _audioQuery = OnAudioQuery();
 
+  void requestPermission() async {
+    var status = await Permission.storage.status;
+    if(!status.isGranted) {
+      await Permission.storage.request();
+    }
+  }
+
+
+  @override
+  void initState() {
+    requestPermission();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
