@@ -4,69 +4,51 @@ import 'package:pinput/pinput.dart';
 import 'package:play_it/Download/homepage.dart';
 
 class Down extends StatefulWidget {
-  const Down({Key? key}) : super(key: key);
-
   @override
   _DownState createState() => _DownState();
 }
 
 class _DownState extends State<Down> {
   var groupValue = 0;
+  var contoller = TextEditingController();
+  var password = '';
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: Text('Download'),
+          backgroundColor: Colors.black,
+          actions: [
+            IconButton(
+              onPressed: () => _Openfile(),
+              icon: Icon(
+                Icons.folder_open,
+                color: Colors.white,
+              ),
+            ),
+            IconButton(
+              onPressed: () => _openadd(),
+              icon: Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.settings_outlined,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Home(),
-                      ),
-                    );
-                  },
-                  icon: Icon(
-                    Icons.arrow_back_outlined,
-                    color: Colors.white,
-                  ),
-                ),
-                Text(
-                  'Download',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-                SizedBox(width: 80),
-                IconButton(
-                  onPressed: () => _Openfile(),
-                  icon: Icon(
-                    Icons.folder_open,
-                    color: Colors.white,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () => _openadd(),
-                  icon: Icon(
-                    Icons.add,
-                    color: Colors.white,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.settings_outlined,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
             SizedBox(
-              height: 250,
+              height: 240,
             ),
             Text(
               'No File',
@@ -74,11 +56,7 @@ class _DownState extends State<Down> {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => Home()),
-                  (route) => false,
-                );
+                Navigator.pop(context);
               },
               child: Text(
                 'Go To Download',
@@ -87,7 +65,7 @@ class _DownState extends State<Down> {
               style: ElevatedButton.styleFrom(primary: Colors.green),
             ),
             SizedBox(
-              height: 230,
+              height: 200,
             ),
             ListTile(
               onTap: () {},
@@ -109,120 +87,100 @@ class _DownState extends State<Down> {
       MaterialPageRoute(
         builder: (context) => SafeArea(
           child: Scaffold(
-            body: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => Down()),
-                          (route) => false,
-                        );
-                      },
-                      icon: Icon(
-                        Icons.arrow_back_outlined,
-                        color: Colors.white,
+            appBar: AppBar(
+              backgroundColor: Colors.black,
+              title: Text('Privacy Folder'),
+              actions: [
+                IconButton(
+                  onPressed: () => showDialog(
+                    context: context,
+                    builder: (context) => StatefulBuilder(
+                      builder: (context, setState) => Dialog(
+                        child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(top: 10, left: 10),
+                                child: Text(
+                                  'Sort By',
+                                  style: TextStyle(
+                                      color: Colors.green, fontSize: 18),
+                                ),
+                              ),
+                              RadioListTile(
+                                  controlAffinity:
+                                      ListTileControlAffinity.trailing,
+                                  title: Text('Date'),
+                                  activeColor: Colors.green,
+                                  value: 1,
+                                  groupValue: groupValue,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      groupValue = value as int;
+                                    });
+                                  }),
+                              RadioListTile(
+                                  controlAffinity:
+                                      ListTileControlAffinity.trailing,
+                                  title: Text('Name'),
+                                  activeColor: Colors.green,
+                                  value: 2,
+                                  groupValue: groupValue,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      groupValue = value as int;
+                                    });
+                                  }),
+                              RadioListTile(
+                                  controlAffinity:
+                                      ListTileControlAffinity.trailing,
+                                  title: Text('Size'),
+                                  activeColor: Colors.green,
+                                  value: 3,
+                                  groupValue: groupValue,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      groupValue = value as int;
+                                    });
+                                  }),
+                              RadioListTile(
+                                  controlAffinity:
+                                      ListTileControlAffinity.trailing,
+                                  title: Text('Length'),
+                                  activeColor: Colors.green,
+                                  value: 4,
+                                  groupValue: groupValue,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      groupValue = value as int;
+                                    });
+                                  }),
+                              Divider(
+                                color: Colors.green,
+                                indent: 20,
+                                endIndent: 20,
+                              ),
+                            ]),
                       ),
                     ),
-                    Text(
-                      'Privacy Folder',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                    SizedBox(width: 80),
-                    IconButton(
-                      onPressed: () => showDialog(
-                        context: context,
-                        builder: (context) => StatefulBuilder(
-                          builder: (context, setState) => Dialog(
-                            child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 10, left: 10),
-                                    child: Text(
-                                      'Sort By',
-                                      style: TextStyle(
-                                          color: Colors.green, fontSize: 18),
-                                    ),
-                                  ),
-                                  RadioListTile(
-                                      controlAffinity:
-                                          ListTileControlAffinity.trailing,
-                                      title: Text('Date'),
-                                      activeColor: Colors.green,
-                                      value: 1,
-                                      groupValue: groupValue,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          groupValue = value as int;
-                                        });
-                                      }),
-                                  RadioListTile(
-                                      controlAffinity:
-                                          ListTileControlAffinity.trailing,
-                                      title: Text('Name'),
-                                      activeColor: Colors.green,
-                                      value: 2,
-                                      groupValue: groupValue,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          groupValue = value as int;
-                                        });
-                                      }),
-                                  RadioListTile(
-                                      controlAffinity:
-                                          ListTileControlAffinity.trailing,
-                                      title: Text('Size'),
-                                      activeColor: Colors.green,
-                                      value: 3,
-                                      groupValue: groupValue,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          groupValue = value as int;
-                                        });
-                                      }),
-                                  RadioListTile(
-                                      controlAffinity:
-                                          ListTileControlAffinity.trailing,
-                                      title: Text('Length'),
-                                      activeColor: Colors.green,
-                                      value: 4,
-                                      groupValue: groupValue,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          groupValue = value as int;
-                                        });
-                                      }),
-                                  Divider(
-                                    color: Colors.green,
-                                    indent: 20,
-                                    endIndent: 20,
-                                  ),
-                                ]),
-                          ),
-                        ),
-                      ),
-                      icon: Icon(
-                        Icons.grid_view,
-                        color: Colors.white,
-                      ),
-                    ),
-                    PopupMenuButton(
-                      onSelected: (value){
-                        if(value==0){
-                          _setpassword();
-                        }
-                      },
-                      itemBuilder: (context) => [
-                        PopupMenuItem(
-                          value: 0,
-                          child: Text('Set Password'),
-                        ),
-                      ],
+                  ),
+                  icon: Icon(
+                    Icons.grid_view,
+                    color: Colors.white,
+                  ),
+                ),
+                PopupMenuButton(
+                  enabled: true,
+                  onSelected: (value) {
+                    if (value == 0) {
+                      _setpassword();
+                    }
+                  },
+                  itemBuilder: (context) => [
+                    PopupMenuItem(
+                      value: 0,
+                      child: Text('Set Password'),
                     ),
                   ],
                 )
@@ -257,11 +215,7 @@ class _DownState extends State<Down> {
                       children: [
                         IconButton(
                           onPressed: () {
-                            Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(builder: (context) => Down()),
-                              (route) => false,
-                            );
+                            Navigator.pop(context);
                           },
                           icon: Icon(
                             Icons.arrow_back_outlined,
@@ -397,48 +351,55 @@ class _DownState extends State<Down> {
     Navigator.push(
       context,
       PageRouteBuilder(
-        pageBuilder: (context,_,__) => SafeArea(
+        pageBuilder: (context, _, __) => SafeArea(
           child: Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.black,
+              title: Text('Change Password'),
+            ),
             body: Column(
               children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(
-                        Icons.arrow_back_outlined,
-                        color: Colors.white,
-                      ),
-                    ),
-                    Text(
-                      'Change Password ',
-                      style: TextStyle(fontSize: 20),
-                    )
-                  ],
-                ),
                 Container(
                   height: 100,
                   child: Pinput(
+                    controller: contoller,
+                    obscureText: true,
+                    onChanged: (v) {
+                      setState(() {
+                        v=password;
+                      });
+                    },
                     defaultPinTheme: PinTheme(
                       width: 56,
                       height: 56,
-                      textStyle: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w600),
+                      textStyle: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
+                        border: Border.all(
+                            color: Color.fromRGBO(234, 239, 243, 1), width: 2),
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                      showCursor: true,
+                    showCursor: true,
                     animationCurve: Curves.fastOutSlowIn,
                     pinAnimationType: PinAnimationType.fade,
-                    keyboardType: TextInputType.number,
-                    closeKeyboardWhenCompleted: true,autofocus: true,
-                     useNativeKeyboard: true,
+                    keyboardType: TextInputType.phone,
+                    closeKeyboardWhenCompleted: true,
+                    autofocus: true,
+                    useNativeKeyboard: true,
                   ),
                 ),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      password=contoller.text;
+                    });
+                  },
+                  child: Text('Save'),
+                ),
+                Text('Password:$password',style: TextStyle(color: Colors.white),),
               ],
             ),
           ),

@@ -27,9 +27,6 @@ class _HomeState extends State<Home> {
     'TED',
     'LinkFly VPN'
   ];
-  var namecontroller = TextEditingController();
-  var name = '';
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -66,12 +63,11 @@ class _HomeState extends State<Home> {
           actions: [
             IconButton(
               onPressed: () {
-                Navigator.pushAndRemoveUntil(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => Down(),
                   ),
-                  (route) => false,
                 );
               },
               icon: ImageIcon(
@@ -159,7 +155,6 @@ class _HomeState extends State<Home> {
                                     color: Colors.green, fontSize: 15),
                               ),
                               TextField(
-                                controller: namecontroller,
                                 decoration: InputDecoration(
                                   border: UnderlineInputBorder(
                                       borderSide: BorderSide(
@@ -200,9 +195,6 @@ class _HomeState extends State<Home> {
                                   ),
                                   TextButton(
                                     onPressed: () {
-                                      setState(() {
-                                        name = namecontroller.text;
-                                      });
                                       Navigator.pop(context);
                                     },
                                     child: Text(
@@ -245,10 +237,7 @@ class _HomeState extends State<Home> {
                     children: [
                       IconButton(
                         onPressed: () {
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(builder: (context) => Home()),
-                              (route) => false);
+                         Navigator.pop(context);
                         },
                         icon: Icon(
                           Icons.arrow_back_outlined,

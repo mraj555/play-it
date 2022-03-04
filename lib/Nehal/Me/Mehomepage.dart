@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:play_it/Nehal/Me/Settings.dart';
+import 'package:play_it/Ridham/Help_Page/Help_Page.dart';
 import 'package:play_it/Ridham/VIP_Page.dart';
 
 class Myme extends StatefulWidget {
@@ -33,15 +35,13 @@ class _MyappState extends State<Myme> {
       child: Scaffold(
         backgroundColor: Colors.grey.withOpacity(0.2),
         appBar: AppBar(
-          toolbarHeight: size.height * 0.06,
           flexibleSpace: Container(
             decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                    'https://64.media.tumblr.com/c90100fd260e77796e397f07d1771d34/fd850e41fad78fd6-86/s400x600/f15e520227c7dd8b471d729a48f26080712d8250.gifv'),
-                fit: BoxFit.fill,
-              ),
-            ),
+                image: DecorationImage(
+                  image: NetworkImage(
+                      'https://64.media.tumblr.com/c90100fd260e77796e397f07d1771d34/fd850e41fad78fd6-86/s400x600/f15e520227c7dd8b471d729a48f26080712d8250.gifv'),
+                  fit: BoxFit.fill,
+                )),
           ),
         ),
         body: ListView(
@@ -242,15 +242,18 @@ class _MyappState extends State<Myme> {
                 color: Colors.black,
                 height: 300,
                 child: Column(children: [
-                  ListTile(
-                    leading: Icon(
-                      Icons.settings,
-                      color: Colors.white,
+                  GestureDetector(
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.settings,
+                        color: Colors.white,
+                      ),
+                      title: Text(
+                        "Settings",
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
                     ),
-                    title: Text(
-                      "Settings",
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
+                    onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>Mysettings()));},
                   ),
                   Divider(
                     thickness: 0.1,
@@ -259,14 +262,19 @@ class _MyappState extends State<Myme> {
                     height: 0,
                     color: Colors.white.withOpacity(0.3),
                   ),
-                  ListTile(
-                    leading: Icon(
-                      Icons.live_help_outlined,
-                      color: Colors.white,
-                    ),
-                    title: Text(
-                      "Help & Feedback",
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Help_Page()));
+                    },
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.live_help_outlined,
+                        color: Colors.white,
+                      ),
+                      title: Text(
+                        "Help & Feedback",
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
                     ),
                   ),
                   Divider(
