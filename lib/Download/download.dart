@@ -11,6 +11,7 @@ class Down extends StatefulWidget {
 class _DownState extends State<Down> {
   var groupValue = 0;
   var contoller = TextEditingController();
+  var addlinkcontoller = TextEditingController();
   var password = '';
 
   @override
@@ -252,6 +253,7 @@ class _DownState extends State<Down> {
                       color: Colors.black,
                       margin: EdgeInsets.all(10),
                       child: TextField(
+                        controller: addlinkcontoller,
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(left: 10),
                             hintText:
@@ -260,22 +262,26 @@ class _DownState extends State<Down> {
                                 TextStyle(color: Colors.grey, fontSize: 15),
                             border: InputBorder.none),
                         cursorColor: Colors.green,
+                        onChanged: (value) {
+                          setState(() {
+                            value = addlinkcontoller.text;
+                          });
+                        },
                       ),
                     ),
-                    Container(
-                      height: 50,
-                      width: 340,
-                      color: Colors.green,
-                      child: TextButton.icon(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.download,
-                          color: Colors.white,
-                        ),
-                        label: Text(
-                          'Download',
-                          style: TextStyle(color: Colors.white, fontSize: 18),
-                        ),
+                    ElevatedButton.icon(
+                      onPressed: addlinkcontoller.text.isEmpty ? null : () {},
+                      icon: Icon(
+                        Icons.download,
+                        color: Colors.white,
+                      ),
+                      label: Text(
+                        'Download',
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xff2bc877),
+                        fixedSize: Size(340, 50),
                       ),
                     ),
                   ],
@@ -384,52 +390,54 @@ class _DownState extends State<Down> {
                     closeKeyboardWhenCompleted: false,
                     onSubmitted: (value) {
                       setState(() {
-                        password=contoller.text;
+                        password = contoller.text;
                       });
                       showDialog(
                         context: context,
                         builder: (context) => Dialog(
-                              elevation: 10,
-                              backgroundColor: Colors.grey[850],
-                              child: Padding(
-                                padding:  EdgeInsets.only(left: 20,top: 20),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(
-                                      'Dear Users,\nThe PIN Of Your Privacy Folder Is:',
-                                      style: TextStyle(color: Colors.grey),
-                                    ),
-                                    Text(
-                                      '$password',
-                                      style: TextStyle(
-                                          color: Colors.green, fontSize: 20
-                                      ),
-                                    ),
-                                    Text(
-                                      'Please Keep Your Password In Mind !',
-                                      style: TextStyle(color: Colors.grey),
-                                    ),
-                                    ButtonBar(
-                                      children: [
-                                        TextButton(
-                                            onPressed: () {
-                                              contoller.clear();
-                                              Navigator.pop(context);
-                                            },
-                                            child: Text(
-                                              'Sure',
-                                              style:
-                                                  TextStyle(color: Colors.green,fontSize: 18),
-                                            ))
-                                      ],
-                                    )
-                                  ],
+                          elevation: 10,
+                          backgroundColor: Colors.grey[850],
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 20, top: 20),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  'Dear Users,\nThe PIN Of Your Privacy Folder Is:',
+                                  style: TextStyle(color: Colors.grey),
                                 ),
-                              ),
-                            ),);},
+                                Text(
+                                  '$password',
+                                  style: TextStyle(
+                                      color: Colors.green, fontSize: 20),
+                                ),
+                                Text(
+                                  'Please Keep Your Password In Mind !',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                                ButtonBar(
+                                  children: [
+                                    TextButton(
+                                        onPressed: () {
+                                          contoller.clear();
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text(
+                                          'Sure',
+                                          style: TextStyle(
+                                              color: Colors.green,
+                                              fontSize: 18),
+                                        ))
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                     onChanged: (value) {
                       setState(() {
                         value = password;
