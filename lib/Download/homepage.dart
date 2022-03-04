@@ -8,7 +8,7 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   List _image1 = [
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGSHnjhohZvjxf19zHrR8UKszTq5mIfH9YJQ&usqp=CAU',
     'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/800px-Instagram_logo_2016.svg.png',
@@ -27,6 +27,30 @@ class _HomeState extends State<Home> {
     'TED',
     'LinkFly VPN'
   ];
+
+  late AnimationController _controller;
+  late CurvedAnimation _curvedAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _curvedAnimation =
+        CurvedAnimation(parent: _controller, curve: Curves.bounceInOut);
+    _controller.addListener(() {
+      setState(() {});
+    });
+    _controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        _controller.reverse();
+      } else if (status == AnimationStatus.dismissed) {
+        _controller.forward();
+      }
+    });
+    _controller.forward();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -81,20 +105,23 @@ class _HomeState extends State<Home> {
         body: ListView(
           children: [
             Container(
-              margin: EdgeInsets.only(left: size.width * 0.05,right: size.width * 0.05, top: size.height * 0.03),
+              margin: EdgeInsets.only(
+                  left: size.width * 0.05,
+                  right: size.width * 0.05,
+                  top: size.height * 0.03),
               child: Wrap(
                 // alignment: WrapAlignment.spaceEvenly,
                 runSpacing: size.width * 0.09,
                 spacing: size.width * 0.03,
                 children: List.generate(
                   _image1.length,
-                      (index) => Container(
-                        width: size.width * 0.2,
-                        alignment: Alignment.center,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
+                  (index) => Container(
+                    width: size.width * 0.2,
+                    alignment: Alignment.center,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
                         Container(
                           child: CircleAvatar(
                             radius: 23,
@@ -110,9 +137,9 @@ class _HomeState extends State<Home> {
                             style: TextStyle(color: Colors.grey),
                           ),
                         )
-                    ],
+                      ],
+                    ),
                   ),
-                      ),
                 ),
               ),
             ),
@@ -120,7 +147,8 @@ class _HomeState extends State<Home> {
               height: 30,
             ),
             Container(
-              margin: EdgeInsets.only(left: size.width * 0.05, bottom: size.height * 0.05),
+              margin: EdgeInsets.only(
+                  left: size.width * 0.05, bottom: size.height * 0.05),
               child: Text(
                 'BookMark',
                 style: TextStyle(color: Colors.white, fontSize: 15),
@@ -237,7 +265,7 @@ class _HomeState extends State<Home> {
                     children: [
                       IconButton(
                         onPressed: () {
-                         Navigator.pop(context);
+                          Navigator.pop(context);
                         },
                         icon: Icon(
                           Icons.arrow_back_outlined,
@@ -272,6 +300,23 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ],
+                  ),
+                  Container(
+                    height: 40,
+                    width: 350,
+                    color: Colors.green,
+                    child: TextButton.icon(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.lightbulb_outlined,
+                        color: Colors.white,
+                        size: 18,
+                      ),
+                      label: Text(
+                        'Learn how to download video and audio',
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                    ),
                   ),
                 ],
               ),
