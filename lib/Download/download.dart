@@ -358,17 +358,13 @@ class _DownState extends State<Down> {
               title: Text('Change Password'),
             ),
             body: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
                   height: 100,
                   child: Pinput(
                     controller: contoller,
-                    obscureText: true,
-                    onChanged: (v) {
-                      setState(() {
-                        v=password;
-                      });
-                    },
                     defaultPinTheme: PinTheme(
                       width: 56,
                       height: 56,
@@ -377,29 +373,70 @@ class _DownState extends State<Down> {
                           color: Colors.white,
                           fontWeight: FontWeight.w600),
                       decoration: BoxDecoration(
-                        border: Border.all(
-                            color: Color.fromRGBO(234, 239, 243, 1), width: 2),
+                        border:
+                            Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
+                    obscureText: true,
                     showCursor: true,
-                    animationCurve: Curves.fastOutSlowIn,
-                    pinAnimationType: PinAnimationType.fade,
-                    keyboardType: TextInputType.phone,
-                    closeKeyboardWhenCompleted: true,
                     autofocus: true,
-                    useNativeKeyboard: true,
+                    closeKeyboardWhenCompleted: false,
+                    onSubmitted: (value) {
+                      setState(() {
+                        password=contoller.text;
+                      });
+                      showDialog(
+                        context: context,
+                        builder: (context) => Dialog(
+                              elevation: 10,
+                              backgroundColor: Colors.grey[850],
+                              child: Padding(
+                                padding:  EdgeInsets.only(left: 20,top: 20),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      'Dear Users,\nThe PIN Of Your Privacy Folder Is:',
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
+                                    Text(
+                                      '$password',
+                                      style: TextStyle(
+                                          color: Colors.green, fontSize: 20
+                                      ),
+                                    ),
+                                    Text(
+                                      'Please Keep Your Password In Mind !',
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
+                                    ButtonBar(
+                                      children: [
+                                        TextButton(
+                                            onPressed: () {
+                                              contoller.clear();
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text(
+                                              'Sure',
+                                              style:
+                                                  TextStyle(color: Colors.green,fontSize: 18),
+                                            ))
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),);},
+                    onChanged: (value) {
+                      setState(() {
+                        value = password;
+                      });
+                    },
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      password=contoller.text;
-                    });
-                  },
-                  child: Text('Save'),
-                ),
-                Text('Password:$password',style: TextStyle(color: Colors.white),),
               ],
             ),
           ),
