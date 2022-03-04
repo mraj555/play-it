@@ -10,7 +10,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _audioQuery = OnAudioQuery();
+  static final _audioQuery = OnAudioQuery();
 
   void requestPermission() async {
     var status = await Permission.storage.status;
@@ -18,6 +18,8 @@ class _MyAppState extends State<MyApp> {
       await Permission.storage.request();
     }
   }
+
+  Future<List<String>> names = _audioQuery.queryAllPath();
 
 
   @override
@@ -28,6 +30,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    print(_audioQuery.);
     return Scaffold(
       appBar: AppBar(
         title: Text('Music Player 2022'),
