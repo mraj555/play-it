@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:play_it/Nehal/Me/About%20us.dart';
 import 'package:play_it/Nehal/Me/Settings.dart';
 import 'package:play_it/Ridham/Help_Page/Help_Page.dart';
 import 'package:play_it/Ridham/VIP_Page.dart';
@@ -306,7 +307,9 @@ class _MyappState extends State<Myme> {
                       Icons.info_outline,
                       color: Colors.white,
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>Aboutpage()));
+                    },
                     title: Text(
                       "About",
                       style: TextStyle(color: Colors.white, fontSize: 16),

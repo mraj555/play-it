@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:play_it/Madhav/Appbar/my_title.dart';
 import 'package:play_it/Nehal/Me/Mehomepage.dart';
-import 'package:play_it/Video/video_home.dart';
+import 'package:play_it/Video/video_tabbar.dart';
 
 import '../Download/homepage.dart';
 
@@ -68,11 +68,6 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   }
 
   void requestPermission() async {
-    var status1 = await Permission.manageExternalStorage.status;
-    if(!status1.isGranted) {
-      await Permission.manageExternalStorage.request();
-    }
-
     var status = await Permission.storage.status;
     if(!status.isGranted) {
       await Permission.storage.request();
