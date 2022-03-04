@@ -25,8 +25,12 @@ class _DownState extends State<Down> {
               children: [
                 IconButton(
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Home()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Home(),
+                      ),
+                    );
                   },
                   icon: Icon(
                     Icons.arrow_back_outlined,
