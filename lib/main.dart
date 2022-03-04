@@ -10,7 +10,7 @@ void main() {
         scaffoldBackgroundColor: Colors.black,
       ),
       debugShowCheckedModeBanner: false,
-      home: MainPage(),
+      home: MyApp(),
     ),
   );
 }
