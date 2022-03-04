@@ -38,6 +38,12 @@ dependencies:
   cupertino_icons: ^1.0.2
   underline_indicator: ^0.0.4
   permission_handler: ^9.2.0
+  photo_manager: ^1.3.10
+  video_player: ^2.2.19
+  flutter_file_extention: ^0.2.1
+  on_audio_query: ^2.6.0
+  file_manager: ^1.0.0
+  path_provider: ^2.0.9
 
 dev_dependencies:
   flutter_test:

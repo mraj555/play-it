@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:play_it/Nehal/Me/About%20us.dart';
+import 'package:play_it/Nehal/Me/Audio.dart';
+import 'package:play_it/Nehal/Me/Downloadpage.dart';
 import 'package:play_it/Nehal/Me/Genral.dart';
 import 'package:play_it/Nehal/Me/video.dart';
 
@@ -86,7 +89,9 @@ class _MyappState extends State<Mysettings> {
                 ),
               ),
               GestureDetector(
-
+               onTap: (){
+                 Navigator.push(context, MaterialPageRoute(builder: (context) =>Audiopage()));
+               },
                 child: ListTile(
                   leading: Padding(
                     padding: EdgeInsets.only(top: 5),
@@ -112,52 +117,62 @@ class _MyappState extends State<Mysettings> {
                   ),
                 ),
               ),
-              ListTile(
-                leading: Padding(
-                  padding: EdgeInsets.only(top: 5),
-                  child: Icon(
-                    Icons.download_outlined,
-                    color: Colors.white,
-                    size: 30,
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>Downloadpage()));
+                },
+                child: ListTile(
+                  leading: Padding(
+                    padding: EdgeInsets.only(top: 5),
+                    child: Icon(
+                      Icons.download_outlined,
+                      color: Colors.white,
+                      size: 30,
+                    ),
                   ),
-                ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.white,
-                  size: 15.5,
-                ),
-                title: Text(
-                  "Downloads",
-                  style: TextStyle(color: Colors.white),
-                ),
-                subtitle: Text(
-                  'Path, Max download tasks',
-                  style: TextStyle(
-                      color: Colors.white.withOpacity(0.5), fontSize: 12),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.white,
+                    size: 15.5,
+                  ),
+                  title: Text(
+                    "Downloads",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  subtitle: Text(
+                    'Path, Max download tasks',
+                    style: TextStyle(
+                        color: Colors.white.withOpacity(0.5), fontSize: 12),
+                  ),
                 ),
               ),
-              ListTile(
-                leading: Padding(
-                  padding: EdgeInsets.only(top: 5),
-                  child: Icon(
-                    Icons.info_outline,
-                    color: Colors.white,
-                    size: 30,
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>Aboutpage()));
+                },
+                child: ListTile(
+                  leading: Padding(
+                    padding: EdgeInsets.only(top: 5),
+                    child: Icon(
+                      Icons.info_outline,
+                      color: Colors.white,
+                      size: 30,
+                    ),
                   ),
-                ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.white,
-                  size: 15.5,
-                ),
-                title: Text(
-                  "About us",
-                  style: TextStyle(color: Colors.white),
-                ),
-                subtitle: Text(
-                  'Fans group, official website, pages & channel',
-                  style: TextStyle(
-                      color: Colors.white.withOpacity(0.5), fontSize: 12),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.white,
+                    size: 15.5,
+                  ),
+                  title: Text(
+                    "About us",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  subtitle: Text(
+                    'Fans group, official website, pages & channel',
+                    style: TextStyle(
+                        color: Colors.white.withOpacity(0.5), fontSize: 12),
+                  ),
                 ),
               ),
             ],
