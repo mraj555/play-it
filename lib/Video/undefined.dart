@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -10,37 +9,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  static final _audioQuery = OnAudioQuery();
+  final _audioQuery = OnAudioQuery();
 
-  void requestPermission() async {
-    var status = await Permission.storage.status;
-    if(!status.isGranted) {
-      await Permission.storage.request();
-    }
-  }
-
-  Future<List<String>> names = _audioQuery.queryAllPath();
-
-
-  @override
-  void initState() {
-    requestPermission();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
-    print(_audioQuery.);
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Music Player 2022'),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.search),
-          ),
-        ],
-      ),
       body: FutureBuilder<List<SongModel>>(
         future: _audioQuery.querySongs(
           sortType: null,
