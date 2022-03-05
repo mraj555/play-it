@@ -111,182 +111,185 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             ),
           ],
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                margin: EdgeInsets.only(
-                    left: size.width * 0.05,
-                    right: size.width * 0.05,
-                    top: size.height * 0.03),
-                child: Wrap(
-                  // alignment: WrapAlignment.spaceEvenly,
-                  runSpacing: size.width * 0.09,
-                  spacing: size.width * 0.03,
-                  children: List.generate(
-                    _image1.length,
-                    (index) => Container(
-                      width: size.width * 0.2,
-                      alignment: Alignment.center,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: CircleAvatar(
-                              radius: size.width * 0.06,
-                              backgroundImage: NetworkImage(_image1[index]),
+        body: ListView(
+          physics: NeverScrollableScrollPhysics(),
+          children:[
+            Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(
+                      left: size.width * 0.05,
+                      right: size.width * 0.05,
+                      top: size.height * 0.03),
+                  child: Wrap(
+                    // alignment: WrapAlignment.spaceEvenly,
+                    runSpacing: size.width * 0.09,
+                    spacing: size.width * 0.03,
+                    children: List.generate(
+                      _image1.length,
+                      (index) => Container(
+                        width: size.width * 0.2,
+                        alignment: Alignment.center,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              child: CircleAvatar(
+                                radius: size.width * 0.06,
+                                backgroundImage: NetworkImage(_image1[index]),
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            height: size.height * 0.02,
-                          ),
-                          FittedBox(
-                            child: Text(
-                              name1[index],
-                              style: TextStyle(color: Colors.grey),
+                            SizedBox(
+                              height: size.height * 0.02,
                             ),
-                          )
-                        ],
+                            FittedBox(
+                              child: Text(
+                                name1[index],
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Container(
-                alignment: Alignment.centerLeft,
-                margin: EdgeInsets.only(
-                    left: size.width * 0.06,
-                    bottom: size.height * 0.05,
-                    top: size.height * 0.05),
-                child: Text(
-                  'BookMark',
-                  style: TextStyle(color: Colors.white, fontSize: 15),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  margin: EdgeInsets.only(
+                      left: size.width * 0.06,
+                      bottom: size.height * 0.05,
+                      top: size.height * 0.05),
+                  child: Text(
+                    'BookMark',
+                    style: TextStyle(color: Colors.white, fontSize: 15),
+                  ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: size.width * 0.09),
-                child: Row(
-                  children: [
-                    FloatingActionButton(
-                      mini: true,
-                      backgroundColor: Colors.grey,
-                      onPressed: () => showDialog(
-                        context: context,
-                        builder: (context) => Dialog(
-                          child: Padding(
-                            padding: EdgeInsets.all(size.height * 0.02),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Add Bookmark',
-                                  style: TextStyle(
-                                      color: Colors.green,
-                                      fontSize: size.width * 0.05),
-                                ),
-                                SizedBox(height: 20),
-                                Text(
-                                  'Bookmark Name',
-                                  style: TextStyle(
-                                      color: Colors.green,
-                                      fontSize: size.width * 0.04),
-                                ),
-                                TextField(
-                                  decoration: InputDecoration(
-                                    border: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                            width: size.width * 0.002,
-                                            color: Colors.green)),
-                                    focusedBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                            width: size.width * 0.002,
-                                            color: Colors.green)),
+                Padding(
+                  padding: EdgeInsets.only(left: size.width * 0.09),
+                  child: Row(
+                    children: [
+                      FloatingActionButton(
+                        mini: true,
+                        backgroundColor: Colors.grey,
+                        onPressed: () => showDialog(
+                          context: context,
+                          builder: (context) => Dialog(
+                            child: Padding(
+                              padding: EdgeInsets.all(size.height * 0.02),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Add Bookmark',
+                                    style: TextStyle(
+                                        color: Colors.green,
+                                        fontSize: size.width * 0.05),
                                   ),
-                                  cursorHeight: size.height * 0.03,
-                                  cursorColor: Colors.green,
-                                ),
-                                SizedBox(height: size.height * 0.03),
-                                Text(
-                                  'Bookmark URL',
-                                  style: TextStyle(
-                                      color: Colors.green,
-                                      fontSize: size.width * 0.04),
-                                ),
-                                TextField(
-                                  decoration: InputDecoration(
-                                    border: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                            width: size.width * 0.002,
-                                            color: Colors.green)),
-                                    focusedBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                            width: size.width * 0.002,
-                                            color: Colors.green)),
+                                  SizedBox(height: 20),
+                                  Text(
+                                    'Bookmark Name',
+                                    style: TextStyle(
+                                        color: Colors.green,
+                                        fontSize: size.width * 0.04),
                                   ),
-                                  cursorHeight: size.height * 0.03,
-                                  cursorColor: Colors.green,
-                                ),
-                                ButtonBar(
-                                  children: [
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: Text('Cancel',
-                                          style: TextStyle(color: Colors.grey)),
+                                  TextField(
+                                    decoration: InputDecoration(
+                                      border: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              width: size.width * 0.002,
+                                              color: Colors.green)),
+                                      focusedBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              width: size.width * 0.002,
+                                              color: Colors.green)),
                                     ),
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: Text(
-                                        'Save',
-                                        style: TextStyle(color: Colors.green),
+                                    cursorHeight: size.height * 0.03,
+                                    cursorColor: Colors.green,
+                                  ),
+                                  SizedBox(height: size.height * 0.03),
+                                  Text(
+                                    'Bookmark URL',
+                                    style: TextStyle(
+                                        color: Colors.green,
+                                        fontSize: size.width * 0.04),
+                                  ),
+                                  TextField(
+                                    decoration: InputDecoration(
+                                      border: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              width: size.width * 0.002,
+                                              color: Colors.green)),
+                                      focusedBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              width: size.width * 0.002,
+                                              color: Colors.green)),
+                                    ),
+                                    cursorHeight: size.height * 0.03,
+                                    cursorColor: Colors.green,
+                                  ),
+                                  ButtonBar(
+                                    children: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text('Cancel',
+                                            style: TextStyle(color: Colors.grey)),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text(
+                                          'Save',
+                                          style: TextStyle(color: Colors.green),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
+                        child: Icon(
+                          Icons.add_circle,
+                          color: Colors.grey[100],
+                        ),
                       ),
-                      child: Icon(
-                        Icons.add_circle,
-                        color: Colors.grey[100],
-                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: size.height * 0.2),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: Color(0xff2bc877),
+                  ),
+                  padding: EdgeInsets.zero,
+                  height: _width.value / 10,
+                  width: _width.value,
+                  child: TextButton.icon(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.lightbulb_outlined,
+                      color: Colors.white,
+                      size: _width.value / 25,
                     ),
-                  ],
-                ),
-              ),
-              SizedBox(height: size.height * 0.3),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: Color(0xff2bc877),
-                ),
-                padding: EdgeInsets.zero,
-                height: _width.value / 10,
-                width: _width.value,
-                child: TextButton.icon(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.lightbulb_outlined,
-                    color: Colors.white,
-                    size: _width.value / 25,
-                  ),
-                  label: Text(
-                    'Learn how to download video and audio',
-                    style: TextStyle(
-                        color: Colors.white, fontSize: _width.value / 25),
+                    label: Text(
+                      'Learn how to download video and audio',
+                      style: TextStyle(
+                          color: Colors.white, fontSize: _width.value / 25),
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
+          ],
         ),
       ),
     );
