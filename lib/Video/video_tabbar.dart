@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:play_it/Download/download.dart';
 import 'package:underline_indicator/underline_indicator.dart';
-
 import '../Madhav/Appbar/my_search.dart';
 
 class HomeVideo extends StatefulWidget {
@@ -85,7 +85,9 @@ class _HomeVideoState extends State<HomeVideo>
               splashRadius: 20,
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>Down()));
+              },
               icon: ImageIcon(
                 AssetImage('assets/Icons/download_1.png'),
                 size: 24,
