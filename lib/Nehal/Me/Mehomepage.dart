@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:play_it/Download/download.dart';
 import 'package:play_it/Nehal/Me/About%20us.dart';
-import 'package:play_it/Nehal/Me/Downloads.dart';
 import 'package:play_it/Nehal/Me/Settings.dart';
 import 'package:play_it/Ridham/Help_Page/Help_Page.dart';
 import 'package:play_it/Ridham/VIP_Page.dart';
@@ -31,11 +31,11 @@ class _MyappState extends State<Myme> {
   ];
 
   var _pagelist =[
-     Downloads(),
-     Downloads(),
-     Downloads(),
-     Downloads(),
-     Downloads(),
+   Down(),
+   Down(),
+   Down(),
+   Down(),
+   Down(),
   ];
 
   @override
