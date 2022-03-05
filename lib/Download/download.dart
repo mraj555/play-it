@@ -103,48 +103,44 @@ class _DownState extends State<Down> {
       context,PageRouteBuilder(
       pageBuilder: (context,_,__,) =>
        SafeArea(
-          child: Scaffold(
+          child: Scaffold(appBar: AppBar(
+            elevation: 10,
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                      'https://64.media.tumblr.com/c90100fd260e77796e397f07d1771d34/fd850e41fad78fd6-86/s400x600/f15e520227c7dd8b471d729a48f26080712d8250.gifv'),
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+            title: Text(
+              'Add Download Link',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: size.height * 0.03),
+            ),
+            actions: [
+              GestureDetector(
+                  onTap: () => _btfile(),
+                  child: Image.asset(
+                    'assets/Icons/pdf.png',
+                    height: size.height * 0.1,
+                    width: size.width * 0.1,
+                  )),
+              IconButton(
+                onPressed: () => _search(),
+                icon: Icon(
+                  Icons.search_rounded,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
             body: ListView(
               children: [
                 Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: Icon(
-                            Icons.arrow_back_outlined,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          'Add Download Link',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: size.height * 0.03),
-                        ),
-                        SizedBox(
-                          width: size.width * 0.1,
-                        ),
-                        GestureDetector(
-                            onTap: () => _btfile(),
-                            child: Image.asset(
-                              'assets/Icons/pdf.png',
-                              height: size.height * 0.1,
-                              width: size.width * 0.1,
-                            )),
-                        IconButton(
-                          onPressed: () => _search(),
-                          icon: Icon(
-                            Icons.search_rounded,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
                     Container(
                       alignment: Alignment.topLeft,
                       height: size.height * 0.2,
