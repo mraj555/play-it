@@ -262,14 +262,14 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   color: Color(0xff2bc877),
                 ),
                 padding: EdgeInsets.zero,
-                height: _width.value / 10,
+                height: _width.value / 9,
                 width: _width.value,
                 child: TextButton.icon(
                     onPressed: () {},
                     icon: Icon(
                       Icons.lightbulb_outlined,
                       color: Colors.white,
-                      size: _width.value / 25,
+                      size: _width.value / 20,
                     ),
                     label: Text(
                       'Learn how to download video and audio',

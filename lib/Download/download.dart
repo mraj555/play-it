@@ -48,8 +48,9 @@ class _DownState extends State<Down> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
-              height: 240,
+              height: 190,
             ),
+            Image.asset('assets/Icons/emptybox.png',height: 150,width: 150,),
             Text(
               'No File',
               style: TextStyle(color: Colors.grey),
