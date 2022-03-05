@@ -10,7 +10,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   List _image1 = [
-    'https://images.news18.com/ibnlive/uploads/2019/10/WhatsApp.jpg?impolicy=website&width=510&height=356',
+    'https://e7.pngegg.com/pngimages/1009/241/png-clipart-whatsapp-logo-whatsapp-computer-icons-social-media-online-chat-whats-trademark-logo.png',
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGSHnjhohZvjxf19zHrR8UKszTq5mIfH9YJQ&usqp=CAU',
     'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/800px-Instagram_logo_2016.svg.png',
     'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/YouTube_social_white_square_%282017%29.svg/2048px-YouTube_social_white_square_%282017%29.svg.png',

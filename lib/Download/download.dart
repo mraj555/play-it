@@ -118,7 +118,7 @@ class _DownState extends State<Down> {
               'Add Download Link',
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: size.height * 0.03),
+                  fontSize: size.width * 0.045),
             ),
             actions: [
               GestureDetector(
