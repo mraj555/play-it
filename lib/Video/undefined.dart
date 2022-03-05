@@ -15,15 +15,6 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Music Player 2022'),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.search),
-          ),
-        ],
-      ),
       body: FutureBuilder<List<SongModel>>(
         future: _audioQuery.querySongs(
           sortType: null,

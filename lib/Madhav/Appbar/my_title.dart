@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:underline_indicator/underline_indicator.dart';
 
+import '../../Video/undefined.dart';
 import 'my_search.dart';
 
 class MyTitle extends StatefulWidget {
@@ -39,12 +40,7 @@ class _MyTitleState extends State<MyTitle> with SingleTickerProviderStateMixin {
   ];
 
   var _tabpages = [
-    Center(
-      child: Text(
-        'Chat',
-        style: TextStyle(fontSize: 50),
-      ),
-    ),
+    MyApp(),
     Center(
       child: Text(
         'Chat',

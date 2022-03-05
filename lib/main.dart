@@ -11,7 +11,7 @@ void main() {
         scaffoldBackgroundColor: Colors.black,
       ),
       debugShowCheckedModeBanner: false,
-      home: Myme(),
+      home: MainPage(),
     ),
   );
 }

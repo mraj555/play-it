@@ -8,7 +8,7 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   List _image1 = [
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGSHnjhohZvjxf19zHrR8UKszTq5mIfH9YJQ&usqp=CAU',
     'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/800px-Instagram_logo_2016.svg.png',
@@ -27,6 +27,33 @@ class _HomeState extends State<Home> {
     'TED',
     'LinkFly VPN'
   ];
+
+  late Animation<double> _width;
+  late AnimationController _controller;
+  late CurvedAnimation _curvedAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _curvedAnimation =
+        CurvedAnimation(parent: _controller, curve: Curves.elasticOut);
+    _width = Tween<double>(begin: 290, end: 300).animate(_curvedAnimation);
+
+    _controller.addListener(() {
+      setState(() {});
+    });
+    _controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        _controller.reverse();
+      } else if (status == AnimationStatus.dismissed) {
+        _controller.forward();
+      }
+    });
+    _controller.forward();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -78,146 +105,175 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
-        body: ListView(
-          children: [
-            Container(
-              margin: EdgeInsets.only(left: size.width * 0.05,right: size.width * 0.05, top: size.height * 0.03),
-              child: Wrap(
-                // alignment: WrapAlignment.spaceEvenly,
-                runSpacing: size.width * 0.09,
-                spacing: size.width * 0.03,
-                children: List.generate(
-                  _image1.length,
-                      (index) => Container(
-                        width: size.width * 0.2,
-                        alignment: Alignment.center,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                        Container(
-                          child: CircleAvatar(
-                            radius: 23,
-                            backgroundImage: NetworkImage(_image1[index]),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(
+                    left: size.width * 0.05,
+                    right: size.width * 0.05,
+                    top: size.height * 0.03),
+                child: Wrap(
+                  // alignment: WrapAlignment.spaceEvenly,
+                  runSpacing: size.width * 0.09,
+                  spacing: size.width * 0.03,
+                  children: List.generate(
+                    _image1.length,
+                    (index) => Container(
+                      width: size.width * 0.2,
+                      alignment: Alignment.center,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            child: CircleAvatar(
+                              radius: 23,
+                              backgroundImage: NetworkImage(_image1[index]),
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        FittedBox(
-                          child: Text(
-                            name1[index],
-                            style: TextStyle(color: Colors.grey),
+                          SizedBox(
+                            height: 10,
                           ),
-                        )
-                    ],
-                  ),
+                          FittedBox(
+                            child: Text(
+                              name1[index],
+                              style: TextStyle(color: Colors.grey),
+                            ),
+                          )
+                        ],
                       ),
+                    ),
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Container(
-              margin: EdgeInsets.only(left: size.width * 0.05, bottom: size.height * 0.05),
-              child: Text(
-                'BookMark',
-                style: TextStyle(color: Colors.white, fontSize: 15),
+              SizedBox(
+                height: 30,
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: size.width * 0.09),
-              child: Row(
-                children: [
-                  FloatingActionButton(
-                    mini: true,
-                    backgroundColor: Colors.grey,
-                    onPressed: () => showDialog(
-                      context: context,
-                      builder: (context) => Dialog(
-                        child: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Add Bookmark',
-                                style: TextStyle(
-                                    color: Colors.green, fontSize: 18),
-                              ),
-                              SizedBox(height: 20),
-                              Text(
-                                'Bookmark Name',
-                                style: TextStyle(
-                                    color: Colors.green, fontSize: 15),
-                              ),
-                              TextField(
-                                decoration: InputDecoration(
-                                  border: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                          width: 2, color: Colors.green)),
-                                  focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                          width: 2, color: Colors.green)),
+              Container(
+                alignment: Alignment.centerLeft,
+                margin: EdgeInsets.only(left: size.width * 0.05, bottom: size.height * 0.05),
+                child: Text(
+                  'BookMark',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: size.width * 0.09),
+                child: Row(
+                  children: [
+                    FloatingActionButton(
+                      mini: true,
+                      backgroundColor: Colors.grey,
+                      onPressed: () => showDialog(
+                        context: context,
+                        builder: (context) => Dialog(
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Add Bookmark',
+                                  style: TextStyle(
+                                      color: Colors.green, fontSize: 18),
                                 ),
-                                cursorHeight: 18,
-                                cursorColor: Colors.green,
-                              ),
-                              SizedBox(height: 20),
-                              Text(
-                                'Bookmark URL',
-                                style: TextStyle(
-                                    color: Colors.green, fontSize: 15),
-                              ),
-                              TextField(
-                                decoration: InputDecoration(
-                                  border: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                          width: 2, color: Colors.green)),
-                                  focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                          width: 2, color: Colors.green)),
+                                SizedBox(height: 20),
+                                Text(
+                                  'Bookmark Name',
+                                  style: TextStyle(
+                                      color: Colors.green, fontSize: 15),
                                 ),
-                                cursorHeight: 18,
-                                cursorColor: Colors.green,
-                              ),
-                              ButtonBar(
-                                children: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text('Cancel',
-                                        style: TextStyle(color: Colors.grey)),
+                                TextField(
+                                  decoration: InputDecoration(
+                                    border: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 2, color: Colors.green)),
+                                    focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 2, color: Colors.green)),
                                   ),
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text(
-                                      'Save',
-                                      style: TextStyle(color: Colors.green),
+                                  cursorHeight: 18,
+                                  cursorColor: Colors.green,
+                                ),
+                                SizedBox(height: 20),
+                                Text(
+                                  'Bookmark URL',
+                                  style: TextStyle(
+                                      color: Colors.green, fontSize: 15),
+                                ),
+                                TextField(
+                                  decoration: InputDecoration(
+                                    border: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 2, color: Colors.green)),
+                                    focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 2, color: Colors.green)),
+                                  ),
+                                  cursorHeight: 18,
+                                  cursorColor: Colors.green,
+                                ),
+                                ButtonBar(
+                                  children: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text('Cancel',
+                                          style: TextStyle(color: Colors.grey)),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text(
+                                        'Save',
+                                        style: TextStyle(color: Colors.green),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
+                      child: Icon(
+                        Icons.add_circle,
+                        color: Colors.grey[100],
+                      ),
                     ),
-                    child: Icon(
-                      Icons.add_circle,
-                      color: Colors.grey[100],
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+              SizedBox(height: 150),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: Color(0xff2bc877),
+                ),
+                padding: EdgeInsets.zero,
+                height: _width.value /9,
+                width: _width.value,
+                child: TextButton.icon(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.lightbulb_outlined,
+                    color: Colors.white,
+                    size: _width.value / 14,
+                  ),
+                  label: Text(
+                    'Learn how to download video and audio',
+                    style: TextStyle(
+                        color: Colors.white, fontSize: _width.value / 20),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -237,7 +293,7 @@ class _HomeState extends State<Home> {
                     children: [
                       IconButton(
                         onPressed: () {
-                         Navigator.pop(context);
+                          Navigator.pop(context);
                         },
                         icon: Icon(
                           Icons.arrow_back_outlined,

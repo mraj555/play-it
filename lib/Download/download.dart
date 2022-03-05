@@ -11,8 +11,8 @@ class Down extends StatefulWidget {
 class _DownState extends State<Down> {
   var groupValue = 0;
   var contoller = TextEditingController();
+  var addlinkcontoller = TextEditingController();
   var password = '';
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -23,9 +23,9 @@ class _DownState extends State<Down> {
           actions: [
             IconButton(
               onPressed: () => _Openfile(),
-              icon: Icon(
-                Icons.folder_open,
-                color: Colors.white,
+              icon: ImageIcon(
+                AssetImage('assets/Icons/privacy.png'),
+                size: 30,
               ),
             ),
             IconButton(
@@ -73,7 +73,10 @@ class _DownState extends State<Down> {
                 Icons.phone_android_sharp,
                 color: Colors.white,
               ),
-              trailing: Icon(Icons.navigate_next_outlined),
+              trailing: Icon(
+                Icons.navigate_next_outlined,
+                color: Colors.white,
+              ),
             ),
           ],
         ),
@@ -96,6 +99,7 @@ class _DownState extends State<Down> {
                     context: context,
                     builder: (context) => StatefulBuilder(
                       builder: (context, setState) => Dialog(
+                        backgroundColor: Colors.grey,
                         child: Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,7 +115,10 @@ class _DownState extends State<Down> {
                               RadioListTile(
                                   controlAffinity:
                                       ListTileControlAffinity.trailing,
-                                  title: Text('Date'),
+                                  title: Text(
+                                    'Date',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
                                   activeColor: Colors.green,
                                   value: 1,
                                   groupValue: groupValue,
@@ -123,7 +130,10 @@ class _DownState extends State<Down> {
                               RadioListTile(
                                   controlAffinity:
                                       ListTileControlAffinity.trailing,
-                                  title: Text('Name'),
+                                  title: Text(
+                                    'Name',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
                                   activeColor: Colors.green,
                                   value: 2,
                                   groupValue: groupValue,
@@ -135,7 +145,10 @@ class _DownState extends State<Down> {
                               RadioListTile(
                                   controlAffinity:
                                       ListTileControlAffinity.trailing,
-                                  title: Text('Size'),
+                                  title: Text(
+                                    'Size',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
                                   activeColor: Colors.green,
                                   value: 3,
                                   groupValue: groupValue,
@@ -147,7 +160,10 @@ class _DownState extends State<Down> {
                               RadioListTile(
                                   controlAffinity:
                                       ListTileControlAffinity.trailing,
-                                  title: Text('Length'),
+                                  title: Text(
+                                    'Length',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
                                   activeColor: Colors.green,
                                   value: 4,
                                   groupValue: groupValue,
@@ -156,18 +172,34 @@ class _DownState extends State<Down> {
                                       groupValue = value as int;
                                     });
                                   }),
-                              Divider(
-                                color: Colors.green,
-                                indent: 20,
-                                endIndent: 20,
-                              ),
+                              ButtonBar(
+                                children: [
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text(
+                                        'Cancel',
+                                        style:
+                                            TextStyle(color: Colors.grey[200]),
+                                      )),
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text(
+                                        'OK',
+                                        style: TextStyle(color: Colors.green),
+                                      ))
+                                ],
+                              )
                             ]),
                       ),
                     ),
                   ),
-                  icon: Icon(
-                    Icons.grid_view,
-                    color: Colors.white,
+                  icon: ImageIcon(
+                    AssetImage('assets/Icons/sort.png'),
+                    size: 20,
                   ),
                 ),
                 PopupMenuButton(
@@ -212,6 +244,7 @@ class _DownState extends State<Down> {
                 Column(
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
                           onPressed: () {
@@ -229,13 +262,13 @@ class _DownState extends State<Down> {
                         SizedBox(
                           width: 40,
                         ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.insert_drive_file_rounded,
-                            color: Colors.blue,
-                          ),
-                        ),
+                        GestureDetector(
+                            onTap: () => _btfile(),
+                            child: Image.asset(
+                              'assets/Icons/pdf.png',
+                              height: 30,
+                              width: 30,
+                            )),
                         IconButton(
                           onPressed: () => _search(),
                           icon: Icon(
@@ -252,6 +285,7 @@ class _DownState extends State<Down> {
                       color: Colors.black,
                       margin: EdgeInsets.all(10),
                       child: TextField(
+                        controller: addlinkcontoller,
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(left: 10),
                             hintText:
@@ -260,22 +294,26 @@ class _DownState extends State<Down> {
                                 TextStyle(color: Colors.grey, fontSize: 15),
                             border: InputBorder.none),
                         cursorColor: Colors.green,
+                        onChanged: (value) {
+                          setState(() {
+                            value = addlinkcontoller.text;
+                          });
+                        },
                       ),
                     ),
-                    Container(
-                      height: 50,
-                      width: 340,
-                      color: Colors.green,
-                      child: TextButton.icon(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.download,
-                          color: Colors.white,
-                        ),
-                        label: Text(
-                          'Download',
-                          style: TextStyle(color: Colors.white, fontSize: 18),
-                        ),
+                    ElevatedButton.icon(
+                      onPressed: addlinkcontoller.text.isEmpty ? null : () {},
+                      icon: Icon(
+                        Icons.download,
+                        color: Colors.white,
+                      ),
+                      label: Text(
+                        'Download',
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xff2bc877),
+                        fixedSize: Size(340, 50),
                       ),
                     ),
                   ],
@@ -357,51 +395,163 @@ class _DownState extends State<Down> {
               backgroundColor: Colors.black,
               title: Text('Change Password'),
             ),
-            body: Column(
-              children: [
-                Container(
-                  height: 100,
-                  child: Pinput(
-                    controller: contoller,
-                    obscureText: true,
-                    onChanged: (v) {
-                      setState(() {
-                        v=password;
-                      });
-                    },
-                    defaultPinTheme: PinTheme(
-                      width: 56,
-                      height: 56,
-                      textStyle: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            color: Color.fromRGBO(234, 239, 243, 1), width: 2),
-                        borderRadius: BorderRadius.circular(10),
+            body: Padding(
+              padding:  EdgeInsets.only(top: 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('Create PIN to protect your privacy',style: TextStyle(color: Colors.white,fontSize: 15),),
+                  Container(
+                    height: 100,
+                      child: Pinput(
+                        length: 4,
+                        controller: contoller,
+                        defaultPinTheme: PinTheme(
+                          width: 56,
+                          height: 56,
+                          textStyle: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600),
+                          decoration: BoxDecoration(
+                            color: Color.fromRGBO(243, 239, 243, 0.4),
+                            border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        obscureText: true,
+                        showCursor: true,
+                        autofocus: true,
+                        closeKeyboardWhenCompleted: false,
+                        onSubmitted: (value) {
+                          setState(() {
+                            password = contoller.text;
+                          });
+                          contoller.text.isNotEmpty?showDialog(
+                            context: context,
+                            builder: (context) => Dialog(
+                              elevation: 10,
+                              backgroundColor: Colors.grey[850],
+                              child: Padding(
+                                padding: EdgeInsets.only(left: 20, top: 20),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      'Dear Users,\nThe PIN Of Your Privacy Folder Is:',
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
+                                    Text(
+                                      '$password',
+                                      style: TextStyle(
+                                          color: Colors.green, fontSize: 20),
+                                    ),
+                                    Text(
+                                      'Please Keep Your Password In Mind !',
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
+                                    ButtonBar(
+                                      children: [
+                                        TextButton(
+                                            onPressed: () {
+                                              contoller.clear();
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text(
+                                              'Sure',
+                                              style: TextStyle(
+                                                  color: Colors.green,
+                                                  fontSize: 15),
+                                            ),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ):null;
+                        },
+                        onChanged: (value) {
+                          setState(() {
+                            value = password;
+                          });
+                        },
                       ),
                     ),
-                    showCursor: true,
-                    animationCurve: Curves.fastOutSlowIn,
-                    pinAnimationType: PinAnimationType.fade,
-                    keyboardType: TextInputType.phone,
-                    closeKeyboardWhenCompleted: true,
-                    autofocus: true,
-                    useNativeKeyboard: true,
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      password=contoller.text;
-                    });
-                  },
-                  child: Text('Save'),
-                ),
-                Text('Password:$password',style: TextStyle(color: Colors.white),),
-              ],
+                ],
+              ),
             ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  _btfile() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.black,
+            title: Text(
+              'Open torrent files',
+              style: TextStyle(color: Colors.white),
+            ),
+            centerTitle: true,
+          ),
+          body: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: 25, top: 20),
+                child: Text(
+                  'Storage',
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ),
+              SizedBox(height: 10),
+              ListTile(
+                onTap: () {},
+                leading: Icon(
+                  Icons.phone_android_sharp,
+                  size: 40,
+                  color: Colors.white,
+                ),
+                trailing: Icon(
+                  Icons.keyboard_arrow_right_sharp,
+                  size: 20,
+                  color: Colors.white,
+                ),
+                title: Text(
+                  'Internal Storage',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              SizedBox(height: 10),
+              ListTile(
+                onTap: () {},
+                leading: Icon(
+                  Icons.sd_card,
+                  size: 40,
+                  color: Colors.white,
+                ),
+                trailing: Icon(
+                  Icons.keyboard_arrow_right_sharp,
+                  size: 20,
+                  color: Colors.white,
+                ),
+                title: Text(
+                  'Memory Card',
+                  style: TextStyle(color: Colors.white),
+                ),
+              )
+            ],
           ),
         ),
       ),

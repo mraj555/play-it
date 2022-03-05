@@ -85,7 +85,13 @@ class _VideoPageState extends State<VideoPage> {
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-
+                    Container(
+                      width: 100,
+                      child: Text(
+                        assets[index].title.toString(),
+                        style: TextStyle(color: Colors.white,fontSize: 12),
+                      ),
+                    ),
                   ],
                 ),
               ],
