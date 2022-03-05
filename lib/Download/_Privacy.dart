@@ -14,6 +14,7 @@ class _PrivacyState extends State<Privacy> {
   var password = '';
   @override
   Widget build(BuildContext context) {
+    Size size =MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black,
@@ -24,17 +25,17 @@ class _PrivacyState extends State<Privacy> {
                 context: context,
                 builder: (context) => StatefulBuilder(
                   builder: (context, setState) => Dialog(
-                    backgroundColor: Colors.grey,
+                    backgroundColor: Colors.grey.shade700,
                     child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(top: 10, left: 10),
+                            padding: EdgeInsets.only(top: size.width *0.03, left: size.width *0.03),
                             child: Text(
                               'Sort By',
                               style: TextStyle(
-                                  color: Colors.green, fontSize: 18),
+                                  color: Colors.green, fontSize: size.height * 0.03),
                             ),
                           ),
                           RadioListTile(
@@ -124,7 +125,7 @@ class _PrivacyState extends State<Privacy> {
               ),
               icon: ImageIcon(
                 AssetImage('assets/Icons/sort.png'),
-                size: 20,
+                size: size.height *0.04,
               ),
             ),
             PopupMenuButton(
@@ -148,7 +149,7 @@ class _PrivacyState extends State<Privacy> {
           child: Icon(
             Icons.add,
             color: Colors.white,
-            size: 30,
+            size: size.width *0.1,
           ),
           backgroundColor: Colors.green,
         ),
@@ -166,32 +167,32 @@ class _PrivacyState extends State<Privacy> {
               title: Text('Change Password'),
             ),
             body: Padding(
-              padding: EdgeInsets.only(top: 20),
+              padding: EdgeInsets.only(top: MediaQuery.of(context).size.width *0.03),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     'Create PIN to protect your privacy',
-                    style: TextStyle(color: Colors.white, fontSize: 15),
+                    style: TextStyle(color: Colors.white, fontSize: MediaQuery.of(context).size.width *0.04),
                   ),
                   Container(
-                    height: 100,
+                    height: MediaQuery.of(context).size.height *0.2,
                     child: Pinput(
                       length: 4,
                       controller: contoller,
                       defaultPinTheme: PinTheme(
-                        width: 56,
-                        height: 56,
+                        width: MediaQuery.of(context).size.width *0.15,
+                        height: MediaQuery.of(context).size.height *0.08,
                         textStyle: TextStyle(
-                            fontSize: 20,
+                            fontSize: MediaQuery.of(context).size.height *0.03,
                             color: Colors.white,
                             fontWeight: FontWeight.w600),
                         decoration: BoxDecoration(
                           color: Color.fromRGBO(243, 239, 243, 0.4),
                           border: Border.all(
                               color: Color.fromRGBO(234, 239, 243, 1)),
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(MediaQuery.of(context).size.width *0.03),
                         ),
                       ),
                       obscureText: true,
@@ -209,7 +210,7 @@ class _PrivacyState extends State<Privacy> {
                             elevation: 10,
                             backgroundColor: Colors.grey[850],
                             child: Padding(
-                              padding: EdgeInsets.only(left: 20, top: 20),
+                              padding: EdgeInsets.only(left: MediaQuery.of(context).size.width *0.04, top: MediaQuery.of(context).size.width *0.04),
                               child: Column(
                                 mainAxisAlignment:
                                 MainAxisAlignment.center,
@@ -225,7 +226,7 @@ class _PrivacyState extends State<Privacy> {
                                     '$password',
                                     style: TextStyle(
                                         color: Colors.green,
-                                        fontSize: 20),
+                                        fontSize: MediaQuery.of(context).size.width *0.05),
                                   ),
                                   Text(
                                     'Please Keep Your Password In Mind !',
@@ -242,7 +243,7 @@ class _PrivacyState extends State<Privacy> {
                                           'Sure',
                                           style: TextStyle(
                                               color: Colors.green,
-                                              fontSize: 15),
+                                              fontSize: MediaQuery.of(context).size.width *0.04),
                                         ),
                                       )
                                     ],
@@ -251,8 +252,7 @@ class _PrivacyState extends State<Privacy> {
                               ),
                             ),
                           ),
-                        )
-                            : null;
+                        ): null;
                       },
                       onChanged: (value) {
                         setState(() {
