@@ -71,17 +71,17 @@ class _VideoPageState extends State<VideoPage> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Container(
-                //   height: 110,
-                //   width: 200,
-                //   decoration: BoxDecoration(
-                //     borderRadius: BorderRadius.circular(3),
-                //     image: DecorationImage(
-                //       image: MemoryImage(bytes),
-                //       fit: BoxFit.cover,
-                //     ),
-                //   ),
-                // ),
+                Container(
+                  height: 110,
+                  width: 200,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(3),
+                    image: DecorationImage(
+                      image: MemoryImage(bytes),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
                 Column(
                   // mainAxisSize: MainAxisSize.min,
                   children: [
