@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:play_it/Nehal/Me/About%20us.dart';
+import 'package:play_it/Nehal/Me/Downloads.dart';
 import 'package:play_it/Nehal/Me/Settings.dart';
 import 'package:play_it/Ridham/Help_Page/Help_Page.dart';
 import 'package:play_it/Ridham/VIP_Page.dart';
@@ -27,6 +28,14 @@ class _MyappState extends State<Myme> {
     'Privacy',
     'History',
     'Media Manage',
+  ];
+
+  var _pagelist =[
+     Downloads(),
+     Downloads(),
+     Downloads(),
+     Downloads(),
+     Downloads(),
   ];
 
   @override
@@ -183,10 +192,15 @@ class _MyappState extends State<Myme> {
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Icon(
-                                      _icons[index],
-                                      color: Colors.white.withOpacity(0.9),
-                                      size: 30,
+                                    GestureDetector(
+                                      child: Icon(
+                                        _icons[index],
+                                        color: Colors.white.withOpacity(0.9),
+                                        size: 30,
+                                      ),
+                                      onTap: (){
+                                        Navigator.push(context, MaterialPageRoute(builder: (context) =>_pagelist[index]));
+                                      },
                                     ),
                                     SizedBox(
                                       height: 5,
