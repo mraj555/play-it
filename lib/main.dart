@@ -5,6 +5,8 @@ import 'package:play_it/Video/main_page.dart';
 import 'package:play_it/Video/undefined.dart';
 import 'package:play_it/Video/video_page.dart';
 
+import 'Download/homepage.dart';
+
 void main() {
   runApp(
     MaterialApp(
@@ -12,7 +14,7 @@ void main() {
         scaffoldBackgroundColor: Colors.black,
       ),
       debugShowCheckedModeBanner: false,
-      home: VideoPage(),
+      home: Home(),
     ),
   );
 }
