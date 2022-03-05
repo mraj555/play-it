@@ -227,6 +227,11 @@ class _FAQ_PageState extends State<FAQ_Page> {
                 ],
                 collapsedIconColor: Colors.white,
               ),
+              Divider(
+                thickness: 0.4,
+                height: 2,
+                color: Colors.white.withOpacity(0.3),
+              ),
               ExpansionTile(
                 leading: Icon(Icons.headphones_outlined),
                 title: Text(
@@ -269,6 +274,11 @@ class _FAQ_PageState extends State<FAQ_Page> {
                   ),
                 ],
                 collapsedIconColor: Colors.white,
+              ),
+              Divider(
+                thickness: 0.4,
+                height: 2,
+                color: Colors.white.withOpacity(0.3),
               ),
               ExpansionTile(
                 leading: Icon(Icons.download),
@@ -346,8 +356,13 @@ class _FAQ_PageState extends State<FAQ_Page> {
                 ],
                 collapsedIconColor: Colors.white,
               ),
+              Divider(
+                thickness: 0.4,
+                height: 2,
+                color: Colors.white.withOpacity(0.3),
+              ),
               ExpansionTile(
-                leading: Icon(Icons.download),
+                leading: Icon(Icons.vpn_lock_sharp),
                 title: Text(
                   "Browsee issue",
                   style: TextStyle(fontSize: 15, color: Colors.white),
@@ -367,8 +382,13 @@ class _FAQ_PageState extends State<FAQ_Page> {
                 ],
                 collapsedIconColor: Colors.white,
               ),
+              Divider(
+                thickness: 0.4,
+                height: 2,
+                color: Colors.white.withOpacity(0.3),
+              ),
               ExpansionTile(
-                leading: Icon(Icons.vpn_lock_sharp),
+                leading: Icon(Icons.vpn_key_rounded),
                 title: Text(
                   "VIP",
                   style: TextStyle(fontSize: 15, color: Colors.white),
@@ -431,6 +451,11 @@ class _FAQ_PageState extends State<FAQ_Page> {
                   ),
                 ],
                 collapsedIconColor: Colors.white,
+              ),
+              Divider(
+                thickness: 0.4,
+                height: 2,
+                color: Colors.white.withOpacity(0.3),
               ),
               ExpansionTile(
                 leading: Icon(Icons.info_outline),
@@ -606,6 +631,11 @@ class _FAQ_PageState extends State<FAQ_Page> {
                   ),
                 ],
                 collapsedIconColor: Colors.white,
+              ),
+              Divider(
+                thickness: 0.4,
+                height: 2,
+                color: Colors.white.withOpacity(0.3),
               ),
             ],
           ),

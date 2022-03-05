@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 
-class Fuaturepage extends StatefulWidget {
-  const Fuaturepage({Key? key}) : super(key: key);
+class Subscription_Page extends StatefulWidget {
+  const Subscription_Page({Key? key}) : super(key: key);
 
   @override
-  State<Fuaturepage> createState() => _FuaturepageState();
+  State<Subscription_Page> createState() => _Subscription_PageState();
 }
 
-class _FuaturepageState extends State<Fuaturepage> {
-  var _pagetitle = [
-    "About video player",
-    "About music player",
-    "About flie management",
-    "About privacy",
-    "About casting",
-    "ios version",
-    "Others",
+class _Subscription_PageState extends State<Subscription_Page> {
+  var _pagetitle=[
+    "Fail to subscribe",
+    "Already paid but the vip doesn't go into effect",
+    "Fail to cancel subscription",
+    "Other",
   ];
 
   @override
@@ -32,16 +29,14 @@ class _FuaturepageState extends State<Fuaturepage> {
         children: [
           Column(
             children: List.generate(
-              7,
-              (index) {
+              4,
+                  (index) {
                 return Column(
                   children: [
-                    GestureDetector(
-                      child: ListTile(
-                        title: Text(
-                          _pagetitle[index],
-                          style: TextStyle(color: Colors.white),
-                        ),
+                    ListTile(
+                      title: Text(
+                        _pagetitle[index],
+                        style: TextStyle(color: Colors.white),
                       ),
                     ),
                     Divider(
