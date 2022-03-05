@@ -21,6 +21,26 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   void initState() {
     audioPlayer.play(widget.file);
     playing = true;
+
+    audioPlayer.onDurationChanged.listen(
+          (Duration dd) {
+        setState(
+              () {
+            duration = dd;
+          },
+        );
+      },
+    );
+    audioPlayer.onAudioPositionChanged.listen(
+          (Duration dd) {
+        setState(
+              () {
+            position = dd;
+          },
+        );
+      },
+    );
+
     super.initState();
   }
 
@@ -99,24 +119,5 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
         );
       }
     }
-
-    audioPlayer.onDurationChanged.listen(
-      (Duration dd) {
-        setState(
-          () {
-            duration = dd;
-          },
-        );
-      },
-    );
-    audioPlayer.onAudioPositionChanged.listen(
-      (Duration dd) {
-        setState(
-          () {
-            position = dd;
-          },
-        );
-      },
-    );
   }
 }
