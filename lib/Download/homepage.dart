@@ -262,7 +262,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   ],
                 ),
               ),
-              SizedBox(height: size.height * 0.2),
+              SizedBox(height: size.height * 0.3),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
