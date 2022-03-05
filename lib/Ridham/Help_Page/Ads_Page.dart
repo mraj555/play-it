@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 
-class Fuaturepage extends StatefulWidget {
-  const Fuaturepage({Key? key}) : super(key: key);
+class Ads_Page extends StatefulWidget {
+  const Ads_Page({Key? key}) : super(key: key);
 
   @override
-  State<Fuaturepage> createState() => _FuaturepageState();
+  State<Ads_Page> createState() => _Ads_PageState();
 }
 
-class _FuaturepageState extends State<Fuaturepage> {
-  var _pagetitle = [
-    "About video player",
-    "About music player",
-    "About flie management",
-    "About privacy",
-    "About casting",
-    "ios version",
-    "Others",
+class _Ads_PageState extends State<Ads_Page> {
+  var _pagetitle=[
+    "Ads interrupt using the app",
+    "Ads content",
+    "Always shows the ads",
+    "Always show ads that i'm not interested in",
   ];
 
   @override
@@ -32,16 +29,14 @@ class _FuaturepageState extends State<Fuaturepage> {
         children: [
           Column(
             children: List.generate(
-              7,
-              (index) {
+              4,
+                  (index) {
                 return Column(
                   children: [
-                    GestureDetector(
-                      child: ListTile(
-                        title: Text(
-                          _pagetitle[index],
-                          style: TextStyle(color: Colors.white),
-                        ),
+                    ListTile(
+                      title: Text(
+                        _pagetitle[index],
+                        style: TextStyle(color: Colors.white),
                       ),
                     ),
                     Divider(
