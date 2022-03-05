@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:play_it/Download/download.dart';
 import 'package:play_it/Nehal/Me/Mehomepage.dart';
 import 'package:play_it/Video/main_page.dart';
 import 'package:play_it/Video/undefined.dart';
@@ -11,7 +12,7 @@ void main() {
         scaffoldBackgroundColor: Colors.black,
       ),
       debugShowCheckedModeBanner: false,
-      home: VideoPage(),
+      home: MainPage(),
     ),
   );
 }

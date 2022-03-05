@@ -28,31 +28,37 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     'LinkFly VPN'
   ];
 
-  // late Animation<double> _width;
-  // late AnimationController _controller;
-  // late CurvedAnimation _curvedAnimation;
+  late Animation<double> _width;
+  late AnimationController _controller;
+  late CurvedAnimation _curvedAnimation;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _controller =
-  //       AnimationController(vsync: this, duration: Duration(seconds: 1));
-  //   _curvedAnimation =
-  //       CurvedAnimation(parent: _controller, curve: Curves.elasticOut);
-  //   _width = Tween<double>(begin: 290, end: 300).animate(_curvedAnimation);
-  //
-  //   _controller.addListener(() {
-  //     setState(() {});
-  //   });
-  //   _controller.addStatusListener((status) {
-  //     if (status == AnimationStatus.completed) {
-  //       _controller.reverse();
-  //     } else if (status == AnimationStatus.dismissed) {
-  //       _controller.forward();
-  //     }
-  //   });
-  //   _controller.forward();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    _controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _curvedAnimation =
+        CurvedAnimation(parent: _controller, curve: Curves.elasticOut);
+    _width = Tween<double>(begin: 330, end: 360).animate(_curvedAnimation);
+
+    _controller.addListener(() {
+      setState(() {});
+    });
+    _controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        _controller.reverse();
+      } else if (status == AnimationStatus.dismissed) {
+        _controller.forward();
+      }
+    });
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -256,21 +262,21 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   color: Color(0xff2bc877),
                 ),
                 padding: EdgeInsets.zero,
-                height: 30,
-                width: 370,
+                height: _width.value / 10,
+                width: _width.value,
                 child: TextButton.icon(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.lightbulb_outlined,
-                    color: Colors.white,
-                    size: 15,
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.lightbulb_outlined,
+                      color: Colors.white,
+                      size: _width.value / 25,
+                    ),
+                    label: Text(
+                      'Learn how to download video and audio',
+                      style: TextStyle(
+                          color: Colors.white, fontSize: _width.value / 25),
+                    ),
                   ),
-                  label: Text(
-                    'Learn how to download video and audio',
-                    style: TextStyle(
-                        color: Colors.white, fontSize: 15),
-                  ),
-                ),
               ),
             ],
           ),
