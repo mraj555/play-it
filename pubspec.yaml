@@ -29,7 +29,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  rating_dialog: ^2.0.0
   google_fonts: ^2.2.0
   pinput: ^2.0.2
 

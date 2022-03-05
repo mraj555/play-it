@@ -99,6 +99,7 @@ class _DownState extends State<Down> {
 
   _openadd() {
     Size size = MediaQuery.of(context).size;
+    var _size = MediaQuery.of(context).textScaleFactor;
     Navigator.push(
       context,PageRouteBuilder(
       pageBuilder: (context,_,__,) =>
@@ -118,7 +119,8 @@ class _DownState extends State<Down> {
               'Add Download Link',
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: size.height * 0.03),
+                fontSize: 18 * _size,
+                  ),
             ),
             actions: [
               GestureDetector(
