@@ -71,25 +71,41 @@ class _VideoPageState extends State<VideoPage> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  height: 110,
-                  width: 200,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(3),
-                    image: DecorationImage(
-                      image: MemoryImage(bytes),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
+                // Container(
+                //   height: 110,
+                //   width: 200,
+                //   decoration: BoxDecoration(
+                //     borderRadius: BorderRadius.circular(3),
+                //     image: DecorationImage(
+                //       image: MemoryImage(bytes),
+                //       fit: BoxFit.cover,
+                //     ),
+                //   ),
+                // ),
                 Column(
-                  mainAxisSize: MainAxisSize.min,
+                  // mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
                       width: 100,
                       child: Text(
-                        assets[index].title.toString(),
-                        style: TextStyle(color: Colors.white,fontSize: 12),
+                        // assets[index].title.toString().replaceAll('.mp4', '').toString(),
+                        assets[index].title!.split('.').first.toString(),
+                        style: TextStyle(color: Colors.white, fontSize: 12),
+                      ),
+                    ),
+                    Material(
+                      color: Colors.transparent,
+                      child: Chip(
+                        backgroundColor: Colors.black.withOpacity(0.9),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                        avatar: assets[index].relativePath!.contains('WhatsApp')
+                            ? CircleAvatar(
+                                backgroundImage: NetworkImage(
+                                    'https://assets.stickpng.com/images/580b57fcd9996e24bc43c543.png'),
+
+                              )
+                            : null,
+                        label: Text('WhatsApp',style:TextStyle(color: Colors.grey,fontSize: 12),),
                       ),
                     ),
                   ],
