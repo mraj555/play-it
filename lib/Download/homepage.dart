@@ -105,7 +105,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               },
               icon: ImageIcon(
                 AssetImage('assets/Icons/download_1.png'),
-                size: 24,
+                size: size.width * 0.08,
               ),
               splashRadius: 20,
             ),
@@ -134,12 +134,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         children: [
                           Container(
                             child: CircleAvatar(
-                              radius: 23,
+                              radius: size.width * 0.06,
                               backgroundImage: NetworkImage(_image1[index]),
                             ),
                           ),
                           SizedBox(
-                            height: 10,
+                            height: size.height * 0.02,
                           ),
                           FittedBox(
                             child: Text(
@@ -153,12 +153,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 30,
-              ),
               Container(
                 alignment: Alignment.centerLeft,
-                margin: EdgeInsets.only(left: size.width * 0.05, bottom: size.height * 0.05),
+                margin: EdgeInsets.only(
+                    left: size.width * 0.06,
+                    bottom: size.height * 0.05,
+                    top: size.height * 0.05),
                 child: Text(
                   'BookMark',
                   style: TextStyle(color: Colors.white, fontSize: 15),
@@ -175,7 +175,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         context: context,
                         builder: (context) => Dialog(
                           child: Padding(
-                            padding: EdgeInsets.all(8.0),
+                            padding: EdgeInsets.all(size.height * 0.02),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -184,42 +184,49 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 Text(
                                   'Add Bookmark',
                                   style: TextStyle(
-                                      color: Colors.green, fontSize: 18),
+                                      color: Colors.green,
+                                      fontSize: size.width * 0.05),
                                 ),
                                 SizedBox(height: 20),
                                 Text(
                                   'Bookmark Name',
                                   style: TextStyle(
-                                      color: Colors.green, fontSize: 15),
+                                      color: Colors.green,
+                                      fontSize: size.width * 0.04),
                                 ),
                                 TextField(
                                   decoration: InputDecoration(
                                     border: UnderlineInputBorder(
                                         borderSide: BorderSide(
-                                            width: 2, color: Colors.green)),
+                                            width: size.width * 0.002,
+                                            color: Colors.green)),
                                     focusedBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
-                                            width: 2, color: Colors.green)),
+                                            width: size.width * 0.002,
+                                            color: Colors.green)),
                                   ),
-                                  cursorHeight: 18,
+                                  cursorHeight: size.height * 0.03,
                                   cursorColor: Colors.green,
                                 ),
-                                SizedBox(height: 20),
+                                SizedBox(height: size.height * 0.03),
                                 Text(
                                   'Bookmark URL',
                                   style: TextStyle(
-                                      color: Colors.green, fontSize: 15),
+                                      color: Colors.green,
+                                      fontSize: size.width * 0.04),
                                 ),
                                 TextField(
                                   decoration: InputDecoration(
                                     border: UnderlineInputBorder(
                                         borderSide: BorderSide(
-                                            width: 2, color: Colors.green)),
+                                            width: size.width * 0.002,
+                                            color: Colors.green)),
                                     focusedBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
-                                            width: 2, color: Colors.green)),
+                                            width: size.width * 0.002,
+                                            color: Colors.green)),
                                   ),
-                                  cursorHeight: 18,
+                                  cursorHeight: size.height * 0.03,
                                   cursorColor: Colors.green,
                                 ),
                                 ButtonBar(
@@ -255,7 +262,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   ],
                 ),
               ),
-              SizedBox(height: 150),
+              SizedBox(height: size.height * 0.2),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
@@ -265,18 +272,18 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 height: _width.value / 10,
                 width: _width.value,
                 child: TextButton.icon(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.lightbulb_outlined,
-                      color: Colors.white,
-                      size: _width.value / 25,
-                    ),
-                    label: Text(
-                      'Learn how to download video and audio',
-                      style: TextStyle(
-                          color: Colors.white, fontSize: _width.value / 25),
-                    ),
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.lightbulb_outlined,
+                    color: Colors.white,
+                    size: _width.value / 25,
                   ),
+                  label: Text(
+                    'Learn how to download video and audio',
+                    style: TextStyle(
+                        color: Colors.white, fontSize: _width.value / 25),
+                  ),
+                ),
               ),
             ],
           ),
@@ -292,7 +299,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         builder: (context) => SafeArea(
           child: Scaffold(
             body: Padding(
-              padding: EdgeInsets.all(10),
+              padding:
+                  EdgeInsets.all(MediaQuery.of(context).size.height * 0.01),
               child: Column(
                 children: [
                   Row(
@@ -307,30 +315,42 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         ),
                       ),
                       Container(
-                        height: 35,
-                        width: 280,
+                        height: MediaQuery.of(context).size.height * 0.05,
+                        width: MediaQuery.of(context).size.width * 0.8,
                         child: TextField(
                           autofocus: true,
                           style: TextStyle(color: Colors.white),
                           decoration: InputDecoration(
-                              contentPadding: EdgeInsets.only(left: 10),
+                              contentPadding: EdgeInsets.only(
+                                  left: MediaQuery.of(context).size.height *
+                                      0.01),
                               border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
+                                  borderRadius: BorderRadius.circular(
+                                      MediaQuery.of(context).size.height *
+                                          0.03),
                                   borderSide: BorderSide(
-                                      width: 3, color: Colors.green)),
+                                      width: MediaQuery.of(context).size.width *
+                                          0.01,
+                                      color: Colors.green)),
                               focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
+                                  borderRadius: BorderRadius.circular(
+                                      MediaQuery.of(context).size.height *
+                                          0.03),
                                   borderSide: BorderSide(
-                                      width: 3, color: Colors.green)),
+                                      width: MediaQuery.of(context).size.width *
+                                          0.01,
+                                      color: Colors.green)),
                               prefixIcon: Container(
-                                height: 10,
-                                width: 10,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.02,
+                                width: MediaQuery.of(context).size.width * 0.02,
                                 child: Image.asset('assets/images/google.png'),
                               ),
-                              hintText: 'Search Or Enter Url',
-                              hintStyle: TextStyle(fontSize: 12)),
+                              hintText: '\tSearch Or Enter Url',
+                              hintStyle: TextStyle(fontSize: MediaQuery.of(context).size.height * 0.02, color: Colors.white)),
                           cursorColor: Colors.green,
-                          cursorHeight: 18,
+                          cursorHeight:
+                              MediaQuery.of(context).size.height * 0.03,
                         ),
                       ),
                     ],

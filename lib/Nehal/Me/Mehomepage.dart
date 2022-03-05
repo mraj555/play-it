@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:play_it/Download/_Privacy.dart';
 import 'package:play_it/Download/download.dart';
 import 'package:play_it/Nehal/Me/About%20us.dart';
 import 'package:play_it/Nehal/Me/Settings.dart';
@@ -15,11 +16,11 @@ class Myme extends StatefulWidget {
 
 class _MyappState extends State<Myme> {
   var _icons = [
-    Icons.download_outlined,
-    Icons.headset_mic_outlined,
-    Icons.folder_outlined,
-    Icons.access_time_outlined,
-    Icons.folder_outlined,
+    Icon(Icons.download_outlined),
+    Icon(Icons.headset_mic_outlined),
+    ImageIcon(AssetImage('assets/Icons/privacy.png')),
+    Icon(Icons.access_time_outlined),
+    Icon(Icons.folder_outlined),
   ];
 
   var _names = [
@@ -30,12 +31,12 @@ class _MyappState extends State<Myme> {
     'Media Manage',
   ];
 
-  var _pagelist =[
-   Down(),
-   Down(),
-   Down(),
-   Down(),
-   Down(),
+  var _pagelist = [
+    Down(),
+    Down(),
+    Privacy(),
+    Down(),
+    Down(),
   ];
 
   @override
@@ -48,10 +49,10 @@ class _MyappState extends State<Myme> {
           flexibleSpace: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(
-                      'https://64.media.tumblr.com/c90100fd260e77796e397f07d1771d34/fd850e41fad78fd6-86/s400x600/f15e520227c7dd8b471d729a48f26080712d8250.gifv'),
-                  fit: BoxFit.fill,
-                )),
+              image: NetworkImage(
+                  'https://64.media.tumblr.com/c90100fd260e77796e397f07d1771d34/fd850e41fad78fd6-86/s400x600/f15e520227c7dd8b471d729a48f26080712d8250.gifv'),
+              fit: BoxFit.fill,
+            )),
           ),
         ),
         body: ListView(
@@ -86,7 +87,8 @@ class _MyappState extends State<Myme> {
                       ),
                     ),
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => Vip_Page()));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Vip_Page()));
                     },
                   ),
                   Padding(
@@ -193,13 +195,18 @@ class _MyappState extends State<Myme> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     GestureDetector(
-                                      child: Icon(
-                                        _icons[index],
-                                        color: Colors.white.withOpacity(0.9),
-                                        size: 30,
+                                      child: IconTheme(
+                                        data: IconThemeData(
+                                            color: Colors.white,
+                                            size: size.width * 0.09),
+                                        child: _icons[index],
                                       ),
-                                      onTap: (){
-                                        Navigator.push(context, MaterialPageRoute(builder: (context) =>_pagelist[index]));
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    _pagelist[index]));
                                       },
                                     ),
                                     SizedBox(
@@ -213,7 +220,6 @@ class _MyappState extends State<Myme> {
                                     )
                                   ],
                                 ),
-
                               ),
                             ),
                           );
@@ -268,7 +274,12 @@ class _MyappState extends State<Myme> {
                         style: TextStyle(color: Colors.white, fontSize: 16),
                       ),
                     ),
-                    onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>Mysettings()));},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Mysettings()));
+                    },
                   ),
                   Divider(
                     thickness: 0.1,
@@ -278,8 +289,9 @@ class _MyappState extends State<Myme> {
                     color: Colors.white.withOpacity(0.3),
                   ),
                   GestureDetector(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => Help_Page()));
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Help_Page()));
                     },
                     child: ListTile(
                       leading: Icon(
@@ -322,7 +334,8 @@ class _MyappState extends State<Myme> {
                       color: Colors.white,
                     ),
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>Aboutpage()));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Aboutpage()));
                     },
                     title: Text(
                       "About",
