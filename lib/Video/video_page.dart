@@ -36,6 +36,10 @@ class _VideoPageState extends State<VideoPage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size= MediaQuery.of(context).size;
+
+    setState(() {
+    });
     // return GridView.builder(
     //   gridDelegate:
     //       SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
@@ -83,13 +87,13 @@ class _VideoPageState extends State<VideoPage> {
               child: Container(
                 margin: EdgeInsets.only(left: 20, bottom: 20),
                 height: 110,
-                width: 350,
+                width:size.width *0.06 ,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
                       height: 110,
-                      width: 200,
+                      width: size.width *0.43,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(3),
                         image: DecorationImage(
@@ -99,14 +103,14 @@ class _VideoPageState extends State<VideoPage> {
                       ),
                     ),
                     SizedBox(
-                      width: 10,
+                      width: size.width *0.03,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       // mainAxisSize: MainAxisSize.min,
                       children: [
                         Container(
-                          width: 170,
+                          width: size.width *0.4,
                           child: Text(
                             assets[index].relativePath.toString(),
                             // assets[index]
