@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:play_it/Download/download.dart';
+import 'package:play_it/Video/video_page.dart';
 import 'package:underline_indicator/underline_indicator.dart';
 import '../Madhav/Appbar/my_search.dart';
 
@@ -29,9 +30,7 @@ class _HomeVideoState extends State<HomeVideo>
   ];
 
   var _tabView = [
-    Center(
-      child: Icon(Icons.map),
-    ),
+    VideoPage(),
     Center(
       child: Icon(Icons.height),
     ),
