@@ -3,8 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:play_it/Download/download.dart';
 import 'package:play_it/Nehal/Me/About%20us.dart';
 import 'package:play_it/Nehal/Me/Settings.dart';
+import 'package:play_it/Ridham/Help_Page/Bug_Page.dart';
 import 'package:play_it/Ridham/Help_Page/Help_Page.dart';
 import 'package:play_it/Ridham/VIP_Page.dart';
+import 'package:play_it/Video/main_page.dart';
 
 import '../../Ridham/RateUs.dart';
 
@@ -18,11 +20,11 @@ class Myme extends StatefulWidget {
 class _MyappState extends State<Myme> {
 
   var _icons = [
-    Icons.download_outlined,
-    Icons.headset_mic_outlined,
-    Icons.folder_outlined,
-    Icons.access_time_outlined,
-    Icons.folder_outlined,
+    Icon(Icons.download_outlined),
+    Icon(Icons.headset_mic_outlined),
+    ImageIcon(AssetImage('assets/Icons/privacy.png')),
+    Icon(Icons.access_time_outlined),
+    Icon(Icons.folder_outlined),
   ];
 
   var _names = [
@@ -75,7 +77,43 @@ class _MyappState extends State<Myme> {
                         borderRadius: BorderRadius.vertical(
                           top: Radius.circular(10),
                         ),
-                        child: Image.asset("assets/me/AA2.jpg"),
+                        child: Stack(
+                            children: [
+                              Image.asset("assets/me/AA2.jpg"),
+                              GestureDetector(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Bugpage()));
+                                },
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 80,
+                                      width: 200,
+                                      color: Colors.transparent,
+                                      child: Align(
+                                        alignment: Alignment.topLeft,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: InkWell(
+                                        onTap: (){
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => MainPage()));
+                                        },
+                                        child: Container(
+                                          height: 80,
+                                          width: 120,
+                                          color: Colors.transparent,
+                                          child: Align(
+                                            alignment: Alignment.topRight,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],),
                       ),
                     ),
                     onTap: () {},
@@ -200,17 +238,20 @@ class _MyappState extends State<Myme> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     GestureDetector(
-                                      child: Icon(
-                                        _icons[index],
-                                        color: Colors.white.withOpacity(0.9),
-                                        size: 30,
+                                      child: IconTheme(
+                                        child: _icons[index],
+                                        data: IconThemeData(
+                                          color: Colors.white.withOpacity(0.9),
+                                          size: size.width * 0.08,
+                                        ),
                                       ),
                                       onTap: () {
                                         Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    _pagelist[index]));
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  _pagelist[index]),
+                                        );
                                       },
                                     ),
                                     SizedBox(

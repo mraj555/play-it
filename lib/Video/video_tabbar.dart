@@ -119,7 +119,7 @@ class _HomeVideoState extends State<HomeVideo>
                       unselectedLabelColor: Colors.white,
                       labelPadding: EdgeInsets.zero,
                       labelStyle: GoogleFonts.inter(
-                        fontSize: 13,
+                        fontSize: size.width * 0.025,
                         fontWeight: FontWeight.bold,
                       ),
                       controller: _tabController,

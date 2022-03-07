@@ -17,8 +17,6 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin {
   TabController? _tabController;
 
-  PageController _pageController = PageController();
-
   var _tabs = [
     Tab(
       icon: ImageIcon(
@@ -76,6 +74,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         body: TabBarView(
@@ -85,7 +84,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
         bottomNavigationBar: Material(
           color: Colors.black,
           child: TabBar(
-            labelStyle: GoogleFonts.inter(fontSize: 10),
+            labelStyle: GoogleFonts.inter(fontSize: size.width * 0.025),
             tabs: _tabs,
             controller: _tabController,
             indicatorColor: Colors.transparent,
