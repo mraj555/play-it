@@ -6,12 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:marquee/marquee.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:share_plus/share_plus.dart';
 
 class AudioPlayerScreen extends StatefulWidget {
   // final String file;
-  final SongModel file;
+  SongModel file;
 
-  const AudioPlayerScreen({Key? key, required this.file}) : super(key: key);
+  AudioPlayerScreen({Key? key, required this.file}) : super(key: key);
 
   @override
   State<AudioPlayerScreen> createState() => _AudioPlayerScreenState();
@@ -30,14 +31,17 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
     duration: Duration(seconds: 10),
   );
 
+  List<SongModel> _list = [];
+
   @override
   void initState() {
+    _all();
     audioPlayer.play(widget.file.data);
     playing = true;
     print('topa=${widget.file.uri}');
     _controller.repeat();
     audioPlayer.onDurationChanged.listen(
-          (Duration dd) {
+      (Duration dd) {
         setState(
           () {
             duration = dd;
@@ -46,7 +50,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
       },
     );
     audioPlayer.onAudioPositionChanged.listen(
-      (Duration dd) {
+          (Duration dd) {
         setState(
           () {
             position = dd;
@@ -56,7 +60,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
     );
 
     audioPlayer.onPlayerCompletion.listen(
-      (event) {
+          (event) {
         setState(
           () {
             playing = false;
@@ -78,6 +82,8 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
 
   @override
   Widget build(BuildContext context) {
+    final index =
+        _list.indexWhere((element) => element.data == widget.file.data);
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -120,13 +126,18 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
+                        IconButton(
+                          icon: Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
                         ),
                         Container(
                           height: 50,
-                          width: 320,
+                          width: 300,
                           child: Marquee(
                             blankSpace: 100,
                             showFadingOnlyWhenScrolling: true,
@@ -137,9 +148,13 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                             ),
                           ),
                         ),
-                        Icon(
-                          Icons.share_outlined,
-                          color: Colors.white,
+                        IconButton(
+                          icon: Icon(
+                            Icons.share_outlined,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                          },
                         ),
                       ],
                     ),
@@ -244,7 +259,11 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                               InkWell(
                                 onTap: () {
                                   setState(
-                                    () {},
+                                    () {
+                                      widget.file = _list[index - 1];
+                                      audioPlayer.play(widget.file.data);
+                                      playing = true;
+                                    },
                                   );
                                 },
                                 child: Icon(
@@ -265,10 +284,21 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                                   size: 60,
                                 ),
                               ),
-                              Icon(
-                                Icons.skip_next,
-                                color: Colors.white,
-                                size: 40,
+                              InkWell(
+                                onTap: () {
+                                  setState(
+                                    () {
+                                      widget.file = _list[index + 1];
+                                      audioPlayer.play(widget.file.data);
+                                      playing = true;
+                                    },
+                                  );
+                                },
+                                child: Icon(
+                                  Icons.skip_next,
+                                  color: Colors.white,
+                                  size: 40,
+                                ),
                               ),
                               Icon(
                                 Icons.queue_music,
@@ -288,6 +318,12 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
         ),
       ),
     );
+  }
+
+  _all() async {
+    List<SongModel> audio = await OnAudioQuery().querySongs();
+    audio.forEach((element) => _list.add(element));
+    return audio;
   }
 
   Widget slider() {

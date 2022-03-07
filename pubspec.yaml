@@ -43,6 +43,7 @@ dependencies:
   on_audio_query: ^2.6.0
   audioplayers: ^0.20.1
   marquee: ^2.2.1
+  share_plus: ^3.1.0
 
 
 dev_dependencies:
