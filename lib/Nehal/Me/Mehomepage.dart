@@ -3,8 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:play_it/Download/download.dart';
 import 'package:play_it/Nehal/Me/About%20us.dart';
 import 'package:play_it/Nehal/Me/Settings.dart';
+import 'package:play_it/Ridham/Help_Page/Bug_Page.dart';
 import 'package:play_it/Ridham/Help_Page/Help_Page.dart';
 import 'package:play_it/Ridham/VIP_Page.dart';
+import 'package:play_it/Video/main_page.dart';
 
 import '../../Ridham/RateUs.dart';
 
@@ -75,7 +77,43 @@ class _MyappState extends State<Myme> {
                         borderRadius: BorderRadius.vertical(
                           top: Radius.circular(10),
                         ),
-                        child: Image.asset("assets/me/AA2.jpg"),
+                        child: Stack(
+                            children: [
+                              Image.asset("assets/me/AA2.jpg"),
+                              GestureDetector(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Bugpage()));
+                                },
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 80,
+                                      width: 200,
+                                      color: Colors.transparent,
+                                      child: Align(
+                                        alignment: Alignment.topLeft,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: InkWell(
+                                        onTap: (){
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => MainPage()));
+                                        },
+                                        child: Container(
+                                          height: 80,
+                                          width: 120,
+                                          color: Colors.transparent,
+                                          child: Align(
+                                            alignment: Alignment.topRight,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],),
                       ),
                     ),
                     onTap: () {},
