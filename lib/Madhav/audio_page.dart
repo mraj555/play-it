@@ -10,7 +10,7 @@ class AudioPage extends StatefulWidget {
 }
 
 class _AudioPageState extends State<AudioPage> {
-  final _audioQuery = OnAudioQuery();
+  static final _audioQuery = OnAudioQuery();
 
   _path() async {
     List<SongModel> path = await _audioQuery.querySongs();
@@ -25,9 +25,10 @@ class _AudioPageState extends State<AudioPage> {
     super.initState();
   }
 
+
+
   @override
   Widget build(BuildContext context) {
-    print(_audioQuery.queryAllPath());
     return Scaffold(
       body: FutureBuilder<List<SongModel>>(
         future: _audioQuery.querySongs(
