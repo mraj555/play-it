@@ -38,9 +38,6 @@ class _VideoPageState extends State<VideoPage> {
   @override
   Widget build(BuildContext context) {
     Size size= MediaQuery.of(context).size;
-
-    setState(() {
-    });
     // return GridView.builder(
     //   gridDelegate:
     //       SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),

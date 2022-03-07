@@ -17,7 +17,7 @@ void main() {
         scaffoldBackgroundColor: Colors.black,
       ),
       debugShowCheckedModeBanner: false,
-      home: AudioPage(),
+      home: MainPage(),
     ),
   );
 }
