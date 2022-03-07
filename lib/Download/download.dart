@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:play_it/Download/_Privacy.dart';
-import 'package:play_it/Download/homepage.dart';
 import '../Nehal/Me/Downloadpage.dart';
 
 class Down extends StatefulWidget {

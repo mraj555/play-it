@@ -35,7 +35,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         );
       },
     );
-
     _controller!.removeListener(
       () {
         setState(
@@ -43,7 +42,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         );
       },
     );
-
     _controller!.setLooping(false);
     _controller!.initialize().then((value) => setState(() {}));
     _controller!.play();

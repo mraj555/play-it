@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:play_it/Download/download.dart';
@@ -64,6 +63,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -266,21 +266,24 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     ],
                   ),
                 ),
-                SizedBox(height: size.height * 0.3),
+                SizedBox(
+                  height: size.height * 0.2,
+                ),
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     color: Color(0xff2bc877),
                   ),
                   padding: EdgeInsets.zero,
-                  height: _width.value / 10,
+                  height: _width.value / 9.5,
                   width: _width.value,
                   child: TextButton.icon(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.lightbulb_outlined,
+                    onPressed: () {
+                    },
+                    icon: ImageIcon(
+                      AssetImage('assets/Icons/bulb.png'),
                       color: Colors.white,
-                      size: _width.value / 20,
+                      size: size.width * 0.05,
                     ),
                     label: Text(
                       'Learn how to download video and audio',
