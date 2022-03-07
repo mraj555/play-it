@@ -18,11 +18,11 @@ class Myme extends StatefulWidget {
 class _MyappState extends State<Myme> {
 
   var _icons = [
-    Icons.download_outlined,
-    Icons.headset_mic_outlined,
-    Icons.folder_outlined,
-    Icons.access_time_outlined,
-    Icons.folder_outlined,
+    Icon(Icons.download_outlined),
+    Icon(Icons.headset_mic_outlined),
+    ImageIcon(AssetImage('assets/Icons/privacy.png')),
+    Icon(Icons.access_time_outlined),
+    Icon(Icons.folder_outlined),
   ];
 
   var _names = [
@@ -200,10 +200,12 @@ class _MyappState extends State<Myme> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     GestureDetector(
-                                      child: Icon(
-                                        _icons[index],
-                                        color: Colors.white.withOpacity(0.9),
-                                        size: 30,
+                                      child: IconTheme(
+                                        child: _icons[index],
+                                        data: IconThemeData(
+                                          color: Colors.white.withOpacity(0.9),
+                                          size: size.width * 0.08
+                                        ),
                                       ),
                                       onTap: () {
                                         Navigator.push(
