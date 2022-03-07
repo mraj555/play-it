@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:marquee/marquee.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:play_it/Madhav/audio_page.dart';
 
 class AudioPlayerScreen extends StatefulWidget {
   // final String file;
@@ -245,9 +244,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                               InkWell(
                                 onTap: () {
                                   setState(
-                                    () {
-
-                                    },
+                                    () {},
                                   );
                                 },
                                 child: Icon(
