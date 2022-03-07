@@ -23,18 +23,18 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
     playing = true;
 
     audioPlayer.onDurationChanged.listen(
-          (Duration dd) {
+      (Duration dd) {
         setState(
-              () {
+          () {
             duration = dd;
           },
         );
       },
     );
     audioPlayer.onAudioPositionChanged.listen(
-          (Duration dd) {
+      (Duration dd) {
         setState(
-              () {
+          () {
             position = dd;
           },
         );
@@ -55,24 +55,92 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
     return SafeArea(
       child: Scaffold(
         body: Container(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.only(left: 8, right: 8, bottom: 30),
           color: Colors.white,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Image(image: AssetImage('assets/Icons/ic_launcher.png')),
-              slider(),
-              InkWell(
-                onTap: () {
-                  getAudio();
-                },
-                child: Icon(
-                  playing == false
-                      ? Icons.play_circle_fill_outlined
-                      : Icons.pause_circle_filled_outlined,
-                  color: Colors.blue,
-                  size: 100,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Icon(
+                    Icons.star_border_outlined,
+                    color: Colors.blue,
+                    size: 25,
+                  ),
+                  Icon(
+                    Icons.playlist_add_outlined,
+                    color: Colors.blue,
+                    size: 25,
+                  ),
+                  Icon(
+                    Icons.equalizer_outlined,
+                    color: Colors.blue,
+                    size: 25,
+                  ),
+                  Icon(
+                    Icons.timer_outlined,
+                    color: Colors.blue,
+                    size: 25,
+                  ),
+                  Icon(
+                    Icons.more_vert_outlined,
+                    color: Colors.blue,
+                    size: 25,
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                      '${position.inMinutes}:${position.inSeconds.remainder(60)}'),
+                  Container(child: slider(),width: 240,),
+                  Text(
+                      '${duration.inMinutes}:${duration.inSeconds.remainder(60)}'),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Icon(
+                    Icons.favorite,
+                    color: Colors.blue,
+                    size: 25,
+                  ),
+                  Icon(
+                    Icons.skip_previous,
+                    color: Colors.blue,
+                    size: 40,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      getAudio();
+                    },
+                    child: Icon(
+                      playing == false
+                          ? Icons.play_circle_fill_outlined
+                          : Icons.pause_circle_filled_outlined,
+                      color: Colors.blue,
+                      size: 60,
+                    ),
+                  ),
+                  Icon(
+                    Icons.skip_next,
+                    color: Colors.blue,
+                    size: 40,
+                  ),
+                  Icon(
+                    Icons.queue_music,
+                    color: Colors.blue,
+                    size: 25,
+                  )
+                ],
               ),
             ],
           ),
@@ -110,7 +178,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
         );
       }
     } else {
-      var res = await audioPlayer.play(widget.file, isLocal: true,volume: 50);
+      var res = await audioPlayer.play(widget.file, isLocal: true, volume: 50);
       if (res == 1) {
         setState(
           () {
