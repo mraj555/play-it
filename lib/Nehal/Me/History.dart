@@ -13,9 +13,34 @@ class _HistoryState extends State<History> {
     return Scaffold(
       backgroundColor: Color(0xff0E0E0E),
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.widgets_outlined),
+          ),
+        ],
         backgroundColor: Color(0xff0E0E0E),
-        centerTitle: true,
-        title: Text("History"),
+        title: Text(
+          "History",
+          style: TextStyle(fontSize: 25),
+        ),
+      ),
+      body:  Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              'assets/Icons/emptybox.png',
+              height: 150,
+              width: 150,
+            ),
+            Text(
+              'No history',
+              style: TextStyle(color: Colors.white, fontSize: 15),
+            ),
+          ],
+        ),
       ),
     );
   }
