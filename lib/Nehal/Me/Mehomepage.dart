@@ -204,15 +204,16 @@ class _MyappState extends State<Myme> {
                                         child: _icons[index],
                                         data: IconThemeData(
                                           color: Colors.white.withOpacity(0.9),
-                                          size: size.width * 0.08
+                                          size: size.width * 0.08,
                                         ),
                                       ),
                                       onTap: () {
                                         Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    _pagelist[index]));
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  _pagelist[index]),
+                                        );
                                       },
                                     ),
                                     SizedBox(
