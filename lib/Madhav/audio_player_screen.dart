@@ -65,127 +65,135 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
         body: Column(
           children: [
             Container(
+              padding: EdgeInsets.only(top: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Icon(Icons.arrow_back,color: Colors.black,),
-                Container(
-                  width: 230,
-                  child: Wrap(
-                    children: [Text(
-                      '${widget.file.title}\n${widget.file.artist..toString()}',
-                      maxLines: 5,
-                      style: TextStyle(color: Colors.black),
-                    ),]
-                  ),
-                ),
-                Icon(Icons.share_outlined,color: Colors.black,),
-              ],
-            ),
-              height: size.height * 0.14,
-              color: Colors.white,
-            ),
-            Container(
-              height: size.height * 0.80,
-              padding: EdgeInsets.only(left: 8, right: 8, bottom: 30),
-              color: Colors.white,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  QueryArtworkWidget(
-                      id: widget.file.id,
-                      type: ArtworkType.AUDIO,
-                      artworkWidth: 200,
-                      artworkHeight: 200),
-                  SizedBox(
-                    height: 130,
+                  Icon(
+                    Icons.arrow_back,
+                    color: Colors.black,
                   ),
-                  // Image(image: AssetImage('assets/Icons/ic_launcher.png')),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Icon(
-                        Icons.star_border_outlined,
-                        color: Colors.blue,
-                        size: 25,
-                      ),
-                      Icon(
-                        Icons.playlist_add_outlined,
-                        color: Colors.blue,
-                        size: 25,
-                      ),
-                      Icon(
-                        Icons.equalizer_outlined,
-                        color: Colors.blue,
-                        size: 25,
-                      ),
-                      Icon(
-                        Icons.timer_outlined,
-                        color: Colors.blue,
-                        size: 25,
-                      ),
-                      Icon(
-                        Icons.more_vert_outlined,
-                        color: Colors.blue,
-                        size: 25,
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
+                  Container(
+                    width: 230,
+                    child: Wrap(children: [
                       Text(
-                          '${position.inMinutes}:${position.inSeconds.remainder(60)}'),
-                      Container(
-                        child: slider(),
-                        width: 240,
+                        '${widget.file.title}\n${widget.file.artist..toString()}',
+                        maxLines: 5,
+                        style: TextStyle(color: Colors.black),
                       ),
-                      Text(
-                          '${duration.inMinutes}:${duration.inSeconds.remainder(60)}'),
-                    ],
+                    ]),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Icon(
-                        Icons.favorite,
-                        color: Colors.blue,
-                        size: 25,
-                      ),
-                      Icon(
-                        Icons.skip_previous,
-                        color: Colors.blue,
-                        size: 40,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          getAudio();
-                        },
-                        child: Icon(
-                          playing == false
-                              ? Icons.play_circle_fill_outlined
-                              : Icons.pause_circle_filled_outlined,
-                          color: Colors.blue,
-                          size: 60,
-                        ),
-                      ),
-                      Icon(
-                        Icons.skip_next,
-                        color: Colors.blue,
-                        size: 40,
-                      ),
-                      Icon(
-                        Icons.queue_music,
-                        color: Colors.blue,
-                        size: 25,
-                      )
-                    ],
+                  Icon(
+                    Icons.share_outlined,
+                    color: Colors.black,
                   ),
                 ],
+              ),
+              color: Colors.white,
+            ),
+            Expanded(
+              child: Container(
+               // height: size.height * 0.80,
+                padding: EdgeInsets.only(left: 8, right: 8, bottom: 30),
+                color: Colors.white,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    QueryArtworkWidget(
+                        id: widget.file.id,
+                        type: ArtworkType.AUDIO,
+                        artworkWidth: 200,
+                        artworkHeight: 200),
+                    SizedBox(
+                      height: 130,
+                    ),
+                    // Image(image: AssetImage('assets/Icons/ic_launcher.png')),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Icon(
+                          Icons.star_border_outlined,
+                          color: Colors.blue,
+                          size: 25,
+                        ),
+                        Icon(
+                          Icons.playlist_add_outlined,
+                          color: Colors.blue,
+                          size: 25,
+                        ),
+                        Icon(
+                          Icons.equalizer_outlined,
+                          color: Colors.blue,
+                          size: 25,
+                        ),
+                        Icon(
+                          Icons.timer_outlined,
+                          color: Colors.blue,
+                          size: 25,
+                        ),
+                        Icon(
+                          Icons.more_vert_outlined,
+                          color: Colors.blue,
+                          size: 25,
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                            '${position.inMinutes}:${position.inSeconds.remainder(60)}'),
+                        Container(
+                          child: slider(),
+                          width: 240,
+                        ),
+                        Text(
+                            '${duration.inMinutes}:${duration.inSeconds.remainder(60)}'),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Icon(
+                          Icons.favorite,
+                          color: Colors.blue,
+                          size: 25,
+                        ),
+                        Icon(
+                          Icons.skip_previous,
+                          color: Colors.blue,
+                          size: 40,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            getAudio();
+                          },
+                          child: Icon(
+                            playing == false
+                                ? Icons.play_circle_fill_outlined
+                                : Icons.pause_circle_filled_outlined,
+                            color: Colors.blue,
+                            size: 60,
+                          ),
+                        ),
+                        Icon(
+                          Icons.skip_next,
+                          color: Colors.blue,
+                          size: 40,
+                        ),
+                        Icon(
+                          Icons.queue_music,
+                          color: Colors.blue,
+                          size: 25,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
