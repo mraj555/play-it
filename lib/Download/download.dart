@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:play_it/Download/_Privacy.dart';
+import 'package:play_it/Download/_password.dart';
+import 'package:play_it/Ridham/RateUs.dart';
 import '../Nehal/Me/Downloadpage.dart';
 
 class Down extends StatefulWidget {
+  var password;
+  Down({this.password});
   @override
   _DownState createState() => _DownState();
 }
@@ -12,7 +16,6 @@ class _DownState extends State<Down> {
   var groupValue = 0;
   var contoller = TextEditingController();
   TextEditingController addlinkcontoller = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -24,8 +27,11 @@ class _DownState extends State<Down> {
           actions: [
             IconButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Privacy()));
+                if(widget.password==null) {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Privacy()));
+                }else {
+                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Password()),(route) => false,);
+                }
               },
               icon: ImageIcon(
                 AssetImage('assets/Icons/privacy.png'),
