@@ -153,7 +153,8 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                             Icons.share_outlined,
                             color: Colors.white,
                           ),
-                          onPressed: () {
+                          onPressed: () async {
+                            await Share.shareFiles([widget.file.data],text: widget.file.toString(),subject: widget.file.title);
                           },
                         ),
                       ],
