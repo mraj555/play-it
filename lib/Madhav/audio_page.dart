@@ -57,14 +57,14 @@ class _AudioPageState extends State<AudioPage> {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => AudioPlayerScreen(
-                            file: snapshot.data![index].data.toString()),
+                            file: snapshot.data![index].data.toString(),),
                       ),
                     );
                   },
                 );
               },
               leading: Text(
-                '$index',
+                '${index+1}',
                 style: TextStyle(color: Colors.white),
               ),
               title: Text(snapshot.data![index].displayNameWOExt,
