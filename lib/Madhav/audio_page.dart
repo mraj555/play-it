@@ -57,7 +57,9 @@ class _AudioPageState extends State<AudioPage> {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => AudioPlayerScreen(
-                            file: snapshot.data![index].data.toString(),),
+                            /*file: snapshot.data![index].data.toString()*/
+                          file: snapshot.data![index],
+                        ),
                       ),
                     );
                   },
