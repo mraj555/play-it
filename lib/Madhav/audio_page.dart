@@ -74,20 +74,7 @@ class _AudioPageState extends State<AudioPage> {
           return ListView.builder(
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) => ListTile(
-              onTap: () {
-                setState(
-                  () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => AudioPlayerScreen(
-                          /*file: snapshot.data![index].data.toString()*/
-                          file: snapshot.data![index],
-                        ),
-                      ),
-                    );
-                  },
-                );
-              },
+              onTap: () {},
               leading: Text(
                 '${index + 1}',
                 style: TextStyle(color: Colors.white),
@@ -106,24 +93,21 @@ class _AudioPageState extends State<AudioPage> {
                     child: Column(
                       children: List.generate(
                         _name.length,
-                            (index) => ListTile(
-                          onTap: () {
-                            setState(() {
-                              if (index == 0) {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => AudioPlayerScreen(
-                                          file: snapshot.data![index],
-                                        )));
-                              }
-                            });
+                        (index) => ListTile(
+                          onTap:()
+                          {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => AudioPlayerScreen(
+                                    file: snapshot.data![index],
+                                  ),
+                                ),
+                            );
                           },
                           title: Text(
                             _name[index],
                             style: TextStyle(color: Colors.white, fontSize: 15),
                           ),
-                          leading: Icon(_icons[index], color: Colors.grey[600]),
+                          leading: Icon(_icons[index], color: Colors.blueGrey[100],size: 25,),
                         ),
                       ),
                     ),

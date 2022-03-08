@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:play_it/Download/_Privacy.dart';
 import 'package:play_it/Download/download.dart';
 import 'package:play_it/Nehal/Me/About%20us.dart';
 import 'package:play_it/Nehal/Me/Settings.dart';
@@ -38,7 +39,7 @@ class _MyappState extends State<Myme> {
   var _pagelist = [
     Down(),
     Down(),
-    Down(),
+    Privacy(),
     Down(),
     Down(),
   ];
