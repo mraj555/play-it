@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:play_it/Nehal/Me/Mehomepage.dart';
 
-class aa{
+class aa {
   static var _star = false;
   static var _star1 = false;
   static var _star2 = false;
@@ -23,11 +23,12 @@ class aa{
   static var text5 = 'Love it';
 
   rate() {
-    return   Dialog(
+    return Dialog(
       backgroundColor: Colors.transparent,
       insetPadding: EdgeInsets.zero,
       child: StatefulBuilder(
-        builder: (BuildContext context, void Function(void Function()) setState) {
+        builder:
+            (BuildContext context, void Function(void Function()) setState) {
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -37,7 +38,7 @@ class aa{
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(8),
                         gradient: LinearGradient(
                           colors: [
                             Color(0xffFFF4DE),
@@ -50,21 +51,22 @@ class aa{
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 60),
+                            padding:  EdgeInsets.only(top: 40),
                             child: Text(
                               "$text",
                               style: TextStyle(
                                   fontSize: 20,
-                                  color: Colors.black,
+                                  color: Colors.brown[700],
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(
-                                left: 20, top: 25, right: 10),
+                            padding:  EdgeInsets.only(
+                                left: 20, top: 10, right: 10),
                             child: Text(
-                              "If you like PLAYit,please give us flive stars on the Google Play",
-                              style: TextStyle(fontSize: 15, color: Colors.black),
+                              "If you like PLAYit,please give us flive stars on the Google Play",textAlign: TextAlign.center,
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.brown[400]),
                             ),
                           ),
                           Padding(
@@ -74,7 +76,7 @@ class aa{
                                 InkWell(
                                   onTap: () {
                                     setState(
-                                          () {
+                                      () {
                                         _star = !_star;
                                         if (_star == true) {
                                           _star = true;
@@ -100,13 +102,15 @@ class aa{
                                   child: Icon(
                                     _star ? Icons.star : Icons.star_border,
                                     size: 35,
-                                    color: _star ? Colors.amber : Colors.black,
+                                    color: _star
+                                        ? Colors.orange
+                                        : Colors.brown,
                                   ),
                                 ),
                                 InkWell(
                                   onTap: () {
                                     setState(
-                                          () {
+                                      () {
                                         _star1 = !_star1;
                                         if (_star1 == true) {
                                           _star = true;
@@ -131,13 +135,15 @@ class aa{
                                   child: Icon(
                                     _star1 ? Icons.star : Icons.star_border,
                                     size: 35,
-                                    color: _star1 ? Colors.amber : Colors.black,
+                                    color: _star1
+                                        ? Colors.orange
+                                        : Colors.brown,
                                   ),
                                 ),
                                 InkWell(
                                   onTap: () {
                                     setState(
-                                          () {
+                                      () {
                                         _star2 = !_star2;
                                         if (_star2 == true) {
                                           _star = true;
@@ -161,13 +167,15 @@ class aa{
                                   child: Icon(
                                     _star2 ? Icons.star : Icons.star_border,
                                     size: 35,
-                                    color: _star2 ? Colors.amber : Colors.black,
+                                    color: _star2
+                                        ? Colors.orange
+                                        : Colors.brown,
                                   ),
                                 ),
                                 InkWell(
                                   onTap: () {
                                     setState(
-                                          () {
+                                      () {
                                         _star3 = !_star3;
                                         if (_star3 == true) {
                                           _star = true;
@@ -190,13 +198,15 @@ class aa{
                                   child: Icon(
                                     _star3 ? Icons.star : Icons.star_border,
                                     size: 35,
-                                    color: _star3 ? Colors.amber : Colors.black,
+                                    color: _star3
+                                        ? Colors.orange
+                                        : Colors.brown,
                                   ),
                                 ),
                                 InkWell(
                                   onTap: () {
                                     setState(
-                                          () {
+                                      () {
                                         _star4 = !_star4;
                                         if (_star4 == true) {
                                           _star = true;
@@ -218,58 +228,61 @@ class aa{
                                   child: Icon(
                                     _star4 ? Icons.star : Icons.star_border,
                                     size: 35,
-                                    color: _star4 ? Colors.amber : Colors.black,
+                                    color: _star4
+                                        ? Colors.orange
+                                        : Colors.brown,
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: SizedBox(
-                              width: 200,
-                              child: ElevatedButton(
-                                onPressed: _star == true
-                                    ? () {
-                                  _star =false;
-                                  _star1 =false;
-                                  _star2 =false;
-                                  _star3 =false;
-                                  _star4 =false;
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => Myme(),
-                                    ),
-                                  );
-                                }
-                                    : null,
-                                style: ElevatedButton.styleFrom(
-                                    primary: Color(0xff1613c2),
-                                    fixedSize: Size(300, 25)),
-                                child: Text("Submit"),),),
+                          GestureDetector(
+                            onTap: ()=>Navigator.pop(context),
+                            child: Container(
+                              margin: EdgeInsets.only(top: 10),
+                              height: 35,
+                              width: 150,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Colors.amber.shade400,
+                                    Colors.orange.shade800,
+                                  ],
+                                  end: Alignment.bottomCenter,begin: Alignment.topCenter
+                                ),
+                                boxShadow: [BoxShadow(color: Colors.grey,blurRadius: 2,spreadRadius: 0.1)]
+                              ),
+                              child: Text('Submit',
+                                  style: TextStyle(color: Colors.brown[700])),
+                            ),
                           ),
-                          TextButton(onPressed: () {}, child: Text("Exit")),
+                          TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text(
+                                "Exit",
+                                style: TextStyle(color: Colors.brown[700]),
+                              )),
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 220, top: 5),
-                      child: InkWell(
-                          onTap: () {
-                            Navigator.pushReplacement(context,
-                                MaterialPageRoute(builder: (context) => Myme()));
-                          },
-                          child: Icon(
-                            Icons.cancel,
-                            color: Colors.grey,
-                          )),
-                    )
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(Icons.clear, color: Colors.grey),
+                      ),
+                    ),
                   ],
                 ),
               ),
               Baseline(
-                baseline: -250,
+                baseline: -210,
                 baselineType: TextBaseline.ideographic,
                 child: Image.asset(
                   '$a',

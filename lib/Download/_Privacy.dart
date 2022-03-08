@@ -149,7 +149,7 @@ class _PrivacyState extends State<Privacy> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: (){},
         child: Icon(
           Icons.add,
           color: Colors.white,
@@ -159,4 +159,5 @@ class _PrivacyState extends State<Privacy> {
       ),
     );
   }
+
 }
