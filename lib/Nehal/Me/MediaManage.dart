@@ -184,7 +184,31 @@ class _MediaState extends State<Media> {
                 ),
               ),
             ],
-          )
+          ),
+          ListTile(
+              title: Text(
+                "Videos you haven't watchad",
+                style: TextStyle(color: Colors.white),
+              ),
+              subtitle: Text(
+                "You haven't watched these videos for along time.",
+                style: TextStyle(
+                    color: Colors.white.withOpacity(0.5), fontSize: 12),
+              ),
+              trailing: Directionality(
+                textDirection: TextDirection.rtl,
+                child: TextButton.icon(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.arrow_back_ios,
+                      size: 20,
+                      color: Colors.green,
+                    ),
+                    label: Text(
+                      'All',
+                      style: TextStyle(color: Colors.green, fontSize: 15),
+                    )),
+              )),
         ],
       ),
     );
