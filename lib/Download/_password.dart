@@ -93,6 +93,7 @@ class _PasswordState extends State<Password> {
                                       Navigator.pop(context);
                                       var password=contoller.text;
                                       Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>Down(password: password)));
+                                      //contoller.clear();
                                     },
                                     child: Text(
                                       'Sure',

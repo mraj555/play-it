@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+
 class Add extends StatefulWidget {
   const Add({Key? key}) : super(key: key);
 
@@ -8,6 +12,7 @@ class Add extends StatefulWidget {
 
 class _AddState extends State<Add> {
   var addlinkcontoller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -26,8 +31,7 @@ class _AddState extends State<Add> {
           ),
           title: Text(
             'Add Download Link',
-            style: TextStyle(
-                color: Colors.white, fontSize: size.width * 0.045),
+            style: TextStyle(color: Colors.white, fontSize: size.width * 0.045),
           ),
           actions: [
             GestureDetector(
@@ -60,16 +64,17 @@ class _AddState extends State<Add> {
                   ),
                   margin: EdgeInsets.all(size.width * 0.02),
                   child: TextField(
+                    autofocus: true,
+                    style: TextStyle(color: Colors.white),
                     cursorHeight: size.height * 0.03,
                     controller: addlinkcontoller,
                     decoration: InputDecoration(
                         contentPadding:
-                        EdgeInsets.only(left: size.width * 0.02),
+                            EdgeInsets.only(left: size.width * 0.02),
                         hintText:
-                        'Enter The Magnet ,HTTP Or The URL of Torrent',
+                            'Enter The Magnet ,HTTP Or The URL of Torrent',
                         hintStyle: TextStyle(
-                            color: Colors.grey,
-                            fontSize: size.width * 0.04),
+                            color: Colors.grey, fontSize: size.width * 0.04),
                         border: InputBorder.none),
                     cursorColor: Colors.green,
                     onChanged: (value) {
@@ -79,14 +84,13 @@ class _AddState extends State<Add> {
                     },
                   ),
                 ),
-                ElevatedButton(
-                  onPressed:
-                  addlinkcontoller.text.isNotEmpty ? () {} : null,
-                  // icon: Icon(
-                  //   Icons.download,
-                  //   color: Colors.white,
-                  // ),
-                  child: Text(
+                ElevatedButton.icon(
+                  onPressed: addlinkcontoller.text.isNotEmpty ? () {} : null,
+                  icon: Icon(
+                    Icons.download,
+                    color: Colors.white,
+                  ),
+                  label: Text(
                     'Download',
                     style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
@@ -102,6 +106,7 @@ class _AddState extends State<Add> {
       ),
     );
   }
+
   _search() {
     return showDialog(
       context: context,
@@ -125,10 +130,10 @@ class _AddState extends State<Add> {
                       contentPadding: EdgeInsets.only(left: 10),
                       focusedBorder: UnderlineInputBorder(
                           borderSide:
-                          BorderSide(width: 2, color: Colors.green)),
+                              BorderSide(width: 2, color: Colors.green)),
                       border: UnderlineInputBorder(
                           borderSide:
-                          BorderSide(width: 2, color: Colors.green))),
+                              BorderSide(width: 2, color: Colors.green))),
                   cursorColor: Colors.green,
                 ),
                 ButtonBar(
@@ -205,7 +210,12 @@ class _AddState extends State<Add> {
               ),
               SizedBox(height: 10),
               ListTile(
-                onTap: () {},
+                onTap:(){
+                  setState(() {
+                    _storage;
+                    print('Tap');
+                  });
+                },
                 leading: Icon(
                   Icons.sd_card,
                   size: 40,
@@ -226,5 +236,17 @@ class _AddState extends State<Add> {
         ),
       ),
     );
+  }
+}
+
+_storage() async {
+  FilePickerResult? result = await FilePicker.platform.pickFiles(
+    type: FileType.custom,
+    allowMultiple: true,
+    allowedExtensions: ['jpg', 'pdf', 'doc'],
+  );
+  if(result != null){
+    List<File> files =result.paths.map((e) => File(e!)).toList();
+    return files;
   }
 }

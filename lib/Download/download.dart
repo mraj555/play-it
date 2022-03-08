@@ -10,7 +10,6 @@ import '../Nehal/Me/Downloadpage.dart';
 
 class Down extends StatefulWidget {
   var password;
-
   Down({this.password});
 
   @override
@@ -23,8 +22,7 @@ class _DownState extends State<Down> {
   var newpasswordcontroller = TextEditingController();
   var newpassword = '';
   var error = 'Enter The PIN';
-  var errorcolor=Colors.green;
-  
+  var errorcolor = Colors.green;
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +49,7 @@ class _DownState extends State<Down> {
             ),
             IconButton(
               onPressed: () => Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => Add())),
+                  context, MaterialPageRoute(builder: (context) => Add())),
               icon: Icon(
                 Icons.add,
                 color: Colors.white,
@@ -171,17 +168,19 @@ class _DownState extends State<Down> {
                             print('${newpassword}');
                             if (widget.password == newpassword) {
                               Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Privacy()));
-                            } else {}
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Privacy(),
+                                ),
+                              );
+                            }
                           });
                         },
                         onChanged: (value) {
                           setState(() {
                             value = newpassword;
                             error = 'Password doesn\'t Not Match !!';
-                            errorcolor=Colors.red;
+                            errorcolor = Colors.red;
                           });
                         },
                       ),
