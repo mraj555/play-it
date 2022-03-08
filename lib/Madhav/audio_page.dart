@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:play_it/Madhav/audio_player_screen.dart';
-import 'package:play_it/Ridham/RateUs.dart';
 
 class AudioPage extends StatefulWidget {
   const AudioPage({Key? key}) : super(key: key);
@@ -74,7 +73,16 @@ class _AudioPageState extends State<AudioPage> {
           return ListView.builder(
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) => ListTile(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AudioPlayerScreen(
+                      file: snapshot.data![index],
+                    ),
+                  ),
+                );
+              },
               leading: Text(
                 '${index + 1}',
                 style: TextStyle(color: Colors.white),

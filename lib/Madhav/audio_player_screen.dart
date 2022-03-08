@@ -261,9 +261,11 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                                 onTap: () {
                                   setState(
                                     () {
-                                      widget.file = _list[index - 1];
-                                      audioPlayer.play(widget.file.data);
-                                      playing = true;
+                                      if (index > 0) {
+                                        widget.file = _list[index - 1];
+                                        audioPlayer.play(widget.file.data);
+                                        playing = true;
+                                      }
                                     },
                                   );
                                 },
