@@ -90,10 +90,9 @@ class _PasswordState extends State<Password> {
                                 children: [
                                   TextButton(
                                     onPressed: () {
-                                      contoller.clear();
                                       Navigator.pop(context);
                                       var password=contoller.text;
-                                      Navigator.push(context,MaterialPageRoute(builder: (context)=>Down(password: password)));
+                                      Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>Down(password: password)));
                                     },
                                     child: Text(
                                       'Sure',

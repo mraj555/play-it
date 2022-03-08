@@ -89,26 +89,18 @@ class _AudioPageState extends State<AudioPage> {
                 onPressed: () => showModalBottomSheet(
                   backgroundColor: Colors.grey[800],
                   context: context,
-                  builder: (context) => SingleChildScrollView(
-                    child: Column(
-                      children: List.generate(
-                        _name.length,
-                        (index) => ListTile(
-                          onTap:()
-                          {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => AudioPlayerScreen(
-                                    file: snapshot.data![index],
-                                  ),
-                                ),
-                            );
-                          },
-                          title: Text(
-                            _name[index],
-                            style: TextStyle(color: Colors.white, fontSize: 15),
-                          ),
-                          leading: Icon(_icons[index], color: Colors.blueGrey[100],size: 25,),
-                        ),
+                  builder: (context) => ListView.builder(
+                    itemCount: _name.length,
+                    itemBuilder: (context, index) => ListTile(
+                      onTap: () {},
+                      title: Text(
+                        _name[index],
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                      leading: Icon(
+                        _icons[index],
+                        color: Colors.blueGrey[100],
+                        size: 25,
                       ),
                     ),
                   ),
