@@ -30,6 +30,7 @@ class _DownState extends State<Down> {
                 if(widget.password==null) {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => Privacy()));
                 }else {
+                  print(widget.password);
                   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Password()),(route) => false,);
                 }
               },
