@@ -283,7 +283,7 @@ class aa {
                 ),
               ),
               Baseline(
-                baseline: -210,
+                baseline: size.height * -0.32,
                 baselineType: TextBaseline.ideographic,
                 child: Image.asset(
                   '$a',
