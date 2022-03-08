@@ -61,10 +61,23 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
 
     audioPlayer.onPlayerCompletion.listen(
           (event) {
-        setState(
+            final index =
+            _list.indexWhere((element) => element.data == widget.file.data);
+            setState(
           () {
-            playing = false;
-            _controller.reset();
+            if (index < _list.length - 1) {
+              widget.file = _list[index + 1];
+              _controller.repeat();
+              audioPlayer.play(widget.file.data);
+              playing = true;
+            }
+            if(index == _list.length - 1){
+              widget.file = _list.first;
+              audioPlayer.play(widget.file.data);
+              _controller.repeat();
+              playing = true;
+            }
+            _controller.repeat();
           },
         );
       },

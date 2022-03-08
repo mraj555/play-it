@@ -99,14 +99,24 @@ class _AudioPageState extends State<AudioPage> {
                   context: context,
                   builder: (context) => ListView.builder(
                     itemCount: _name.length,
-                    itemBuilder: (context, index) => ListTile(
-                      onTap: () {},
+                    itemBuilder: (context, ind) => ListTile(
+                      onTap: () {
+                        if (ind == 0) {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => AudioPlayerScreen(
+                                file: snapshot.data![index],
+                              ),
+                            ),
+                          );
+                        }
+                      },
                       title: Text(
-                        _name[index],
+                        _name[ind],
                         style: TextStyle(color: Colors.white, fontSize: 15),
                       ),
                       leading: Icon(
-                        _icons[index],
+                        _icons[ind],
                         color: Colors.blueGrey[100],
                         size: 25,
                       ),
