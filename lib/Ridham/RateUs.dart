@@ -29,11 +29,12 @@ class aa {
       child: StatefulBuilder(
         builder:
             (BuildContext context, void Function(void Function()) setState) {
+          Size size =MediaQuery.of(context).size;
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
-                padding: const EdgeInsets.only(right: 50, left: 60),
+                padding:  EdgeInsets.only(right: 50, left: 60),
                 child: Stack(
                   children: [
                     Container(
@@ -47,11 +48,10 @@ class aa {
                         ),
                       ),
                       child: Column(
-                        // mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Padding(
-                            padding:  EdgeInsets.only(top: 40),
+                            padding:  EdgeInsets.only(top: size.height * 0.07),
                             child: Text(
                               "$text",
                               style: TextStyle(
@@ -64,14 +64,15 @@ class aa {
                             padding:  EdgeInsets.only(
                                 left: 20, top: 10, right: 10),
                             child: Text(
-                              "If you like PLAYit,please give us flive stars on the Google Play",textAlign: TextAlign.center,
+                              "If you like PLAYit,please give us five stars on the Google Play",textAlign: TextAlign.center,
                               style:
                                   TextStyle(fontSize: 15, color: Colors.brown[400]),
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 45, top: 20),
+                            padding: EdgeInsets.only(left: size.width *0.02, top: 20),
                             child: Row(
+                              mainAxisSize: MainAxisSize.min,
                               children: [
                                 InkWell(
                                   onTap: () {
