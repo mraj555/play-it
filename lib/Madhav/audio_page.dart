@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:play_it/Madhav/audio_player_screen.dart';
+import 'package:play_it/Ridham/RateUs.dart';
 
 class AudioPage extends StatefulWidget {
   const AudioPage({Key? key}) : super(key: key);
@@ -25,7 +26,28 @@ class _AudioPageState extends State<AudioPage> {
     super.initState();
   }
 
-
+  List _name = [
+    'Play Now',
+    'Play Next',
+    'Set as ringtone',
+    'add to playlist',
+    'File Transfer',
+    'Rename',
+    'Favorite',
+    'Delete',
+    'File Info',
+  ];
+  List<IconData> _icons = [
+    Icons.play_circle_outline,
+    Icons.skip_next_outlined,
+    Icons.notifications_none,
+    Icons.playlist_add,
+    Icons.drive_file_move_outline,
+    Icons.edit_outlined,
+    Icons.star_border,
+    Icons.delete_outline_outlined,
+    Icons.info_outline_rounded,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -52,20 +74,7 @@ class _AudioPageState extends State<AudioPage> {
           return ListView.builder(
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) => ListTile(
-              onTap: () {
-                setState(
-                  () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => AudioPlayerScreen(
-                          /*file: snapshot.data![index].data.toString()*/
-                          file: snapshot.data![index],
-                        ),
-                      ),
-                    );
-                  },
-                );
-              },
+              onTap: () {},
               leading: Text(
                 '${index + 1}',
                 style: TextStyle(color: Colors.white),
@@ -75,7 +84,28 @@ class _AudioPageState extends State<AudioPage> {
               subtitle: Text('${snapshot.data![index].artist}',
                   style: TextStyle(color: Colors.white, fontSize: 12),
                   textWidthBasis: TextWidthBasis.parent),
-              trailing: Icon(Icons.more_vert, color: Colors.white),
+              trailing: IconButton(
+                icon: Icon(Icons.more_vert, color: Colors.white),
+                onPressed: () => showModalBottomSheet(
+                  backgroundColor: Colors.grey[800],
+                  context: context,
+                  builder: (context) => ListView.builder(
+                    itemCount: _name.length,
+                    itemBuilder: (context, index) => ListTile(
+                      onTap: () {},
+                      title: Text(
+                        _name[index],
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                      leading: Icon(
+                        _icons[index],
+                        color: Colors.blueGrey[100],
+                        size: 25,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ),
           );
         },

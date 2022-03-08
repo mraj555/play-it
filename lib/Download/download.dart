@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:pinput/pinput.dart';
 import 'package:play_it/Download/_Privacy.dart';
+import 'package:play_it/Download/_add.dart';
 import 'package:play_it/Download/_password.dart';
+import 'package:play_it/Download/homepage.dart';
 import 'package:play_it/Ridham/RateUs.dart';
 import '../Nehal/Me/Downloadpage.dart';
 
 class Down extends StatefulWidget {
   var password;
+
   Down({this.password});
+
   @override
   _DownState createState() => _DownState();
 }
@@ -15,7 +20,12 @@ class Down extends StatefulWidget {
 class _DownState extends State<Down> {
   var groupValue = 0;
   var contoller = TextEditingController();
-  TextEditingController addlinkcontoller = TextEditingController();
+  var newpasswordcontroller = TextEditingController();
+  var newpassword = '';
+  var error = 'Enter The PIN';
+  var errorcolor=Colors.green;
+  
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -27,10 +37,11 @@ class _DownState extends State<Down> {
           actions: [
             IconButton(
               onPressed: () {
-                if(widget.password==null) {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Privacy()));
-                }else {
-                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Password()),(route) => false,);
+                if (widget.password == null) {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Privacy()));
+                } else {
+                  _enterpassword();
                 }
               },
               icon: ImageIcon(
@@ -39,7 +50,9 @@ class _DownState extends State<Down> {
               ),
             ),
             IconButton(
-              onPressed: () => _openadd(),
+              onPressed: () => Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => Add())),
               icon: Icon(
                 Icons.add,
                 color: Colors.white,
@@ -102,229 +115,80 @@ class _DownState extends State<Down> {
     );
   }
 
-  _openadd() {
-    Size size = MediaQuery.of(context).size;
-    Navigator.push(
-      context,
-      PageRouteBuilder(
-        pageBuilder: (
-          context,
-          _,
-          __,
-        ) =>
-            SafeArea(
-          child: Scaffold(
-            appBar: AppBar(
-              elevation: 10,
-              flexibleSpace: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(
-                        'https://64.media.tumblr.com/c90100fd260e77796e397f07d1771d34/fd850e41fad78fd6-86/s400x600/f15e520227c7dd8b471d729a48f26080712d8250.gifv'),
-                    fit: BoxFit.fill,
-                  ),
-                ),
-              ),
-              title: Text(
-                'Add Download Link',
-                style: TextStyle(
-                    color: Colors.white, fontSize: size.width * 0.045),
-              ),
-              actions: [
-                GestureDetector(
-                    onTap: () => _btfile(),
-                    child: Image.asset(
-                      'assets/Icons/pdf.png',
-                      height: size.height * 0.1,
-                      width: size.width * 0.1,
-                    )),
-                IconButton(
-                  onPressed: () => _search(),
-                  icon: Icon(
-                    Icons.search_rounded,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-            body: ListView(
-              children: [
-                Column(
-                  children: [
-                    Container(
-                      alignment: Alignment.topLeft,
-                      height: size.height * 0.2,
-                      width: size.width * 0.9,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(size.height * 0.01),
-                        color: Colors.grey[850],
-                      ),
-                      margin: EdgeInsets.all(size.width * 0.02),
-                      child: TextField(
-                        cursorHeight: size.height * 0.03,
-                        controller: addlinkcontoller,
-                        decoration: InputDecoration(
-                            contentPadding:
-                                EdgeInsets.only(left: size.width * 0.02),
-                            hintText:
-                                'Enter The Magnet ,HTTP Or The URL of Torrent',
-                            hintStyle: TextStyle(
-                                color: Colors.grey,
-                                fontSize: size.width * 0.04),
-                            border: InputBorder.none),
-                        cursorColor: Colors.green,
-                        onChanged: (value) {
-                          setState(() {
-                            value = addlinkcontoller.text;
-                          });
-                        },
-                      ),
-                    ),
-                    ElevatedButton.icon(
-                      onPressed:
-                          addlinkcontoller.text.isNotEmpty ? () {} : null,
-                      icon: Icon(
-                        Icons.download,
-                        color: Colors.white,
-                      ),
-                      label: Text(
-                        'Download',
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        primary: Color(0xff2bc877),
-                        fixedSize: Size(320, 50),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  _search() {
-    return showDialog(
-      context: context,
-      builder: (context) => StatefulBuilder(
-        builder: (context, setState) => Dialog(
-          child: Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(top: 10),
-                  child: Text(
-                    'Search',
-                    style: TextStyle(color: Colors.green, fontSize: 18),
-                  ),
-                ),
-                TextField(
-                  decoration: InputDecoration(
-                      contentPadding: EdgeInsets.only(left: 10),
-                      focusedBorder: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(width: 2, color: Colors.green)),
-                      border: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(width: 2, color: Colors.green))),
-                  cursorColor: Colors.green,
-                ),
-                ButtonBar(
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text(
-                        'Cancel',
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text(
-                        'Save',
-                        style: TextStyle(color: Colors.green),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  _btfile() {
-    Navigator.push(
+  _enterpassword() {
+    return Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => Scaffold(
           appBar: AppBar(
+            title: Text('Privacy Folder'),
             backgroundColor: Colors.black,
-            title: Text(
-              'Open torrent files',
-              style: TextStyle(color: Colors.white),
-            ),
-            centerTitle: true,
           ),
-          body: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          body: ListView(
             children: [
               Padding(
-                padding: EdgeInsets.only(left: 25, top: 20),
-                child: Text(
-                  'Storage',
-                  style: TextStyle(color: Colors.grey),
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.width * 0.01),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      '${error}',
+                      style: TextStyle(
+                          color: errorcolor,
+                          fontSize: MediaQuery.of(context).size.width * 0.04),
+                    ),
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.2,
+                      child: Pinput(
+                        length: 4,
+                        controller: newpasswordcontroller,
+                        defaultPinTheme: PinTheme(
+                          width: MediaQuery.of(context).size.width * 0.15,
+                          height: MediaQuery.of(context).size.height * 0.08,
+                          textStyle: TextStyle(
+                              fontSize:
+                                  MediaQuery.of(context).size.height * 0.03,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600),
+                          decoration: BoxDecoration(
+                            color: Color.fromRGBO(243, 239, 243, 0.4),
+                            border: Border.all(
+                                color: Color.fromRGBO(234, 239, 243, 1)),
+                            borderRadius: BorderRadius.circular(
+                                MediaQuery.of(context).size.width * 0.03),
+                          ),
+                        ),
+                        obscureText: true,
+                        showCursor: true,
+                        autofocus: true,
+                        closeKeyboardWhenCompleted: false,
+                        onSubmitted: (value) {
+                          setState(() {
+                            print('${widget.password}');
+                            newpassword = newpasswordcontroller.text;
+                            print('${newpassword}');
+                            if (widget.password == newpassword) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Privacy()));
+                            } else {}
+                          });
+                        },
+                        onChanged: (value) {
+                          setState(() {
+                            value = newpassword;
+                            error = 'Password doesn\'t Not Match !!';
+                            errorcolor=Colors.red;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(height: 10),
-              ListTile(
-                onTap: () {},
-                leading: Icon(
-                  Icons.phone_android_sharp,
-                  size: 40,
-                  color: Colors.white,
-                ),
-                trailing: Icon(
-                  Icons.keyboard_arrow_right_sharp,
-                  size: 20,
-                  color: Colors.white,
-                ),
-                title: Text(
-                  'Internal Storage',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-              SizedBox(height: 10),
-              ListTile(
-                onTap: () {},
-                leading: Icon(
-                  Icons.sd_card,
-                  size: 40,
-                  color: Colors.white,
-                ),
-                trailing: Icon(
-                  Icons.keyboard_arrow_right_sharp,
-                  size: 20,
-                  color: Colors.white,
-                ),
-                title: Text(
-                  'Memory Card',
-                  style: TextStyle(color: Colors.white),
-                ),
-              )
             ],
           ),
         ),

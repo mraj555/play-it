@@ -33,6 +33,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late CurvedAnimation _curvedAnimation;
 
+  var _color=Colors.red;
+
   @override
   void initState() {
     super.initState();
@@ -245,6 +247,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                       TextButton(
                                         onPressed: () {
                                           Navigator.pop(context);
+
                                         },
                                         child: Text(
                                           'Save',

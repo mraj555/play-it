@@ -136,8 +136,8 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                           },
                         ),
                         Container(
-                          height: 50,
-                          width: 300,
+                          height: size.height * 0.1,
+                          width: size.width * 0.72,
                           child: Marquee(
                             blankSpace: 100,
                             showFadingOnlyWhenScrolling: true,
