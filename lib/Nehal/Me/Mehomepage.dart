@@ -310,7 +310,7 @@ class _MyappState extends State<Myme> {
               padding: EdgeInsets.only(top: 10),
               child: Container(
                 color: Colors.black,
-                height: 300,
+                height: 233,
                 child: Column(children: [
                   GestureDetector(
                     child: ListTile(
