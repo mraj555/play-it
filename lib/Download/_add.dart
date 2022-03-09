@@ -1,6 +1,4 @@
 import 'dart:io';
-
-import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:open_file/open_file.dart';
@@ -201,7 +199,8 @@ class _AddState extends State<Add> {
               ),
               SizedBox(height: 10),
               ListTile(
-                onTap: () {},
+                onTap:()=>_storage(
+                    filename: 'All'),
                 leading: Icon(
                   Icons.phone_android_sharp,
                   size: 40,
@@ -219,9 +218,6 @@ class _AddState extends State<Add> {
               ),
               SizedBox(height: 10),
               ListTile(
-                onTap:()=>_storage(
-                    url:'',
-                    filename: 'jpg'),
                 leading: Icon(
                   Icons.sd_card,
                   size: 40,
@@ -243,7 +239,7 @@ class _AddState extends State<Add> {
       ),
     );
   }
-  Future _storage({required String filename,String? url}) async {
+  Future _storage({required String filename}) async {
     final file = await pickFile();
     if (file == null) {return null;};
     print('Path:${file.path}');
@@ -256,23 +252,8 @@ class _AddState extends State<Add> {
   }
   }
 
-  Future<File?> downloadFile (String? name,url) async {
+  Future<File?> downloadFile (String? name) async {
     final appStorage = await getApplicationDocumentsDirectory();
     final file = File('${appStorage.path}/$name');
-
-    try {
-      final resonse = await Dio().get(
-          url,
-          options: Options(
-            responseType: ResponseType.bytes,
-            followRedirects: false,
-            receiveTimeout: 0,
-          )
-      );
-      final raf = file.openSync(mode: FileMode.write);
-      raf.writeFromSync(resonse.data);
-      await raf.close();
-      return file;
-    }
-    catch (e){}
+    return file;
 }
