@@ -1,7 +1,10 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
 
 class Add extends StatefulWidget {
   const Add({Key? key}) : super(key: key);
@@ -74,7 +77,7 @@ class _AddState extends State<Add> {
                         hintText:
                             'Enter The Magnet ,HTTP Or The URL of Torrent',
                         hintStyle: TextStyle(
-                            color: Colors.grey, fontSize: size.width * 0.04),
+                            color: Colors.grey, fontSize: size.width * 0.043),
                         border: InputBorder.none),
                     cursorColor: Colors.green,
                     onChanged: (value) {
@@ -92,12 +95,18 @@ class _AddState extends State<Add> {
                   ),
                   label: Text(
                     'Download',
-                    style: TextStyle(color: Colors.white, fontSize: 18),
+                    style: TextStyle(color: Colors.white, fontSize: 15),
                   ),
-                  style: ElevatedButton.styleFrom(
-                    primary: Color(0xff2bc877),
-                    fixedSize: Size(320, 50),
-                  ),
+                  style:ButtonStyle(
+
+                    fixedSize: MaterialStateProperty.all(Size(320, 40)),
+                    backgroundColor: MaterialStateProperty.resolveWith((states) {
+                    if(states.contains(MaterialState.disabled)){
+                      return Color(0xff1d6b43);
+                    }else{
+                      return Color(0xff50956b);
+                    }
+                  },),),
                 ),
               ],
             ),
@@ -210,12 +219,9 @@ class _AddState extends State<Add> {
               ),
               SizedBox(height: 10),
               ListTile(
-                onTap:(){
-                  setState(() {
-                    _storage;
-                    print('Tap');
-                  });
-                },
+                onTap:()=>_storage(
+                    url:'',
+                    filename: 'jpg'),
                 leading: Icon(
                   Icons.sd_card,
                   size: 40,
@@ -237,16 +243,36 @@ class _AddState extends State<Add> {
       ),
     );
   }
-}
-
-_storage() async {
-  FilePickerResult? result = await FilePicker.platform.pickFiles(
-    type: FileType.custom,
-    allowMultiple: true,
-    allowedExtensions: ['jpg', 'pdf', 'doc'],
-  );
-  if(result != null){
-    List<File> files =result.paths.map((e) => File(e!)).toList();
-    return files;
+  Future _storage({required String filename,String? url}) async {
+    final file = await pickFile();
+    if (file == null) {return null;};
+    print('Path:${file.path}');
+    OpenFile.open(file.path);
   }
+  Future<File?> pickFile()async{
+    final result = await FilePicker.platform.pickFiles();
+    if(result==null){return null;}
+    return File(result.files.first.path!);
+  }
+  }
+
+  Future<File?> downloadFile (String? name,url) async {
+    final appStorage = await getApplicationDocumentsDirectory();
+    final file = File('${appStorage.path}/$name');
+
+    try {
+      final resonse = await Dio().get(
+          url,
+          options: Options(
+            responseType: ResponseType.bytes,
+            followRedirects: false,
+            receiveTimeout: 0,
+          )
+      );
+      final raf = file.openSync(mode: FileMode.write);
+      raf.writeFromSync(resonse.data);
+      await raf.close();
+      return file;
+    }
+    catch (e){}
 }
