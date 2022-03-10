@@ -1,6 +1,5 @@
 import 'dart:math' as math;
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:marquee/marquee.dart';
@@ -49,7 +48,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
       },
     );
     audioPlayer.onAudioPositionChanged.listen(
-          (Duration dd) {
+      (Duration dd) {
         setState(
           () {
             position = dd;
@@ -59,10 +58,10 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
     );
 
     audioPlayer.onPlayerCompletion.listen(
-          (event) {
-            final index =
+      (event) {
+        final index =
             _list.indexWhere((element) => element.data == widget.file.data);
-            setState(
+        setState(
           () {
             if (index < _list.length - 1) {
               widget.file = _list[index + 1];
@@ -70,7 +69,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
               audioPlayer.play(widget.file.data);
               playing = true;
             }
-            if(index == _list.length - 1){
+            if (index == _list.length - 1) {
               widget.file = _list.first;
               audioPlayer.play(widget.file.data);
               _controller.repeat();
@@ -166,7 +165,9 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                             color: Colors.white,
                           ),
                           onPressed: () async {
-                            await Share.shareFiles([widget.file.data],text: widget.file.toString(),subject: widget.file.title);
+                            await Share.shareFiles([widget.file.data],
+                                text: widget.file.toString(),
+                                subject: widget.file.title);
                           },
                         ),
                       ],
@@ -183,7 +184,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                             animation: _controller,
                             builder: (context, child) {
                               return Transform.rotate(
-                                angle: _controller.value * 2 * math.pi,
+                                angle: _controller.value * 4 * math.pi,
                                 child: child,
                               );
                             },
@@ -229,15 +230,135 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                                 color: Colors.white,
                                 size: 25,
                               ),
-                              Icon(
-                                Icons.timer_outlined,
-                                color: Colors.white,
-                                size: 25,
+                              IconButton(
+                                splashRadius: 20,
+                                onPressed: () {
+                                  showModalBottomSheet(
+                                    backgroundColor: Color(0xff404040),
+                                    context: context,
+                                    builder: (context) => Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        TextButton.icon(
+                                          onPressed: () {},
+                                          icon: Icon(
+                                              Icons.arrow_back_ios_rounded,color: Colors.white,size: 15),
+                                          label: Text(
+                                            'Timer',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                        Text(
+                                          'Turn off',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          'Stop after this track',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        Text(
+                                          '15 min later',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        Text(
+                                          '30 min later',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        Text(
+                                          '45 min later',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        Text(
+                                          '60 min later',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        Text(
+                                          'Custon',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                                icon: Icon(
+                                  Icons.timer_outlined,
+                                  color: Colors.white,
+                                  size: 25,
+                                ),
                               ),
-                              Icon(
-                                Icons.more_vert_outlined,
-                                color: Colors.white,
-                                size: 25,
+                              IconButton(
+                                onPressed: () {
+                                  showModalBottomSheet(
+                                      backgroundColor: Color(0xff404040),
+                                      context: context,
+                                      builder: (context) => Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              ListTile(
+                                                title: Text(
+                                                  'Set as ringtone',
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                                onTap: () {},
+                                                leading: Icon(
+                                                  Icons.notifications_none,
+                                                  color: Colors.grey,
+                                                ),
+                                              ),
+                                              ListTile(
+                                                  title: Text(
+                                                    'Speed Play',
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  ),
+                                                  onTap: () {},
+                                                  leading: Text(
+                                                    '1.0x',
+                                                    style: TextStyle(
+                                                        color: Colors.grey),
+                                                  )),
+                                              ListTile(
+                                                title: Text(
+                                                  'File Info',
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                                onTap: () {},
+                                                leading: Icon(
+                                                  Icons.info_outline,
+                                                  color: Colors.grey,
+                                                ),
+                                              ),
+                                            ],
+                                          ));
+                                },
+                                splashRadius: 20,
+                                icon: Icon(
+                                  Icons.more_vert_outlined,
+                                  color: Colors.white,
+                                  size: 25,
+                                ),
                               )
                             ],
                           ),
@@ -310,7 +431,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                                         audioPlayer.play(widget.file.data);
                                         playing = true;
                                       }
-                                      if(index == _list.length - 1){
+                                      if (index == _list.length - 1) {
                                         widget.file = _list.first;
                                         audioPlayer.play(widget.file.data);
                                         _controller.repeat();
@@ -376,7 +497,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
       var res = await audioPlayer.pause();
       if (res == 1) {
         setState(
-              () {
+          () {
             playing = false;
             _controller.stop();
           },
