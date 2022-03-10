@@ -5,6 +5,7 @@ import 'package:play_it/Download/download.dart';
 import 'package:play_it/Video/video_page.dart';
 import 'package:play_it/Video/video_playlist.dart';
 import 'package:underline_indicator/underline_indicator.dart';
+
 import '../Madhav/Appbar/my_search.dart';
 
 class HomeVideo extends StatefulWidget {
@@ -98,6 +99,7 @@ class _HomeVideoState extends State<HomeVideo>
           children: [
             Container(
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
                     width: 230,
@@ -109,8 +111,8 @@ class _HomeVideoState extends State<HomeVideo>
                       indicator: UnderlineIndicator(
                         strokeCap: StrokeCap.round,
                         borderSide: BorderSide(
-                          width: 3,
-                          color: Color(0xff2bc877)
+                            width: 3,
+                            color: Color(0xff2bc877)
                         ),
                         insets: EdgeInsets.symmetric(horizontal: 20),
                       ),
@@ -123,6 +125,21 @@ class _HomeVideoState extends State<HomeVideo>
                       ),
                       controller: _tabController,
                     ),
+                  ),
+                  ButtonBar(
+                    children: [
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.list,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Icon(
+                        Icons.list_alt,
+                        color: Colors.white,
+                      )
+                    ],
                   ),
                 ],
               ),
