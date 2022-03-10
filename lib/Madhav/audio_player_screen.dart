@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:marquee/marquee.dart';
@@ -101,6 +102,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
         body: Container(
           child: Stack(
             children: [
+
               QueryArtworkWidget(
                 id: widget.file.id,
                 keepOldArtwork: true,
@@ -128,11 +130,16 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                   ),
                 ),
               ),
+              Container(
+                height: 50,
+                width: double.infinity,
+                child: Image.network('https://64.media.tumblr.com/c90100fd260e77796e397f07d1771d34/fd850e41fad78fd6-86/s400x600/f15e520227c7dd8b471d729a48f26080712d8250.gifv',fit: BoxFit.fill,),
+              ),
               Column(
                 children: [
                   Container(
                     width: double.infinity,
-                    padding: EdgeInsets.only(top: 20),
+                    //padding: EdgeInsets.only(top: 20),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -237,13 +244,16 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                                     backgroundColor: Color(0xff404040),
                                     context: context,
                                     builder: (context) => Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         TextButton.icon(
                                           onPressed: () {},
                                           icon: Icon(
-                                              Icons.arrow_back_ios_rounded,color: Colors.white,size: 15),
+                                              Icons.arrow_back_ios_rounded,
+                                              color: Colors.white,
+                                              size: 15),
                                           label: Text(
                                             'Timer',
                                             style: TextStyle(
@@ -266,11 +276,17 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                                             color: Colors.white,
                                           ),
                                         ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
                                         Text(
                                           '15 min later',
                                           style: TextStyle(
                                             color: Colors.white,
                                           ),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
                                         ),
                                         Text(
                                           '30 min later',
@@ -278,11 +294,17 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                                             color: Colors.white,
                                           ),
                                         ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
                                         Text(
                                           '45 min later',
                                           style: TextStyle(
                                             color: Colors.white,
                                           ),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
                                         ),
                                         Text(
                                           '60 min later',
@@ -290,11 +312,17 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                                             color: Colors.white,
                                           ),
                                         ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
                                         Text(
                                           'Custon',
                                           style: TextStyle(
                                             color: Colors.white,
                                           ),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
                                         ),
                                       ],
                                     ),

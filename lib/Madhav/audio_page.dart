@@ -93,6 +93,7 @@ class _AudioPageState extends State<AudioPage> {
                   style: TextStyle(color: Colors.white, fontSize: 12),
                   textWidthBasis: TextWidthBasis.parent),
               trailing: IconButton(
+                splashRadius: 20,
                 icon: Icon(Icons.more_vert, color: Colors.white),
                 onPressed: () => showModalBottomSheet(
                   backgroundColor: Colors.grey[800],
