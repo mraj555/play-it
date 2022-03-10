@@ -138,7 +138,8 @@ class _DownloadpageState extends State<Downloadpage> {
                       child: RadioListTile(
                         controlAffinity: ListTileControlAffinity.trailing,
                         activeColor: Colors.green,
-                        title: Text(''),
+                        title: Text('Phone Storage',style: TextStyle(
+                            color: Colors.green)),
                         secondary: Icon(Icons.phone_android_sharp,
                             size: 40, color: Colors.white),
                         onChanged: (value) {
@@ -158,7 +159,8 @@ class _DownloadpageState extends State<Downloadpage> {
                       child: RadioListTile(
                         controlAffinity: ListTileControlAffinity.trailing,
                         activeColor: Colors.green,
-                        title: Text(''),
+                        title: Text('Memory Storage',style: TextStyle(
+                            color: Colors.green)),
                         secondary: Icon(Icons.sd_card_rounded,
                             size: 40, color: Colors.white),
                         onChanged: (value) {
@@ -167,15 +169,16 @@ class _DownloadpageState extends State<Downloadpage> {
                             showDialog(
                                 context: context,
                                 builder: (context) => AlertDialog(
-                                      backgroundColor: Colors.black,
+                                      backgroundColor: Colors.grey[850],
                                       title: Column(
                                         mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
                                         children: [
-                                          Text('Due To android',
-                                              style: TextStyle(
-                                                  color: Colors.green)),
+                                          Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text('Due To android',
+                                                style: TextStyle(
+                                                    color: Colors.green,fontSize: 15)),
+                                          ),
                                           SizedBox(height: 10),
                                           Text(
                                               'Policy,Downloaded files will be cleared if PLAYit is Uninstalled',
