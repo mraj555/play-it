@@ -180,7 +180,9 @@ class _VideoPageState extends State<VideoPage> {
                                       child: Image.asset(
                                         assets[index]
                                                 .relativePath!
-                                                .contains('WhatsApp')
+                                                .contains('WhatsApp') || assets[index]
+                                            .relativePath!
+                                            .contains('What\'s app')
                                             ? 'assets/Icons/whatsapp.png'
                                             : assets[index]
                                                     .relativePath!
@@ -210,8 +212,10 @@ class _VideoPageState extends State<VideoPage> {
                                     ),
                                     Text(
                                       assets[index]
-                                              .relativePath!
-                                              .contains('WhatsApp')
+                                          .relativePath!
+                                          .contains('WhatsApp') || assets[index]
+                                          .relativePath!
+                                          .contains('What\'s app')
                                           ? ' WhatsApp'
                                           : assets[index]
                                                   .relativePath!

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:underline_indicator/underline_indicator.dart';
 
+import '../../Download/download.dart';
 import '../audio_page.dart';
 import 'my_search.dart';
 
@@ -101,7 +102,9 @@ class _MyTitleState extends State<MyTitle> with SingleTickerProviderStateMixin {
             splashRadius: 20,
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Down()));
+            },
             icon: ImageIcon(
               AssetImage('assets/Icons/download_1.png'),
               size: 24,
