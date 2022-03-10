@@ -12,6 +12,8 @@ class _MygeneralState extends State<Mygeneral> {
   var switch2 = false;
   var switch3 = true;
 
+  var _groupValue = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +30,46 @@ class _MygeneralState extends State<Mygeneral> {
       body: Column(
         children: [
           ListTile(
+            onTap: () => showDialog(
+              context: context,
+              builder: (context) => Dialog(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      height: 200,
+                      child: Column(
+                        children: [
+                          Text('Language',
+                              style:
+                                  TextStyle(color: Colors.green, fontSize: 15)),
+                          RadioListTile(
+                              title: Text('System default',
+                                  style: TextStyle(color: Colors.white)),
+                              value: 1,
+                              groupValue: _groupValue,
+                              onChanged: (value) {
+                                setState(() {
+                                  _groupValue = value as int;
+                                });
+                              }),
+                          RadioListTile(
+                              title: Text('English ',
+                                  style: TextStyle(color: Colors.white)),
+                              value: 2,
+                              groupValue: _groupValue,
+                              onChanged: (value) {
+                                setState(() {
+                                  _groupValue = value as int;
+                                });
+                              }),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             title: Text(
               "Language",
               style: TextStyle(color: Colors.white),
@@ -63,7 +105,6 @@ class _MygeneralState extends State<Mygeneral> {
               inactiveThumbColor: Colors.grey.withOpacity(0.3),
               inactiveTrackColor: Colors.grey,
             ),
-
           ),
           ListTile(
             title: Text(
@@ -72,10 +113,8 @@ class _MygeneralState extends State<Mygeneral> {
             ),
             subtitle: Text(
               'Show the bookmarks in sites on the Homepage.',
-              style: TextStyle(
-                  color: Colors.white.withOpacity(0.5),
-                  fontSize: 13
-              ),
+              style:
+                  TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 13),
             ),
             trailing: Switch(
               value: switch2,
@@ -88,7 +127,6 @@ class _MygeneralState extends State<Mygeneral> {
               inactiveThumbColor: Colors.grey.withOpacity(0.3),
               inactiveTrackColor: Colors.grey,
             ),
-
           ),
           ListTile(
             title: Text(
@@ -113,7 +151,6 @@ class _MygeneralState extends State<Mygeneral> {
               inactiveThumbColor: Colors.grey.withOpacity(0.3),
               inactiveTrackColor: Colors.grey,
             ),
-
           ),
         ],
       ),

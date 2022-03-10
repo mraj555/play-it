@@ -88,7 +88,7 @@ class _DownloadpageState extends State<Downloadpage> {
           ),
           ListTile(
             title: Text(
-              "Max BT sedding upload (kb/s)",
+              "Max BT seeding upload (kb/s)",
               style: TextStyle(color: Colors.white),
             ),
             subtitle: Text(
