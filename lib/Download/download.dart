@@ -269,13 +269,13 @@ class _DownState extends State<Down> {
     diskSpace = await DiskSpace.getFreeDiskSpace as double;
     Map<Directory, double> directorySpace = {};
     disktotal =await DiskSpace.getTotalDiskSpace as double;
-    Map<Directory, double> _directorytotal = {};
+    Map<Directory, double> directorytotal = {};
 
     setState(() {
         _disktotal = disktotal;
         _diskSpace = diskSpace;
         _directorySpace = directorySpace;
-        _directorytotal = _directorytotal;
+        _directorytotal = directorytotal;
       });
     }
 }
