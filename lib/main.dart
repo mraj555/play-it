@@ -13,6 +13,7 @@ void main() {
   runApp(
     MaterialApp(
       theme: ThemeData(
+        radioTheme: RadioThemeData(fillColor: MaterialStateProperty.all(Colors.white),),
         scaffoldBackgroundColor: Colors.black,
       ),
       debugShowCheckedModeBanner: false,

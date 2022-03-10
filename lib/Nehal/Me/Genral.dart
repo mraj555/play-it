@@ -11,7 +11,6 @@ class _MygeneralState extends State<Mygeneral> {
   var switch1 = false;
   var switch2 = false;
   var switch3 = true;
-
   var _groupValue = 0;
 
   @override
@@ -33,40 +32,65 @@ class _MygeneralState extends State<Mygeneral> {
             onTap: () => showDialog(
               context: context,
               builder: (context) => Dialog(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      height: 200,
-                      child: Column(
-                        children: [
-                          Text('Language',
-                              style:
-                                  TextStyle(color: Colors.green, fontSize: 15)),
-                          RadioListTile(
-                              title: Text('System default',
-                                  style: TextStyle(color: Colors.white)),
-                              value: 1,
-                              groupValue: _groupValue,
-                              onChanged: (value) {
-                                setState(() {
-                                  _groupValue = value as int;
-                                });
-                              }),
-                          RadioListTile(
-                              title: Text('English ',
-                                  style: TextStyle(color: Colors.white)),
-                              value: 2,
-                              groupValue: _groupValue,
-                              onChanged: (value) {
-                                setState(() {
-                                  _groupValue = value as int;
-                                });
-                              }),
-                        ],
+                backgroundColor: Colors.grey[850],
+                child: StatefulBuilder(
+                  builder: (context, setState) => Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        height: 150,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding:EdgeInsets.only(right: 170,top: 10),
+                              child: Text('Language',
+                                  style: TextStyle(
+                                      color: Colors.green, fontSize: 20)),
+                            ),
+                            RadioListTile(
+                                controlAffinity:
+                                    ListTileControlAffinity.trailing,
+                                activeColor: Colors.green,
+                                title: Text('System default',
+                                    style: TextStyle(color: Colors.white)),
+                                value: 1,
+                                groupValue: _groupValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _groupValue = value as int;
+                                  });
+                                }),
+                            RadioListTile(
+                                activeColor: Colors.green,
+                                controlAffinity:
+                                    ListTileControlAffinity.trailing,
+                                title: Text('English ',
+                                    style: TextStyle(color: Colors.white)),
+                                value: 2,
+                                groupValue: _groupValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _groupValue = value as int;
+                                  });
+                                }),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                      Container(
+                        height: 200,
+                        color: Colors.grey[900],
+                      ),
+                      Container(
+                        alignment: Alignment.bottomRight,
+                        height: 40,
+                        color: Colors.grey[850],
+                        child: TextButton(
+                            child: Text('Cancel',
+                                style: TextStyle(color: Colors.green,fontSize: 15)),
+                            onPressed: () {Navigator.pop(context);}),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
