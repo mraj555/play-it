@@ -32,6 +32,7 @@ class _DownState extends State<Down> {
 
   double _diskSpace = 0;
   double _disktotal = 0;
+
   Map<Directory, double> _directorySpace = {};
   Map<Directory, double> _directorytotal = {};
 
@@ -117,7 +118,7 @@ class _DownState extends State<Down> {
             ListTile(
               tileColor: Colors.grey[700],
               onTap: () => _openstorage(filename: ''),
-              title: Text('Used ${_disktotal.toStringAsFixed(2)}GB/${_diskSpace.toStringAsFixed(2)}GB',
+              title: Text('Used ${_diskSpace.toStringAsFixed(2)}GB/${_disktotal.toStringAsFixed(2)}GB',
                   style: TextStyle(color: Colors.white,fontSize: 15)),
               leading: Icon(
                 Icons.phone_android_sharp,
@@ -265,15 +266,14 @@ class _DownState extends State<Down> {
   Future<void> initDiskSpace() async {
     double diskSpace = 0;
     double disktotal = 0;
-    
     diskSpace = await DiskSpace.getFreeDiskSpace as double;
     Map<Directory, double> directorySpace = {};
     disktotal =await DiskSpace.getTotalDiskSpace as double;
     Map<Directory, double> directorytotal = {};
 
     setState(() {
-        _disktotal = disktotal;
-        _diskSpace = diskSpace;
+        _disktotal = disktotal/1024;
+        _diskSpace = diskSpace/1024;
         _directorySpace = directorySpace;
         _directorytotal = directorytotal;
       });
