@@ -9,9 +9,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pinput/pinput.dart';
 import 'package:play_it/Download/_Privacy.dart';
 import 'package:play_it/Download/_add.dart';
-import 'package:play_it/Download/_password.dart';
-import 'package:play_it/Download/homepage.dart';
-import 'package:play_it/Ridham/RateUs.dart';
+
 import '../Nehal/Me/Downloadpage.dart';
 
 class Down extends StatefulWidget {
@@ -97,7 +95,7 @@ class _DownState extends State<Down> {
               'No File',
               style: TextStyle(color: Colors.grey),
             ),
-            SizedBox(height: size.height * 0.01),
+            SizedBox(height: size.height * 0.02),
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);
@@ -109,27 +107,60 @@ class _DownState extends State<Down> {
               style: ElevatedButton.styleFrom(
                   primary: Color(0xff2bc877), fixedSize: Size(180, 15)),
             ),
-            SizedBox(height: size.height * 0.27),
-            ListTile(
-              tileColor: Colors.grey[700],
-              onTap: () => _openstorage(filename: ''),
-              title:  LinearProgressIndicator(
-                minHeight: 3,
-                value: _diskSpace /_disktotal,
-                backgroundColor: Colors.white,
-                color: Colors.green,
-              ),
-              subtitle: Text(
-                  'Used ${_diskSpace.toStringAsFixed(2)}GB/${_disktotal.toStringAsFixed(2)}GB',
-                  style: TextStyle(color: Colors.white, fontSize: 15)),
-              leading: Icon(
-                Icons.phone_android_sharp,
-                color: Colors.white,
-                size: 30,
-              ),
-              trailing: Icon(
-                Icons.navigate_next_outlined,
-                color: Colors.white,
+            Spacer(),
+            InkWell(
+              onTap: () {
+                _openstorage(filename: '');
+              },
+              child: Container(
+                color: Colors.grey.withOpacity(0.5),
+                padding: EdgeInsets.fromLTRB(5, 0, 10, 0),
+                height: size.height * 0.07,
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.phone_android_sharp,
+                      color: Colors.white,
+                      size: 35,
+                    ),
+                    SizedBox(
+                      width: size.width * 0.01,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SliderTheme(
+                          child: Slider(
+                            min: 0,
+                            max: _disktotal,
+                            activeColor: Colors.green,
+                            inactiveColor: Colors.white,
+                            value: _diskSpace,
+                            onChanged: (value) {
+                            },
+                          ),
+                          data: SliderThemeData(
+                            trackHeight: 2,
+                            thumbShape: SliderComponentShape.noThumb,
+                            overlayShape: SliderComponentShape.noThumb,
+                          ),
+                        ),
+                        SizedBox(
+                          height: size.height* 0.01,
+                        ),
+                        Text(
+                            'Used ${_diskSpace.toStringAsFixed(2)}GB/${_disktotal.toStringAsFixed(2)}GB',
+                            style: TextStyle(color: Colors.white, fontSize: 11)),
+                      ],
+                    ),
+                    Spacer(),
+                    Icon(
+                      Icons.navigate_next_outlined,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
