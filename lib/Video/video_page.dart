@@ -64,6 +64,7 @@ class _VideoPageState extends State<VideoPage> {
         itemBuilder: (context, index) => FutureBuilder<Uint8List?>(
           future: assets[index].thumbData,
           builder: (context, snapshot) {
+            List title = assets[index].relativePath!.split('/').toList();
             final bytes = snapshot.data;
             if (bytes == null) {
               return CircularProgressIndicator();
@@ -83,7 +84,7 @@ class _VideoPageState extends State<VideoPage> {
                 );
               },
               child: Container(
-                margin: EdgeInsets.only(left: 20),
+                margin: EdgeInsets.only(left: 20,top: 5,bottom: 5),
                 alignment: Alignment.center,
                 height: size.height * 0.12,
                 width: size.width * 0.06,
@@ -91,7 +92,7 @@ class _VideoPageState extends State<VideoPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      height: size.height * 0.11,
+                      height: size.height * 0.115,
                       width: size.width * 0.45,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(3),
@@ -136,14 +137,14 @@ class _VideoPageState extends State<VideoPage> {
                     SizedBox(
                       width: size.width *0.03,
                     ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      // mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          width: size.width * 0.4,
-                          child: Text(
+                    Container(
+                      width: size.width * 0.45,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        // mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
                             // assets[index].relativePath.toString(),
                             assets[index].title!.toString(),
                             maxLines: 2,
@@ -153,59 +154,107 @@ class _VideoPageState extends State<VideoPage> {
                               fontSize: 12,
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          assets[index].orientatedSize.toString(),
-                          style: GoogleFonts.inter(
-                            color: Colors.white,
-                            fontSize: 12,
+                          SizedBox(
+                            height: size.height * 0.005,
                           ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(1),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(1),
-                            color: Colors.white.withOpacity(0.15),
+                          Text(
+                            assets[index].orientatedSize.toString(),
+                            style: GoogleFonts.inter(
+                              color: Colors.white,
+                              fontSize: 12,
+                            ),
                           ),
-                          child: Row(
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              assets[index].relativePath!.contains('WhatsApp')
-                                  ? ClipRRect(
-                                      child: Image.asset(
-                                  'assets/Icons/whatsapp.png',
-                                  height: 16,
-                                  width: 16,
+                              Container(
+                                padding: EdgeInsets.all(1),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(1),
+                                  color: Colors.white.withOpacity(0.15),
                                 ),
-                              )
-                                  : assets[index]
-                                          .relativePath!
-                                          .contains('Camera')
-                                      ? ClipRRect(
-                                          child: Image.asset(
-                                            'assets/Icons/camera.png',
-                                            height: 16,
-                                            width: 16,
-                                          ),
-                                        )
-                                      : ClipRRect(
-                                          child: Image.asset(
-                                            'assets/Icons/vf.png',
-                                            height: 16,
-                                            width: 16,
-                                          ),
-                                        ),
-                              Text(
-                                ' WhatsApp',
-                                style:
-                                    TextStyle(color: Colors.grey, fontSize: 10),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    ClipRRect(
+                                      child: Image.asset(
+                                        assets[index]
+                                                .relativePath!
+                                                .contains('WhatsApp')
+                                            ? 'assets/Icons/whatsapp.png'
+                                            : assets[index]
+                                                    .relativePath!
+                                                    .contains('Camera')
+                                                ? 'assets/Icons/camera.png'
+                                                : assets[index]
+                                                        .relativePath!
+                                                        .contains('Snapchat')
+                                                    ? 'assets/Icons/snapchat.png'
+                                                    : assets[index]
+                                                            .relativePath!
+                                                            .contains('UC')
+                                                        ? 'assets/Icons/uc.png'
+                                                        : assets[index]
+                                                                .relativePath!
+                                                                .contains('Movie')
+                                                            ? 'assets/Icons/movie.png'
+                                                            : assets[index]
+                                                                    .relativePath!
+                                                                    .contains(
+                                                                        'Instagram')
+                                                                ? 'assets/Icons/ig.png'
+                                                                : 'assets/Icons/vf.png',
+                                        height: 17,
+                                        width: 17,
+                                      ),
+                                    ),
+                                    Text(
+                                      assets[index]
+                                              .relativePath!
+                                              .contains('WhatsApp')
+                                          ? ' WhatsApp'
+                                          : assets[index]
+                                                  .relativePath!
+                                                  .contains('Camera')
+                                              ? ' Camera'
+                                              : assets[index]
+                                                      .relativePath!
+                                                      .contains('Snapchat')
+                                                  ? ' Snapchat'
+                                                  : assets[index]
+                                                          .relativePath!
+                                                          .contains('UC')
+                                                      ? ' UC Browser'
+                                                      : assets[index]
+                                                              .relativePath!
+                                                              .contains('Movie')
+                                                          ? ' Movies'
+                                                          : assets[index]
+                                                                  .relativePath!
+                                                                  .contains(
+                                                                      'Instagram')
+                                                              ? ' Instagram'
+                                                              : title.elementAt(
+                                                                  title.length -
+                                                                      2),
+                                      style: GoogleFonts.inter(
+                                          color: Colors.grey, fontSize: 11),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {},
+                                child: Icon(
+                                  Icons.more_vert,
+                                  color: Colors.white,
+                                  size: 21,
+                                ),
                               ),
                             ],
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),

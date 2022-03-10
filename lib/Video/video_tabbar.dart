@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:play_it/Download/download.dart';
 import 'package:play_it/Video/video_page.dart';
+import 'package:play_it/Video/video_playlist.dart';
 import 'package:underline_indicator/underline_indicator.dart';
 import '../Madhav/Appbar/my_search.dart';
 
@@ -34,9 +35,7 @@ class _HomeVideoState extends State<HomeVideo>
     Center(
       child: Icon(Icons.height),
     ),
-    Center(
-      child: Icon(Icons.folder),
-    ),
+    VideoPlaylist(),
   ];
 
   @override

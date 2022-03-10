@@ -2,13 +2,14 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPlayerScreen extends StatefulWidget {
   final Future<File?> file;
 
-  const VideoPlayerScreen({Key? key, required this.file}) : super(key: key);
+  const VideoPlayerScreen(
+      {Key? key, required this.file})
+      : super(key: key);
 
   @override
   State<VideoPlayerScreen> createState() => _VideoPlayerScreenState();
@@ -38,7 +39,8 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     _controller!.removeListener(
       () {
         setState(
-          () {},
+          () {
+          },
         );
       },
     );
