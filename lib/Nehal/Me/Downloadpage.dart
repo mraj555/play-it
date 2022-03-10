@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:play_it/Ridham/RateUs.dart';
 
 class Downloadpage extends StatefulWidget {
   const Downloadpage({Key? key}) : super(key: key);
@@ -24,12 +25,13 @@ class _DownloadpageState extends State<Downloadpage> {
       body: Column(
         children: [
           ListTile(
+            onTap: () => _path(),
             title: Text(
               "Download path settings",
               style: TextStyle(color: Colors.white),
             ),
             subtitle: Text(
-              'Storage/PLAYit/downlod',
+              'Storage/PLAYit/download',
               style: TextStyle(
                 color: Colors.white.withOpacity(0.5),
                 fontSize: 13,
@@ -86,7 +88,7 @@ class _DownloadpageState extends State<Downloadpage> {
           ),
           ListTile(
             title: Text(
-              "Max BT sedding upload (kb/s)",
+              "Max BT seeding upload (kb/s)",
               style: TextStyle(color: Colors.white),
             ),
             subtitle: Text(
@@ -103,8 +105,113 @@ class _DownloadpageState extends State<Downloadpage> {
               ),
             ),
           ),
-
         ],
+      ),
+    );
+  }
+
+  _path() {
+    var _groupvalue = 0;
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Scaffold(
+          appBar: AppBar(
+              title: Text('Storage'),
+              centerTitle: true,
+              backgroundColor: Colors.black),
+          body: StatefulBuilder(
+            builder: ((context, setState) => Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        'Storage',
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      height: 100,
+                      color: Colors.grey[850],
+                      child: RadioListTile(
+                        controlAffinity: ListTileControlAffinity.trailing,
+                        activeColor: Colors.green,
+                        title: Text('Phone Storage',style: TextStyle(
+                            color: Colors.green)),
+                        secondary: Icon(Icons.phone_android_sharp,
+                            size: 40, color: Colors.white),
+                        onChanged: (value) {
+                          setState(() {
+                            _groupvalue = value as int;
+                          });
+                        },
+                        value: 1,
+                        groupValue: _groupvalue,
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10),
+                      alignment: Alignment.center,
+                      height: 100,
+                      color: Colors.grey[850],
+                      child: RadioListTile(
+                        controlAffinity: ListTileControlAffinity.trailing,
+                        activeColor: Colors.green,
+                        title: Text('Memory Storage',style: TextStyle(
+                            color: Colors.green)),
+                        secondary: Icon(Icons.sd_card_rounded,
+                            size: 40, color: Colors.white),
+                        onChanged: (value) {
+                          setState(() {
+                            _groupvalue = value as int ;
+                            showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                      backgroundColor: Colors.grey[850],
+                                      title: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text('Due To android',
+                                                style: TextStyle(
+                                                    color: Colors.green,fontSize: 15)),
+                                          ),
+                                          SizedBox(height: 10),
+                                          Text(
+                                              'Policy,Downloaded files will be cleared if PLAYit is Uninstalled',
+                                              style: TextStyle(
+                                                  color: Colors.white,fontSize: 15)),
+                                          ButtonBar(
+                                            children: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text(
+                                                  'OK',
+                                                  style: TextStyle(
+                                                      color: Colors.green),
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ));
+                          });
+                        },
+                        value: 2,
+                        groupValue: _groupvalue,
+                      ),
+                    ),
+                  ],
+                )
+            ),
+          ),
+        ),
       ),
     );
   }
