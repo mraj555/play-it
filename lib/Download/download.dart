@@ -108,54 +108,59 @@ class _DownState extends State<Down> {
                   primary: Color(0xff2bc877), fixedSize: Size(180, 15)),
             ),
             Spacer(),
-            Container(
-              color: Colors.grey.withOpacity(0.5),
-              padding: EdgeInsets.fromLTRB(5, 0, 10, 0),
-              height: size.height * 0.07,
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.phone_android_sharp,
-                    color: Colors.white,
-                    size: 35,
-                  ),
-                  SizedBox(
-                    width: size.width * 0.01,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SliderTheme(
-                        child: Slider(
-                          min: 0,
-                          max: _disktotal,
-                          activeColor: Colors.green,
-                          inactiveColor: Colors.white,
-                          value: _diskSpace,
-                          onChanged: (value) {
-                          },
+            InkWell(
+              onTap: () {
+                _openstorage(filename: '');
+              },
+              child: Container(
+                color: Colors.grey.withOpacity(0.5),
+                padding: EdgeInsets.fromLTRB(5, 0, 10, 0),
+                height: size.height * 0.07,
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.phone_android_sharp,
+                      color: Colors.white,
+                      size: 35,
+                    ),
+                    SizedBox(
+                      width: size.width * 0.01,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SliderTheme(
+                          child: Slider(
+                            min: 0,
+                            max: _disktotal,
+                            activeColor: Colors.green,
+                            inactiveColor: Colors.white,
+                            value: _diskSpace,
+                            onChanged: (value) {
+                            },
+                          ),
+                          data: SliderThemeData(
+                            trackHeight: 2,
+                            thumbShape: SliderComponentShape.noThumb,
+                            overlayShape: SliderComponentShape.noThumb,
+                          ),
                         ),
-                        data: SliderThemeData(
-                          trackHeight: 2,
-                          thumbShape: SliderComponentShape.noThumb,
-                          overlayShape: SliderComponentShape.noThumb,
+                        SizedBox(
+                          height: size.height* 0.01,
                         ),
-                      ),
-                      SizedBox(
-                        height: size.height* 0.01,
-                      ),
-                      Text(
-                          'Used ${_diskSpace.toStringAsFixed(2)}GB/${_disktotal.toStringAsFixed(2)}GB',
-                          style: TextStyle(color: Colors.white, fontSize: 11)),
-                    ],
-                  ),
-                  Spacer(),
-                  Icon(
-                    Icons.navigate_next_outlined,
-                    color: Colors.white,
-                  ),
-                ],
+                        Text(
+                            'Used ${_diskSpace.toStringAsFixed(2)}GB/${_disktotal.toStringAsFixed(2)}GB',
+                            style: TextStyle(color: Colors.white, fontSize: 11)),
+                      ],
+                    ),
+                    Spacer(),
+                    Icon(
+                      Icons.navigate_next_outlined,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
