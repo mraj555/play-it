@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:play_it/Video/main_page.dart';
+import 'package:play_it/splash_screen.dart';
 
 
 void main() {

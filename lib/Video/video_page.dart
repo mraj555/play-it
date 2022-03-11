@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:play_it/Video/video_player_screen.dart';
+import 'package:shimmer_animation/shimmer_animation.dart';
 
 class VideoPage extends StatefulWidget {
   const VideoPage({Key? key}) : super(key: key);
@@ -67,7 +68,19 @@ class _VideoPageState extends State<VideoPage> {
             List title = assets[index].relativePath!.split('/').toList();
             final bytes = snapshot.data;
             if (bytes == null) {
-              return CircularProgressIndicator();
+              return Shimmer(
+                color: Colors.grey,
+                enabled: true,
+                direction: ShimmerDirection.fromLeftToRight(),
+                duration: Duration(seconds: 3),
+                interval: Duration(seconds: 5),
+                child: Container(
+                  color: Colors.grey.shade900,
+                  height: size.height * 0.12,
+                  width: size.width * 0.06,
+                  margin: EdgeInsets.only(left: 20,top: 5,bottom: 5),
+                ),
+              );
             }
             return InkWell(
               onTap: () {
