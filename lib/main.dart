@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:play_it/Download/homepage.dart';
-import 'package:play_it/Madhav/audio_page.dart';
 import 'package:play_it/Video/main_page.dart';
 
-import 'Madhav/audio_page.dart';
 
 void main() {
   runApp(
@@ -13,7 +10,7 @@ void main() {
         scaffoldBackgroundColor: Colors.black,
       ),
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: MainPage(),
     ),
   );
 }

@@ -23,6 +23,7 @@ class _SuggestState extends State<Suggest> {
     'Good',
     'Start',
   ];
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -74,10 +75,8 @@ class _SuggestState extends State<Suggest> {
           ElevatedButton(
             onPressed: () {
               controller.nextPage(
-                  duration: Duration(seconds: 1),
-                  curve: Curves.fastLinearToSlowEaseIn);
-              setState(() {
-              });
+                      duration: Duration(seconds: 1),
+                      curve: Curves.fastLinearToSlowEaseIn);
             },
             child: Text('Next',
               style: TextStyle(
