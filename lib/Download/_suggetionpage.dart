@@ -23,7 +23,6 @@ class _SuggestState extends State<Suggest> {
     'Good',
     'Start',
   ];
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -77,6 +76,8 @@ class _SuggestState extends State<Suggest> {
               controller.nextPage(
                   duration: Duration(seconds: 1),
                   curve: Curves.fastLinearToSlowEaseIn);
+              setState(() {
+              });
             },
             child: Text('Next',
               style: TextStyle(
