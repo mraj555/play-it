@@ -3,11 +3,9 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Suggest extends StatefulWidget {
   const Suggest({Key? key}) : super(key: key);
-
   @override
   State<Suggest> createState() => _SuggestState();
 }
-
 class _SuggestState extends State<Suggest> {
   final PageController controller = PageController();
   var _image = [
