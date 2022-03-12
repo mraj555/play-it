@@ -102,7 +102,6 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
         body: Container(
           child: Stack(
             children: [
-
               QueryArtworkWidget(
                 id: widget.file.id,
                 keepOldArtwork: true,
@@ -133,7 +132,10 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
               Container(
                 height: 50,
                 width: double.infinity,
-                child: Image.network('https://64.media.tumblr.com/c90100fd260e77796e397f07d1771d34/fd850e41fad78fd6-86/s400x600/f15e520227c7dd8b471d729a48f26080712d8250.gifv',fit: BoxFit.fill,),
+                child: Image.network(
+                  'https://64.media.tumblr.com/c90100fd260e77796e397f07d1771d34/fd850e41fad78fd6-86/s400x600/f15e520227c7dd8b471d729a48f26080712d8250.gifv',
+                  fit: BoxFit.fill,
+                ),
               ),
               Column(
                 children: [
@@ -227,10 +229,36 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                                 color: Colors.white,
                                 size: 25,
                               ),
-                              Icon(
-                                Icons.playlist_add_outlined,
-                                color: Colors.white,
-                                size: 25,
+                              IconButton(
+                                onPressed: () {
+                                  showModalBottomSheet(
+                                      backgroundColor: Color(0xff404040),
+                                      context: context,
+                                      builder: (context) => Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              ListTile(
+                                                title: Text(
+                                                  'New playlist',
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                                onTap: () {},
+                                                leading: Icon(
+                                                  Icons
+                                                      .create_new_folder_outlined,
+                                                  color: Colors.grey,
+                                                ),
+                                              ),
+                                            ],
+                                          ));
+                                },
+                                icon: Icon(
+                                  Icons.playlist_add_outlined,
+                                  color: Colors.white,
+                                  size: 25,
+                                ),
                               ),
                               Icon(
                                 Icons.equalizer_outlined,
@@ -243,88 +271,91 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                                   showModalBottomSheet(
                                     backgroundColor: Color(0xff404040),
                                     context: context,
-                                    builder: (context) => Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        TextButton.icon(
-                                          onPressed: () {},
-                                          icon: Icon(
-                                              Icons.arrow_back_ios_rounded,
-                                              color: Colors.white,
-                                              size: 15),
-                                          label: Text(
-                                            'Timer',
-                                            style: TextStyle(
+                                    builder: (context) => Padding(
+                                      padding: EdgeInsets.only(left: 10),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          TextButton.icon(
+                                            onPressed: () {},
+                                            icon: Icon(
+                                                Icons.arrow_back_ios_rounded,
                                                 color: Colors.white,
-                                                fontWeight: FontWeight.bold),
+                                                size: 15),
+                                            label: Text(
+                                              'Timer',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
                                           ),
-                                        ),
-                                        Text(
-                                          'Turn off',
-                                          style: TextStyle(
-                                            color: Colors.white,
+                                          Text(
+                                            'Turn off',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
                                           ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          'Stop after this track',
-                                          style: TextStyle(
-                                            color: Colors.white,
+                                          SizedBox(
+                                            height: 10,
                                           ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          '15 min later',
-                                          style: TextStyle(
-                                            color: Colors.white,
+                                          Text(
+                                            'Stop after this track',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
                                           ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          '30 min later',
-                                          style: TextStyle(
-                                            color: Colors.white,
+                                          SizedBox(
+                                            height: 10,
                                           ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          '45 min later',
-                                          style: TextStyle(
-                                            color: Colors.white,
+                                          Text(
+                                            '15 min later',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
                                           ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          '60 min later',
-                                          style: TextStyle(
-                                            color: Colors.white,
+                                          SizedBox(
+                                            height: 10,
                                           ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          'Custon',
-                                          style: TextStyle(
-                                            color: Colors.white,
+                                          Text(
+                                            '30 min later',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
                                           ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                      ],
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            '45 min later',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            '60 min later',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            'Custon',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   );
                                 },

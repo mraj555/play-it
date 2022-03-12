@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:play_it/Madhav/Playlist/my_playlist.dart';
 import 'package:underline_indicator/underline_indicator.dart';
 
 import '../../Download/download.dart';
-import '../audio_page.dart';
+import '../All songs/audio_page.dart';
 import 'my_search.dart';
 
 class MyTitle extends StatefulWidget {
@@ -42,12 +43,7 @@ class _MyTitleState extends State<MyTitle> with SingleTickerProviderStateMixin {
 
   var _tabpages = [
     AudioPage(),
-    Center(
-      child: Text(
-        'Chat',
-        style: TextStyle(fontSize: 50),
-      ),
-    ),
+    Playlist(),
     Center(
       child: Text(
         'Chat',
