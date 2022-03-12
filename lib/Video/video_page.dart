@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:play_it/Video/video_player_screen.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 
 class VideoPage extends StatefulWidget {
@@ -19,16 +20,17 @@ class _VideoPageState extends State<VideoPage> {
   _fetchVideos() async {
     final video = await PhotoManager.getAssetPathList(type: RequestType.video);
     final allvideos = video.first;
-    print(video.first);
     final videoAssets = await allvideos.getAssetListRange(
       start: 0,
-      end: 100000,
+      end: allvideos.assetCount,
     );
 
     setState(() {
       assets = videoAssets;
     });
   }
+
+  List prop = ['Title', 'Resolution', 'Format', 'Path', 'Duration', 'Date'];
 
   List _name = [
     'Convert to mp3',
@@ -291,30 +293,62 @@ class _VideoPageState extends State<VideoPage> {
                               InkWell(
                                 onTap: () {
                                   showModalBottomSheet(
+                                    isScrollControlled: true,
                                     backgroundColor: Colors.grey[800],
                                     context: context,
-                                    builder: (context) => ListView.builder(
-                                      itemCount: _name.length,
-                                      itemBuilder: (context, ind) => ListTile(
-                                        onTap: () {
-                                          if (ind == 0) {
-                                            Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                builder: (context) => VideoPlayerScreen(file: assets[index].file),
+                                    builder: (context) =>
+                                        DraggableScrollableSheet(
+                                      maxChildSize: 0.5,
+                                      expand: false,
+                                      builder: (_, controller) {
+                                        return Container(
+                                          child: ListView.builder(
+                                            controller: controller,
+                                            itemCount: _name.length,
+                                            itemBuilder: (context, ind) =>
+                                                ListTile(
+                                              onTap: () async {
+                                                if (ind == 8) {
+                                                  _fileinfo([
+                                                    assets[index].title!,
+                                                    '${assets[index].width}X${assets[index].height}',
+                                                    assets[index].mimeType!,
+                                                    assets[index].relativePath!,
+                                                    assets[index]
+                                                                .videoDuration
+                                                                .inHours ==
+                                                            0
+                                                        ? "${assets[index].videoDuration.inMinutes.remainder(60).toString().padLeft(2, '0')}:${assets[index].videoDuration.inSeconds.remainder(60).toString().padLeft(2, '0')}"
+                                                        : '${assets[index].videoDuration.inHours.toString().padLeft(2, '0')}:${assets[index].videoDuration.inMinutes.remainder(60).toString().padLeft(2, '0')}:${assets[index].videoDuration.inSeconds.remainder(60).toString().padLeft(2, '0')}',
+                                                    assets[index]
+                                                        .modifiedDateTime
+                                                        .toString(),
+                                                  ]);
+                                                }
+                                                if (ind == 10) {
+                                                  final video =
+                                                      await assets[index].file;
+                                                  await Share.shareFiles(
+                                                    [video!.path],
+                                                  );
+                                                }
+                                              },
+                                              title: Text(
+                                                _name[ind],
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 15),
                                               ),
-                                            );
-                                          }
-                                        },
-                                        title: Text(
-                                          _name[ind],
-                                          style: TextStyle(color: Colors.white, fontSize: 15),
-                                        ),
-                                        leading: ImageIcon(
-                                          AssetImage('assets/Video/'+_icons[ind]),
-                                          color: Colors.blueGrey[100],
-                                          size: 25,
-                                        ),
-                                      ),
+                                              leading: ImageIcon(
+                                                AssetImage('assets/Video/' +
+                                                    _icons[ind]),
+                                                color: Colors.blueGrey[100],
+                                                size: 25,
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
                                     ),
                                   );
                                 },
@@ -336,6 +370,57 @@ class _VideoPageState extends State<VideoPage> {
           },
         ),
       ),
+    );
+  }
+
+  _fileinfo(List<String> info) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        Size size = MediaQuery.of(context).size;
+        return SimpleDialog(
+          backgroundColor: Colors.black.withOpacity(0.7),
+          title: Text('Information'),
+          titleTextStyle: GoogleFonts.inter(
+            fontWeight: FontWeight.bold,
+            fontSize: 15,
+            color: Color(0xff2bc877),
+          ),
+          children: [
+            Container(
+              padding: EdgeInsets.only(left: size.width * 0.05),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: List.generate(
+                  6,
+                  (index) => Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(bottom: 8),
+                        width: size.width * 0.25,
+                        child: Text(
+                          prop[index],
+                          style: GoogleFonts.inter(color: Colors.white),
+                        ),
+                      ),
+                      Container(
+                        width: size.width * 0.5,
+                        padding: EdgeInsets.only(bottom: 8),
+                        child: Text(
+                          info[index],
+                          style: GoogleFonts.inter(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                ).toList(),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
