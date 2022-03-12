@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -73,15 +74,20 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
           controller: _tabController,
           children: _tabView,
         ),
-        bottomNavigationBar: Material(
-          color: Colors.black,
-          child: TabBar(
-            labelStyle: GoogleFonts.inter(fontSize: size.width * 0.025),
-            tabs: _tabs,
-            controller: _tabController,
-            indicatorColor: Colors.transparent,
-            labelColor: Color(0xff2bc877),
-            unselectedLabelColor: Colors.white,
+        bottomNavigationBar: SizedBox(
+          height: 60,
+          child: Material(
+            color: Colors.black,
+            child: TabBar(
+              // padding: EdgeInsets.zero,
+              // labelPadding: EdgeInsets.only(top: 0),
+              labelStyle: GoogleFonts.inter(fontSize: size.width * 0.024),
+              tabs: _tabs,
+              controller: _tabController,
+              indicatorColor: Colors.transparent,
+              labelColor: Color(0xff2bc877),
+              unselectedLabelColor: Colors.white,
+            ),
           ),
         ),
       ),

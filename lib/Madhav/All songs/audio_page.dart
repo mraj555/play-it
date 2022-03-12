@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:play_it/Madhav/audio_player_screen.dart';
+
+
+import 'audio_player_screen.dart';
 
 class AudioPage extends StatefulWidget {
   const AudioPage({Key? key}) : super(key: key);
