@@ -1,5 +1,4 @@
 import 'dart:math' as math;
-
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -167,7 +166,9 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                             color: Colors.white,
                           ),
                           onPressed: () async {
-                            await Share.shareFiles([widget.file.data],text: widget.file.toString(),subject: widget.file.title);
+                            await Share.shareFiles([widget.file.data],
+                                text: widget.file.toString(),
+                                subject: widget.file.title);
                           },
                         ),
                       ],

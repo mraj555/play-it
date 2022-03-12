@@ -7,6 +7,7 @@ import 'package:play_it/Nehal/Me/Converter.dart';
 import 'package:play_it/Nehal/Me/History.dart';
 import 'package:play_it/Nehal/Me/MediaManage.dart';
 import 'package:play_it/Nehal/Me/Settings.dart';
+import 'package:play_it/Ridham/Game.dart';
 import 'package:play_it/Ridham/Help_Page/Bug_Page.dart';
 import 'package:play_it/Ridham/Help_Page/Help_Page.dart';
 import 'package:play_it/Ridham/VIP_Page.dart';
@@ -102,7 +103,7 @@ class _MyappState extends State<Myme> {
                                       padding: const EdgeInsets.only(left: 10),
                                       child: InkWell(
                                         onTap: (){
-                                          Navigator.push(context, MaterialPageRoute(builder: (context) => MainPage()));
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => Gamepage()));
                                         },
                                         child: Container(
                                           height: 80,
