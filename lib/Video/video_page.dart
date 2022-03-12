@@ -411,7 +411,7 @@ class _VideoPageState extends State<VideoPage> {
                           padding: EdgeInsets.only(bottom: 8),
                           child: Text(
                             info[index],
-                            style: GoogleFonts.inter(color: Colors.white),
+                            style: GoogleFonts.inter(color: Colors.white,fontSize: size.width * 0.03),
                           ),
                         ),
                       ),
