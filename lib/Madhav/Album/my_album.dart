@@ -12,22 +12,25 @@ class Album extends StatefulWidget {
 
 class _AlbumState extends State<Album> {
   static final _audioQuery = OnAudioQuery();
+
   _path() async {
-    List<SongModel> path = await _audioQuery.querySongs();
-    var a = path.map((e) => e.data);
+    List<AlbumModel> path = await _audioQuery.queryAlbums();
+    var a = path.map((e) => e.album);
     print(a);
     return path;
   }
+
   @override
   void initState() {
     _path();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder<List<SongModel>>(
-        future: _audioQuery.querySongs(
+      body: FutureBuilder<List<AlbumModel>>(
+        future: _audioQuery.queryAlbums(
           sortType: null,
           orderType: OrderType.ASC_OR_SMALLER,
           uriType: UriType.EXTERNAL,
@@ -49,18 +52,32 @@ class _AlbumState extends State<Album> {
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) => ListTile(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AudioPlayerScreen(
-                      file: snapshot.data![index],
-                    ),
-                  ),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => AudioPlayerScreen(
+                //       file: snapshot.data![index],
+                //     ),
+                //   ),
+                // );
               },
-              leading: Text(
-                '${index + 1}',
-                style: TextStyle(color: Colors.white),
+              leading: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  QueryArtworkWidget(
+                      id: snapshot.data![index].id,
+                      type: ArtworkType.ALBUM,
+                      artworkBorder: BorderRadius.circular(3),
+                      nullArtworkWidget: Image.asset(
+                        'assets/Audio/album.png',
+                        fit: BoxFit.fill,
+                      )),
+                  Image.asset(
+                    'assets/Audio/vz.png',
+                    fit: BoxFit.fill,
+                    height: 50,
+                  )
+                ],
               ),
               title: Text(snapshot.data![index].album.toString(),
                   style: TextStyle(color: Colors.white), maxLines: 1),
@@ -69,8 +86,12 @@ class _AlbumState extends State<Album> {
                   textWidthBasis: TextWidthBasis.parent),
               trailing: IconButton(
                 splashRadius: 20,
-                icon: Icon(Icons.arrow_forward_ios_outlined,color: Colors.grey,size: 13,),
-                onPressed: (){},
+                icon: Icon(
+                  Icons.arrow_forward_ios_outlined,
+                  color: Colors.grey,
+                  size: 13,
+                ),
+                onPressed: () {},
               ),
             ),
           );

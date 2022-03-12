@@ -29,8 +29,8 @@ class _ArtistState extends State<Artist> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder<List<SongModel>>(
-        future: _audioQuery.querySongs(
+      body: FutureBuilder<List<ArtistModel>>(
+        future: _audioQuery.queryArtists(
           sortType: null,
           orderType: OrderType.ASC_OR_SMALLER,
           uriType: UriType.EXTERNAL,
@@ -54,18 +54,18 @@ class _ArtistState extends State<Artist> {
               children: [
                 ListTile(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AudioPlayerScreen(
-                          file: snapshot.data![index],
-                        ),
-                      ),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => AudioPlayerScreen(
+                    //       file: snapshot.data![index],
+                    //     ),
+                    //   ),
+                    // );
                   },
                   title: Text(snapshot.data![index].artist.toString(),
                       style: TextStyle(color: Colors.white), maxLines: 1),
-                  subtitle: Text('${snapshot.data![index].album}',
+                  subtitle: Text('${snapshot.data![index].numberOfTracks}',
                       style: TextStyle(color: Colors.white, fontSize: 12),
                       textWidthBasis: TextWidthBasis.parent),
                   trailing: Icon(
