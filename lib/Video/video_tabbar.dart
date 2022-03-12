@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:play_it/Download/download.dart';
@@ -39,12 +38,21 @@ class _HomeVideoState extends State<HomeVideo>
     VideoPlaylist(),
   ];
 
+
   @override
   void initState() {
     super.initState();
     _tabController = TabController(
       length: _tabs.length,
       vsync: this,
+    );
+
+    _tabController!.addListener(
+      () {
+        setState(
+          () {},
+        );
+      },
     );
   }
 
@@ -128,17 +136,33 @@ class _HomeVideoState extends State<HomeVideo>
                   ),
                   ButtonBar(
                     children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.list,
-                          color: Colors.white,
-                        ),
+                      _tabController!.index == 0
+                          ? Icon(
+                              Icons.list,
+                              color: Colors.white.withOpacity(0.8),
+                            )
+                          : SizedBox(),
+                      SizedBox(
+                        width: 2,
                       ),
-                      Icon(
-                        Icons.list_alt,
-                        color: Colors.white,
-                      )
+                      _tabController!.index == 0
+                          ? Icon(
+                              Icons.list_alt,
+                              color: Colors.white.withOpacity(0.8),
+                            )
+                          : SizedBox(),
+                      _tabController!.index == 1
+                          ? Icon(
+                              Icons.line_style,
+                              color: Colors.white.withOpacity(0.8),
+                            )
+                          : SizedBox(),
+                      _tabController!.index == 2
+                          ? Icon(
+                              Icons.add,
+                              color: Colors.white.withOpacity(0.8),
+                            )
+                          : SizedBox(),
                     ],
                   ),
                 ],
