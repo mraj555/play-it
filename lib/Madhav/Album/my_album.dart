@@ -1,55 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
+import '../All songs/audio_player_screen.dart';
 
-import 'audio_player_screen.dart';
-
-class AudioPage extends StatefulWidget {
-  const AudioPage({Key? key}) : super(key: key);
+class Album extends StatefulWidget {
+  const Album({Key? key}) : super(key: key);
 
   @override
-  State<AudioPage> createState() => _AudioPageState();
+  State<Album> createState() => _AlbumState();
 }
 
-class _AudioPageState extends State<AudioPage> {
+class _AlbumState extends State<Album> {
   static final _audioQuery = OnAudioQuery();
-
   _path() async {
     List<SongModel> path = await _audioQuery.querySongs();
     var a = path.map((e) => e.data);
     print(a);
     return path;
   }
-
   @override
   void initState() {
     _path();
     super.initState();
   }
-
-  List _name = [
-    'Play Now',
-    'Play Next',
-    'Set as ringtone',
-    'add to playlist',
-    'File Transfer',
-    'Rename',
-    'Favorite',
-    'Delete',
-    'File Info',
-  ];
-  List<IconData> _icons = [
-    Icons.play_circle_outline,
-    Icons.skip_next_outlined,
-    Icons.notifications_none,
-    Icons.playlist_add,
-    Icons.drive_file_move_outline,
-    Icons.edit_outlined,
-    Icons.star_border,
-    Icons.delete_outline_outlined,
-    Icons.info_outline_rounded,
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,48 +62,31 @@ class _AudioPageState extends State<AudioPage> {
                 '${index + 1}',
                 style: TextStyle(color: Colors.white),
               ),
-              title: Text(snapshot.data![index].displayNameWOExt,
+              title: Text(snapshot.data![index].album.toString(),
                   style: TextStyle(color: Colors.white), maxLines: 1),
               subtitle: Text('${snapshot.data![index].artist}',
                   style: TextStyle(color: Colors.white, fontSize: 12),
                   textWidthBasis: TextWidthBasis.parent),
               trailing: IconButton(
                 splashRadius: 20,
-                icon: Icon(Icons.more_vert, color: Colors.white),
-                onPressed: () => showModalBottomSheet(
-                  backgroundColor: Colors.grey[800],
-                  context: context,
-                  builder: (context) => ListView.builder(
-                    itemCount: _name.length,
-                    itemBuilder: (context, ind) => ListTile(
-                      onTap: () {
-                        if (ind == 0) {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => AudioPlayerScreen(
-                                file: snapshot.data![index],
-                              ),
-                            ),
-                          );
-                        }
-                      },
-                      title: Text(
-                        _name[ind],
-                        style: TextStyle(color: Colors.white, fontSize: 15),
-                      ),
-                      leading: Icon(
-                        _icons[ind],
-                        color: Colors.blueGrey[100],
-                        size: 25,
-                      ),
-                    ),
-                  ),
-                ),
+                icon: Icon(Icons.arrow_forward_ios_outlined,color: Colors.grey,size: 13,),
+                onPressed: (){},
               ),
             ),
           );
         },
       ),
+      // ListView.builder(
+      //     itemCount: 1,
+      //     itemBuilder: (context, index) =>
+      //         ListTile(
+      //           onTap: (){},
+      //
+      //           title: Text('Album',style: TextStyle(color: Colors.white),),
+      //           subtitle: Text('Songs',style: TextStyle(color: Colors.grey),),
+      //           trailing: Icon(Icons.arrow_forward_ios_outlined,color: Colors.grey,size: 13,),
+      //         ),
+      // ),
     );
   }
 }
