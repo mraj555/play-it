@@ -49,7 +49,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
       },
     );
     audioPlayer.onAudioPositionChanged.listen(
-          (Duration dd) {
+      (Duration dd) {
         setState(
           () {
             position = dd;
@@ -59,10 +59,10 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
     );
 
     audioPlayer.onPlayerCompletion.listen(
-          (event) {
-            final index =
+      (event) {
+        final index =
             _list.indexWhere((element) => element.data == widget.file.data);
-            setState(
+        setState(
           () {
             if (index < _list.length - 1) {
               widget.file = _list[index + 1];
@@ -70,7 +70,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
               audioPlayer.play(widget.file.data);
               playing = true;
             }
-            if(index == _list.length - 1){
+            if (index == _list.length - 1) {
               widget.file = _list.first;
               audioPlayer.play(widget.file.data);
               _controller.repeat();
@@ -129,11 +129,19 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                   ),
                 ),
               ),
+              Container(
+                height: 50,
+                width: double.infinity,
+                child: Image.network(
+                  'https://64.media.tumblr.com/c90100fd260e77796e397f07d1771d34/fd850e41fad78fd6-86/s400x600/f15e520227c7dd8b471d729a48f26080712d8250.gifv',
+                  fit: BoxFit.fill,
+                ),
+              ),
               Column(
                 children: [
                   Container(
                     width: double.infinity,
-                    padding: EdgeInsets.only(top: 20),
+                    //padding: EdgeInsets.only(top: 20),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -185,7 +193,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                             animation: _controller,
                             builder: (context, child) {
                               return Transform.rotate(
-                                angle: _controller.value * 2 * math.pi,
+                                angle: _controller.value * 4 * math.pi,
                                 child: child,
                               );
                             },
@@ -221,25 +229,195 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                                 color: Colors.white,
                                 size: 25,
                               ),
-                              Icon(
-                                Icons.playlist_add_outlined,
-                                color: Colors.white,
-                                size: 25,
+                              IconButton(
+                                onPressed: () {
+                                  showModalBottomSheet(
+                                      backgroundColor: Color(0xff404040),
+                                      context: context,
+                                      builder: (context) => Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              ListTile(
+                                                title: Text(
+                                                  'New playlist',
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                                onTap: () {},
+                                                leading: Icon(
+                                                  Icons
+                                                      .create_new_folder_outlined,
+                                                  color: Colors.grey,
+                                                ),
+                                              ),
+                                            ],
+                                          ));
+                                },
+                                icon: Icon(
+                                  Icons.playlist_add_outlined,
+                                  color: Colors.white,
+                                  size: 25,
+                                ),
                               ),
                               Icon(
                                 Icons.equalizer_outlined,
                                 color: Colors.white,
                                 size: 25,
                               ),
-                              Icon(
-                                Icons.timer_outlined,
-                                color: Colors.white,
-                                size: 25,
+                              IconButton(
+                                splashRadius: 20,
+                                onPressed: () {
+                                  showModalBottomSheet(
+                                    backgroundColor: Color(0xff404040),
+                                    context: context,
+                                    builder: (context) => Padding(
+                                      padding: EdgeInsets.only(left: 10),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          TextButton.icon(
+                                            onPressed: () {},
+                                            icon: Icon(
+                                                Icons.arrow_back_ios_rounded,
+                                                color: Colors.white,
+                                                size: 15),
+                                            label: Text(
+                                              'Timer',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                          Text(
+                                            'Turn off',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            'Stop after this track',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            '15 min later',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            '30 min later',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            '45 min later',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            '60 min later',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            'Custon',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                                icon: Icon(
+                                  Icons.timer_outlined,
+                                  color: Colors.white,
+                                  size: 25,
+                                ),
                               ),
-                              Icon(
-                                Icons.more_vert_outlined,
-                                color: Colors.white,
-                                size: 25,
+                              IconButton(
+                                onPressed: () {
+                                  showModalBottomSheet(
+                                      backgroundColor: Color(0xff404040),
+                                      context: context,
+                                      builder: (context) => Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              ListTile(
+                                                title: Text(
+                                                  'Set as ringtone',
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                                onTap: () {},
+                                                leading: Icon(
+                                                  Icons.notifications_none,
+                                                  color: Colors.grey,
+                                                ),
+                                              ),
+                                              ListTile(
+                                                  title: Text(
+                                                    'Speed Play',
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  ),
+                                                  onTap: () {},
+                                                  leading: Text(
+                                                    '1.0x',
+                                                    style: TextStyle(
+                                                        color: Colors.grey),
+                                                  )),
+                                              ListTile(
+                                                title: Text(
+                                                  'File Info',
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                                onTap: () {},
+                                                leading: Icon(
+                                                  Icons.info_outline,
+                                                  color: Colors.grey,
+                                                ),
+                                              ),
+                                            ],
+                                          ));
+                                },
+                                splashRadius: 20,
+                                icon: Icon(
+                                  Icons.more_vert_outlined,
+                                  color: Colors.white,
+                                  size: 25,
+                                ),
                               )
                             ],
                           ),
@@ -312,7 +490,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                                         audioPlayer.play(widget.file.data);
                                         playing = true;
                                       }
-                                      if(index == _list.length - 1){
+                                      if (index == _list.length - 1) {
                                         widget.file = _list.first;
                                         audioPlayer.play(widget.file.data);
                                         _controller.repeat();
@@ -378,7 +556,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
       var res = await audioPlayer.pause();
       if (res == 1) {
         setState(
-              () {
+          () {
             playing = false;
             _controller.stop();
           },

@@ -1,9 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:play_it/Download/download.dart';
 import 'package:play_it/Video/video_page.dart';
+import 'package:play_it/Video/video_playlist.dart';
 import 'package:underline_indicator/underline_indicator.dart';
+
 import '../Madhav/Appbar/my_search.dart';
 
 class HomeVideo extends StatefulWidget {
@@ -34,10 +35,9 @@ class _HomeVideoState extends State<HomeVideo>
     Center(
       child: Icon(Icons.height),
     ),
-    Center(
-      child: Icon(Icons.folder),
-    ),
+    VideoPlaylist(),
   ];
+
 
   @override
   void initState() {
@@ -45,6 +45,14 @@ class _HomeVideoState extends State<HomeVideo>
     _tabController = TabController(
       length: _tabs.length,
       vsync: this,
+    );
+
+    _tabController!.addListener(
+      () {
+        setState(
+          () {},
+        );
+      },
     );
   }
 
@@ -99,6 +107,7 @@ class _HomeVideoState extends State<HomeVideo>
           children: [
             Container(
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
                     width: 230,
@@ -110,8 +119,8 @@ class _HomeVideoState extends State<HomeVideo>
                       indicator: UnderlineIndicator(
                         strokeCap: StrokeCap.round,
                         borderSide: BorderSide(
-                          width: 3,
-                          color: Color(0xff2bc877)
+                            width: 3,
+                            color: Color(0xff2bc877)
                         ),
                         insets: EdgeInsets.symmetric(horizontal: 20),
                       ),
@@ -124,6 +133,37 @@ class _HomeVideoState extends State<HomeVideo>
                       ),
                       controller: _tabController,
                     ),
+                  ),
+                  ButtonBar(
+                    children: [
+                      _tabController!.index == 0
+                          ? Icon(
+                              Icons.list,
+                              color: Colors.white.withOpacity(0.8),
+                            )
+                          : SizedBox(),
+                      SizedBox(
+                        width: 2,
+                      ),
+                      _tabController!.index == 0
+                          ? Icon(
+                              Icons.list_alt,
+                              color: Colors.white.withOpacity(0.8),
+                            )
+                          : SizedBox(),
+                      _tabController!.index == 1
+                          ? Icon(
+                              Icons.line_style,
+                              color: Colors.white.withOpacity(0.8),
+                            )
+                          : SizedBox(),
+                      _tabController!.index == 2
+                          ? Icon(
+                              Icons.add,
+                              color: Colors.white.withOpacity(0.8),
+                            )
+                          : SizedBox(),
+                    ],
                   ),
                 ],
               ),

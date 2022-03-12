@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:play_it/Download/_suggetionpage.dart';
 import 'package:play_it/Download/download.dart';
 
 class Home extends StatefulWidget {
@@ -32,9 +33,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   late Animation<double> _width;
   late AnimationController _controller;
   late CurvedAnimation _curvedAnimation;
-
-  var _color=Colors.red;
-
+  var _opacity = 1.0;
+  var onclick=false;
   @override
   void initState() {
     super.initState();
@@ -270,26 +270,35 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 SizedBox(
                   height: size.height * 0.2,
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: Color(0xff2bc877),
-                  ),
-                  padding: EdgeInsets.zero,
-                  height: _width.value / 9.5,
-                  width: _width.value,
-                  child: TextButton.icon(
-                    onPressed: () {
-                    },
-                    icon: ImageIcon(
-                      AssetImage('assets/Icons/bulb.png'),
-                      color: Colors.white,
-                      size: size.width * 0.05,
+                AnimatedOpacity(
+                  duration: Duration(seconds: 1),
+                   opacity: _opacity,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: Color(0xff2bc877),
                     ),
-                    label: Text(
-                      'Learn how to download video and audio',
-                      style: TextStyle(
-                          color: Colors.white, fontSize: _width.value / 25),
+                    padding: EdgeInsets.zero,
+                    height: _width.value / 9.5,
+                    width: _width.value,
+                    child: TextButton.icon(
+                      onPressed: onclick==false?() {
+                        setState(() {
+                          _opacity = 1.0 - _opacity;
+                          onclick=true;
+                         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Suggest()));
+                        });
+                      }:null,
+                      icon: ImageIcon(
+                        AssetImage('assets/Icons/bulb.png'),
+                        color: Colors.white,
+                        size: size.width * 0.05,
+                      ),
+                      label: Text(
+                        'Learn how to download video and audio',
+                        style: TextStyle(
+                            color: Colors.white, fontSize: _width.value / 25),
+                      ),
                     ),
                   ),
                 ),

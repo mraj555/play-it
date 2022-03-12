@@ -1,15 +1,20 @@
+import 'dart:io';
+
+import 'package:disk_space/disk_space.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:pinput/pinput.dart';
 import 'package:play_it/Download/_Privacy.dart';
 import 'package:play_it/Download/_add.dart';
-import 'package:play_it/Download/_password.dart';
-import 'package:play_it/Download/homepage.dart';
-import 'package:play_it/Ridham/RateUs.dart';
+
 import '../Nehal/Me/Downloadpage.dart';
 
 class Down extends StatefulWidget {
   var password;
+
   Down({this.password});
 
   @override
@@ -23,6 +28,15 @@ class _DownState extends State<Down> {
   var newpassword = '';
   var error = 'Enter The PIN';
   var errorcolor = Colors.green;
+
+  double _diskSpace = 0;
+  double _disktotal = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    initDiskSpace();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +95,7 @@ class _DownState extends State<Down> {
               'No File',
               style: TextStyle(color: Colors.grey),
             ),
-            SizedBox(height: size.height * 0.01),
+            SizedBox(height: size.height * 0.02),
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);
@@ -93,17 +107,60 @@ class _DownState extends State<Down> {
               style: ElevatedButton.styleFrom(
                   primary: Color(0xff2bc877), fixedSize: Size(180, 15)),
             ),
-            SizedBox(height: size.height * 0.3),
-            ListTile(
-              tileColor: Colors.grey[700],
-              onTap: () {},
-              leading: Icon(
-                Icons.phone_android_sharp,
-                color: Colors.white,
-              ),
-              trailing: Icon(
-                Icons.navigate_next_outlined,
-                color: Colors.white,
+            Spacer(),
+            InkWell(
+              onTap: () {
+                _openstorage(filename: '');
+              },
+              child: Container(
+                color: Colors.grey.withOpacity(0.5),
+                padding: EdgeInsets.fromLTRB(5, 0, 10, 0),
+                height: size.height * 0.07,
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.phone_android_sharp,
+                      color: Colors.white,
+                      size: 35,
+                    ),
+                    SizedBox(
+                      width: size.width * 0.01,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SliderTheme(
+                          child: Slider(
+                            min: 0,
+                            max: _disktotal,
+                            activeColor: Colors.green,
+                            inactiveColor: Colors.white,
+                            value: _diskSpace,
+                            onChanged: (value) {
+                            },
+                          ),
+                          data: SliderThemeData(
+                            trackHeight: 2,
+                            thumbShape: SliderComponentShape.noThumb,
+                            overlayShape: SliderComponentShape.noThumb,
+                          ),
+                        ),
+                        SizedBox(
+                          height: size.height* 0.01,
+                        ),
+                        Text(
+                            'Used ${_diskSpace.toStringAsFixed(2)}GB/${_disktotal.toStringAsFixed(2)}GB',
+                            style: TextStyle(color: Colors.white, fontSize: 11)),
+                      ],
+                    ),
+                    Spacer(),
+                    Icon(
+                      Icons.navigate_next_outlined,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -193,5 +250,41 @@ class _DownState extends State<Down> {
         ),
       ),
     );
+  }
+
+  Future _openstorage({required String filename}) async {
+    final file = await pickFile();
+    if (file == null) {
+      return null;
+    }
+    ;
+    print('Path:${file.path}');
+    OpenFile.open(file.path);
+  }
+
+  Future<File?> pickFile() async {
+    final result = await FilePicker.platform.pickFiles();
+    if (result == null) {
+      return null;
+    }
+    return File(result.files.first.path!);
+  }
+
+  Future<File?> downloadFile(String? name) async {
+    final appStorage = await getApplicationDocumentsDirectory();
+    final file = File('${appStorage.path}/$name');
+    return file;
+  }
+
+  Future<void> initDiskSpace() async {
+    double diskSpace = 0;
+    double disktotal = 0;
+    diskSpace = await DiskSpace.getFreeDiskSpace as double;
+    disktotal = await DiskSpace.getTotalDiskSpace as double;
+
+    setState(() {
+      _disktotal = disktotal / 1024;
+      _diskSpace = disktotal / 1024 - diskSpace / 1024;
+    });
   }
 }
