@@ -50,7 +50,7 @@ dependencies:
   disk_space: ^0.2.1
   smooth_page_indicator: ^1.0.0+2
   shimmer_animation: ^2.1.0+1
-
+  webview_flutter: ^3.0.1
 
 
 dev_dependencies:
