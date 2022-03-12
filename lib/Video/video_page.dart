@@ -405,14 +405,13 @@ class _VideoPageState extends State<VideoPage> {
                           style: GoogleFonts.inter(color: Colors.white),
                         ),
                       ),
-                      Container(
-                        width: size.width * 0.5,
-                        padding: EdgeInsets.only(bottom: 8),
-                        child: Text(
-                          info[index],
-                          style: GoogleFonts.inter(
-                            color: Colors.white,
-                            fontSize: size.width * 0.03,
+                      Expanded(
+                        child: Container(
+                          width: size.width * 0.5,
+                          padding: EdgeInsets.only(bottom: 8),
+                          child: Text(
+                            info[index],
+                            style: GoogleFonts.inter(color: Colors.white),
                           ),
                         ),
                       ),
