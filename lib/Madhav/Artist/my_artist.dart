@@ -14,8 +14,8 @@ class _ArtistState extends State<Artist> {
   static final _audioQuery = OnAudioQuery();
 
   _path() async {
-    List<SongModel> path = await _audioQuery.querySongs();
-    var a = path.map((e) => e.data);
+    List<ArtistModel> path = await _audioQuery.queryArtists();
+    var a = path.map((e) => e.artist);
     print(a);
     return path;
   }
