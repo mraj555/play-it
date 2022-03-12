@@ -62,14 +62,6 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
       length: _tabs.length,
       vsync: this,
     );
-    requestPermission();
-  }
-
-  void requestPermission() async {
-    var status = await Permission.storage.status;
-    if(!status.isGranted) {
-      await Permission.storage.request();
-    }
   }
 
   @override

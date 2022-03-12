@@ -30,6 +30,34 @@ class _VideoPageState extends State<VideoPage> {
     });
   }
 
+  List _name = [
+    'Convert to mp3',
+    'Background play',
+    'Favourite',
+    'File Transfer',
+    'Add to playlist',
+    'Move into Privacy Folder',
+    'Rename',
+    'Delete',
+    'File Info',
+    'Mute play',
+    'Share',
+  ];
+
+  List _icons = [
+    'mp3.png',
+    'bgp.png',
+    'favourite.png',
+    'ft.png',
+    'pl.png',
+    'lock.png',
+    'rename.png',
+    'del.png',
+    'info.png',
+    'mute.png',
+    'share.png'
+  ];
+
   @override
   void initState() {
     _fetchVideos();
@@ -261,7 +289,35 @@ class _VideoPageState extends State<VideoPage> {
                                 ),
                               ),
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  showModalBottomSheet(
+                                    backgroundColor: Colors.grey[800],
+                                    context: context,
+                                    builder: (context) => ListView.builder(
+                                      itemCount: _name.length,
+                                      itemBuilder: (context, ind) => ListTile(
+                                        onTap: () {
+                                          if (ind == 0) {
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder: (context) => VideoPlayerScreen(file: assets[index].file),
+                                              ),
+                                            );
+                                          }
+                                        },
+                                        title: Text(
+                                          _name[ind],
+                                          style: TextStyle(color: Colors.white, fontSize: 15),
+                                        ),
+                                        leading: ImageIcon(
+                                          AssetImage('assets/Video/'+_icons[ind]),
+                                          color: Colors.blueGrey[100],
+                                          size: 25,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
                                 child: Icon(
                                   Icons.more_vert,
                                   color: Colors.white,
