@@ -388,7 +388,7 @@ class _VideoPageState extends State<VideoPage> {
           ),
           children: [
             Container(
-              padding: EdgeInsets.only(left: size.width * 0.05),
+              padding: EdgeInsets.only(left: size.width * 0.05,right: 1),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
