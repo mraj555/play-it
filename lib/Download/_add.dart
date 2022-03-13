@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:open_file/open_file.dart';
@@ -13,6 +14,10 @@ class Add extends StatefulWidget {
 
 class _AddState extends State<Add> {
   var addlinkcontoller = TextEditingController();
+  String downloadmessage = 'Downloading';
+  var downloding = false;
+  var _percentage = 0.0;
+  var url = '';
 
   @override
   Widget build(BuildContext context) {
@@ -81,12 +86,27 @@ class _AddState extends State<Add> {
                     onChanged: (value) {
                       setState(() {
                         value = addlinkcontoller.text;
+                        url = addlinkcontoller.text;
                       });
                     },
                   ),
                 ),
                 ElevatedButton.icon(
-                  onPressed: addlinkcontoller.text.isNotEmpty ? () {} : null,
+                  onPressed: addlinkcontoller.text.isNotEmpty
+                      ? () async {
+                          var dir = await getExternalStorageDirectory();
+                          Dio dio = Dio();
+                          dio.download('${url}', '${dir!.path}',
+                              onReceiveProgress: (receive, total) {
+                            var percentage = receive / total * 100;
+                            _percentage = percentage / 100;
+                            setState(() {
+                              downloadmessage =
+                                  'Downloading ...${percentage.floor()} %';
+                            });
+                          });
+                        }
+                      : null,
                   icon: Icon(
                     Icons.download,
                     color: Colors.white,
@@ -95,16 +115,24 @@ class _AddState extends State<Add> {
                     'Download',
                     style: TextStyle(color: Colors.white, fontSize: 15),
                   ),
-                  style:ButtonStyle(
-
+                  style: ButtonStyle(
                     fixedSize: MaterialStateProperty.all(Size(320, 40)),
-                    backgroundColor: MaterialStateProperty.resolveWith((states) {
-                    if(states.contains(MaterialState.disabled)){
-                      return Color(0xff1d6b43);
-                    }else{
-                      return Color(0xff50956b);
-                    }
-                  },),),
+                    backgroundColor: MaterialStateProperty.resolveWith(
+                      (states) {
+                        if (states.contains(MaterialState.disabled)) {
+                          return Color(0xff1d6b43);
+                        } else {
+                          return Color(0xff50956b);
+                        }
+                      },
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(20),
+                  child: LinearProgressIndicator(
+                    value: _percentage,
+                  ),
                 ),
               ],
             ),
@@ -199,8 +227,7 @@ class _AddState extends State<Add> {
               ),
               SizedBox(height: 10),
               ListTile(
-                onTap:()=>_storage(
-                    filename: 'All'),
+                onTap: () => _storage(filename: 'All'),
                 leading: Icon(
                   Icons.phone_android_sharp,
                   size: 40,
@@ -239,21 +266,28 @@ class _AddState extends State<Add> {
       ),
     );
   }
+
   Future _storage({required String filename}) async {
     final file = await pickFile();
-    if (file == null) {return null;};
+    if (file == null) {
+      return null;
+    }
+    ;
     print('Path:${file.path}');
     OpenFile.open(file.path);
   }
-  Future<File?> pickFile()async{
+
+  Future<File?> pickFile() async {
     final result = await FilePicker.platform.pickFiles();
-    if(result==null){return null;}
+    if (result == null) {
+      return null;
+    }
     return File(result.files.first.path!);
   }
-  }
+}
 
-  Future<File?> downloadFile (String? name) async {
-    final appStorage = await getApplicationDocumentsDirectory();
-    final file = File('${appStorage.path}/$name');
-    return file;
+Future<File?> downloadFile(String? name) async {
+  final appStorage = await getApplicationDocumentsDirectory();
+  final file = File('${appStorage.path}/$name');
+  return file;
 }
