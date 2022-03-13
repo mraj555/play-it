@@ -1,9 +1,12 @@
 import 'dart:io';
-import 'package:dio/dio.dart';
+import 'dart:isolate';
+import 'dart:ui';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class Add extends StatefulWidget {
   const Add({Key? key}) : super(key: key);
@@ -14,10 +17,44 @@ class Add extends StatefulWidget {
 
 class _AddState extends State<Add> {
   var addlinkcontoller = TextEditingController();
-  String downloadmessage = 'Downloading';
-  var downloding = false;
-  var _percentage = 0.0;
+  var _percentage = 0;
   var url = '';
+
+  void _downloadfile() async {
+    final status = await Permission.storage.request();
+    if (status.isGranted) {
+      final basestorage = await getExternalStorageDirectory();
+      final id = await FlutterDownloader.enqueue(
+        url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+        savedDir: basestorage!.path,
+        fileName: 'Download',
+        showNotification: true,
+        openFileFromNotification: true,
+      );
+    } else {
+      print('No Permission');
+    }
+  }
+
+  ReceivePort _receiveport = ReceivePort();
+
+  @override
+  void initState() {
+    IsolateNameServer.registerPortWithName(
+        _receiveport.sendPort, 'DownloadingVideo');
+    _receiveport.listen((message) {
+      setState(() {
+        _percentage = message;
+      });
+    });
+    FlutterDownloader.registerCallback(downloadcallback);
+    super.initState();
+  }
+
+  static downloadcallback(id, status, progress) {
+    SendPort? sendPort = IsolateNameServer.lookupPortByName('DownloadingVideo');
+    sendPort!.send(progress);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,21 +129,15 @@ class _AddState extends State<Add> {
                   ),
                 ),
                 ElevatedButton.icon(
-                  onPressed: addlinkcontoller.text.isNotEmpty
-                      ? () async {
-                          var dir = await getExternalStorageDirectory();
-                          Dio dio = Dio();
-                          dio.download('${url}', '${dir!.path}',
-                              onReceiveProgress: (receive, total) {
-                            var percentage = receive / total * 100;
-                            _percentage = percentage / 100;
-                            setState(() {
-                              downloadmessage =
-                                  'Downloading ...${percentage.floor()} %';
-                            });
-                          });
-                        }
-                      : null,
+                  onPressed: _downloadfile,
+                  //     onReceiveProgress: (receive, total) {
+                  //   var percentage = receive / total * 100;
+                  //   _percentage = percentage / 100;
+                  //   setState(() {
+                  //     downloadmessage =
+                  //         'Downloading ...${percentage.floor()} %';
+                  //   });
+                  // });
                   icon: Icon(
                     Icons.download,
                     color: Colors.white,
@@ -128,10 +159,13 @@ class _AddState extends State<Add> {
                     ),
                   ),
                 ),
+                SizedBox(height: 10),
+                Text('Downloading...${_percentage/100} %',style: TextStyle(color: Colors.white),),
                 Padding(
                   padding: EdgeInsets.all(20),
                   child: LinearProgressIndicator(
-                    value: _percentage,
+                    color: Colors.white,
+                    value: _percentage.toDouble(),
                   ),
                 ),
               ],

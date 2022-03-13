@@ -52,7 +52,7 @@ dependencies:
   shimmer_animation: ^2.1.0+1
   webview_flutter: ^3.0.1
   intl: ^0.17.0
-  dio: any
+  flutter_downloader: ^1.7.2
 
 
 dev_dependencies:
