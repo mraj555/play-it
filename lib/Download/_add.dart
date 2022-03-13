@@ -17,36 +17,15 @@ class Add extends StatefulWidget {
 
 class _AddState extends State<Add> {
   var addlinkcontoller = TextEditingController();
-  var _percentage = 0;
-  var url = '';
-
-  void _downloadfile() async {
-    final status = await Permission.storage.request();
-    if (status.isGranted) {
-      final basestorage = await getExternalStorageDirectory();
-      final id = await FlutterDownloader.enqueue(
-        url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-        savedDir: basestorage!.path,
-        fileName: 'Download',
-        showNotification: true,
-        openFileFromNotification: true,
-      );
-    } else {
-      print('No Permission');
-    }
-  }
-
+  var url;
+  String down = 'Downloading';
   ReceivePort _receiveport = ReceivePort();
 
   @override
   void initState() {
     IsolateNameServer.registerPortWithName(
         _receiveport.sendPort, 'DownloadingVideo');
-    _receiveport.listen((message) {
-      setState(() {
-        _percentage = message;
-      });
-    });
+    _receiveport.listen((message) {});
     FlutterDownloader.registerCallback(downloadcallback);
     super.initState();
   }
@@ -129,15 +108,21 @@ class _AddState extends State<Add> {
                   ),
                 ),
                 ElevatedButton.icon(
-                  onPressed: _downloadfile,
-                  //     onReceiveProgress: (receive, total) {
-                  //   var percentage = receive / total * 100;
-                  //   _percentage = percentage / 100;
-                  //   setState(() {
-                  //     downloadmessage =
-                  //         'Downloading ...${percentage.floor()} %';
-                  //   });
-                  // });
+                  onPressed: () async {
+                    final status = await Permission.storage.request();
+                    if (status.isGranted) {
+                      final basestorage = await getExternalStorageDirectory();
+                      final id = await FlutterDownloader.enqueue(
+                        url:"${url}",
+                        savedDir: basestorage!.path,
+                        fileName: 'Download',
+                        showNotification: true,
+                        openFileFromNotification: true,
+                      );
+                    } else {
+                      print('No Permission');
+                    }
+                  },
                   icon: Icon(
                     Icons.download,
                     color: Colors.white,
@@ -157,15 +142,6 @@ class _AddState extends State<Add> {
                         }
                       },
                     ),
-                  ),
-                ),
-                SizedBox(height: 10),
-                Text('Downloading...${_percentage/100} %',style: TextStyle(color: Colors.white),),
-                Padding(
-                  padding: EdgeInsets.all(20),
-                  child: LinearProgressIndicator(
-                    color: Colors.white,
-                    value: _percentage.toDouble(),
                   ),
                 ),
               ],
