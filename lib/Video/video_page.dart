@@ -68,7 +68,7 @@ class _VideoPageState extends State<VideoPage> {
 
   @override
   Widget build(BuildContext context) {
-    Size size= MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     // return GridView.builder(
     //   gridDelegate:
     //       SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
@@ -108,7 +108,7 @@ class _VideoPageState extends State<VideoPage> {
                   color: Colors.grey.shade900,
                   height: size.height * 0.12,
                   width: size.width * 0.06,
-                  margin: EdgeInsets.only(left: 20,top: 5,bottom: 5),
+                  margin: EdgeInsets.only(left: 20, top: 5, bottom: 5),
                 ),
               );
             }
@@ -127,7 +127,7 @@ class _VideoPageState extends State<VideoPage> {
                 );
               },
               child: Container(
-                margin: EdgeInsets.only(left: 20,top: 5,bottom: 5),
+                margin: EdgeInsets.only(left: 20, top: 5, bottom: 5),
                 alignment: Alignment.center,
                 height: size.height * 0.12,
                 width: size.width * 0.06,
@@ -178,7 +178,7 @@ class _VideoPageState extends State<VideoPage> {
                       ),
                     ),
                     SizedBox(
-                      width: size.width *0.03,
+                      width: size.width * 0.03,
                     ),
                     Container(
                       width: size.width * 0.45,
@@ -222,10 +222,11 @@ class _VideoPageState extends State<VideoPage> {
                                     ClipRRect(
                                       child: Image.asset(
                                         assets[index]
-                                                .relativePath!
-                                                .contains('WhatsApp') || assets[index]
-                                            .relativePath!
-                                            .contains('What\'s app')
+                                                    .relativePath!
+                                                    .contains('WhatsApp') ||
+                                                assets[index]
+                                                    .relativePath!
+                                                    .contains('What\'s app')
                                             ? 'assets/Icons/whatsapp.png'
                                             : assets[index]
                                                     .relativePath!
@@ -241,7 +242,8 @@ class _VideoPageState extends State<VideoPage> {
                                                         ? 'assets/Icons/uc.png'
                                                         : assets[index]
                                                                 .relativePath!
-                                                                .contains('Movie')
+                                                                .contains(
+                                                                    'Movie')
                                                             ? 'assets/Icons/movie.png'
                                                             : assets[index]
                                                                     .relativePath!
@@ -255,10 +257,11 @@ class _VideoPageState extends State<VideoPage> {
                                     ),
                                     Text(
                                       assets[index]
-                                          .relativePath!
-                                          .contains('WhatsApp') || assets[index]
-                                          .relativePath!
-                                          .contains('What\'s app')
+                                                  .relativePath!
+                                                  .contains('WhatsApp') ||
+                                              assets[index]
+                                                  .relativePath!
+                                                  .contains('What\'s app')
                                           ? ' WhatsApp'
                                           : assets[index]
                                                   .relativePath!
@@ -388,7 +391,7 @@ class _VideoPageState extends State<VideoPage> {
           ),
           children: [
             Container(
-              padding: EdgeInsets.only(left: size.width * 0.05,right: 1),
+              padding: EdgeInsets.only(left: size.width * 0.05, right: 1),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
