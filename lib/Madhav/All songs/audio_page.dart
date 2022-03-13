@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'audio_player_screen.dart';
 
@@ -120,20 +121,22 @@ class _AudioPageState extends State<AudioPage> {
                             ),
                           );
                         }
-                        if(ind==4){
+                        if(ind==1){
 
                         }
                         if (ind == 8) {
+                          print(snapshot.data![index].dateModified!);
+                          final path = snapshot.data![index].data;
+                          print(DateTime.fromMillisecondsSinceEpoch((snapshot.data![index].dateModified!)*1000,isUtc: false));
                           _openinfo([
                             snapshot.data![index].title,
                             snapshot.data![index].album!,
                             snapshot.data![index].artist!,
                             '${((snapshot.data![index].duration!~/(60*1000))%60).toString().padLeft(2,'0')}:${(snapshot.data![index].duration!~/1000)%60}',
                             snapshot.data![index].fileExtension,
-                            snapshot.data![index].uri!,
-                            snapshot.data![index].dateModified!.toString(),
-                            //'${DateTime.fromMillisecondsSinceEpoch(snapshot.data![index].duration! * 1000)}',
-                          ]);
+                            path.substring(0, path.lastIndexOf('/')),
+                            '${DateFormat('yyyy-MM-dd hh:mm:ss a').format(DateTime.fromMillisecondsSinceEpoch(snapshot.data![index].dateModified!*1000,isUtc: false))}',
+                            ]);
                         }
                       },
                       title: Text(
@@ -179,16 +182,16 @@ class _AudioPageState extends State<AudioPage> {
                         Expanded(
                           child: Container(
                             padding: EdgeInsets.only(bottom: 10),
-                            child: Text(details[index]),
-                          ),
-                        ),
-                      ],
+                        child: Text(details[index]),
+                      ),
                     ),
-                  ).toList()
+                  ],
                 ),
-              ),
-            ],
-          );
-        });
+              ).toList()),
+            ),
+          ],
+        );
+      },
+    );
   }
 }

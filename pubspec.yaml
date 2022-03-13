@@ -51,6 +51,8 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   shimmer_animation: ^2.1.0+1
   webview_flutter: ^3.0.1
+  intl: ^0.17.0
+  flutter_downloader: ^1.7.2
 
 
 dev_dependencies:

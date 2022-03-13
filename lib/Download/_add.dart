@@ -1,8 +1,12 @@
 import 'dart:io';
+import 'dart:isolate';
+import 'dart:ui';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class Add extends StatefulWidget {
   const Add({Key? key}) : super(key: key);
@@ -13,6 +17,44 @@ class Add extends StatefulWidget {
 
 class _AddState extends State<Add> {
   var addlinkcontoller = TextEditingController();
+  var _percentage = 0;
+  var url = '';
+
+  void _downloadfile() async {
+    final status = await Permission.storage.request();
+    if (status.isGranted) {
+      final basestorage = await getExternalStorageDirectory();
+      final id = await FlutterDownloader.enqueue(
+        url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+        savedDir: basestorage!.path,
+        fileName: 'Download',
+        showNotification: true,
+        openFileFromNotification: true,
+      );
+    } else {
+      print('No Permission');
+    }
+  }
+
+  ReceivePort _receiveport = ReceivePort();
+
+  @override
+  void initState() {
+    IsolateNameServer.registerPortWithName(
+        _receiveport.sendPort, 'DownloadingVideo');
+    _receiveport.listen((message) {
+      setState(() {
+        _percentage = message;
+      });
+    });
+    FlutterDownloader.registerCallback(downloadcallback);
+    super.initState();
+  }
+
+  static downloadcallback(id, status, progress) {
+    SendPort? sendPort = IsolateNameServer.lookupPortByName('DownloadingVideo');
+    sendPort!.send(progress);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,12 +123,21 @@ class _AddState extends State<Add> {
                     onChanged: (value) {
                       setState(() {
                         value = addlinkcontoller.text;
+                        url = addlinkcontoller.text;
                       });
                     },
                   ),
                 ),
                 ElevatedButton.icon(
-                  onPressed: addlinkcontoller.text.isNotEmpty ? () {} : null,
+                  onPressed: _downloadfile,
+                  //     onReceiveProgress: (receive, total) {
+                  //   var percentage = receive / total * 100;
+                  //   _percentage = percentage / 100;
+                  //   setState(() {
+                  //     downloadmessage =
+                  //         'Downloading ...${percentage.floor()} %';
+                  //   });
+                  // });
                   icon: Icon(
                     Icons.download,
                     color: Colors.white,
@@ -95,16 +146,27 @@ class _AddState extends State<Add> {
                     'Download',
                     style: TextStyle(color: Colors.white, fontSize: 15),
                   ),
-                  style:ButtonStyle(
-
+                  style: ButtonStyle(
                     fixedSize: MaterialStateProperty.all(Size(320, 40)),
-                    backgroundColor: MaterialStateProperty.resolveWith((states) {
-                    if(states.contains(MaterialState.disabled)){
-                      return Color(0xff1d6b43);
-                    }else{
-                      return Color(0xff50956b);
-                    }
-                  },),),
+                    backgroundColor: MaterialStateProperty.resolveWith(
+                      (states) {
+                        if (states.contains(MaterialState.disabled)) {
+                          return Color(0xff1d6b43);
+                        } else {
+                          return Color(0xff50956b);
+                        }
+                      },
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text('Downloading...${_percentage/100} %',style: TextStyle(color: Colors.white),),
+                Padding(
+                  padding: EdgeInsets.all(20),
+                  child: LinearProgressIndicator(
+                    color: Colors.white,
+                    value: _percentage.toDouble(),
+                  ),
                 ),
               ],
             ),
@@ -199,8 +261,7 @@ class _AddState extends State<Add> {
               ),
               SizedBox(height: 10),
               ListTile(
-                onTap:()=>_storage(
-                    filename: 'All'),
+                onTap: () => _storage(filename: 'All'),
                 leading: Icon(
                   Icons.phone_android_sharp,
                   size: 40,
@@ -239,21 +300,28 @@ class _AddState extends State<Add> {
       ),
     );
   }
+
   Future _storage({required String filename}) async {
     final file = await pickFile();
-    if (file == null) {return null;};
+    if (file == null) {
+      return null;
+    }
+    ;
     print('Path:${file.path}');
     OpenFile.open(file.path);
   }
-  Future<File?> pickFile()async{
+
+  Future<File?> pickFile() async {
     final result = await FilePicker.platform.pickFiles();
-    if(result==null){return null;}
+    if (result == null) {
+      return null;
+    }
     return File(result.files.first.path!);
   }
-  }
+}
 
-  Future<File?> downloadFile (String? name) async {
-    final appStorage = await getApplicationDocumentsDirectory();
-    final file = File('${appStorage.path}/$name');
-    return file;
+Future<File?> downloadFile(String? name) async {
+  final appStorage = await getApplicationDocumentsDirectory();
+  final file = File('${appStorage.path}/$name');
+  return file;
 }
