@@ -7,6 +7,7 @@ import 'package:play_it/Nehal/Me/Converter.dart';
 import 'package:play_it/Nehal/Me/History.dart';
 import 'package:play_it/Nehal/Me/MediaManage.dart';
 import 'package:play_it/Nehal/Me/Settings.dart';
+import 'package:play_it/Ridham/Flie_Transfer/File_transfer.dart';
 import 'package:play_it/Ridham/Game.dart';
 import 'package:play_it/Ridham/Help_Page/Bug_Page.dart';
 import 'package:play_it/Ridham/Help_Page/Help_Page.dart';
@@ -160,19 +161,24 @@ class _MyappState extends State<Myme> {
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Container(
-                                height: size.height * 0.05,
-                                width: size.width * 0.1,
-                                margin: EdgeInsets.only(right: 8),
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                  color: Colors.blue,
-                                  borderRadius: BorderRadius.circular(10),
+                              GestureDetector(
+                                child: Container(
+                                  height: size.height * 0.05,
+                                  width: size.width * 0.1,
+                                  margin: EdgeInsets.only(right: 8),
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    color: Colors.blue,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Image.asset(
+                                    'assets/me/transfer.png',
+                                    color: Colors.white,
+                                  ),
                                 ),
-                                child: Image.asset(
-                                  'assets/me/transfer.png',
-                                  color: Colors.white,
-                                ),
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => MyFlieTransfer()));
+                                },
                               ),
                               Text(
                                 'File Transfer',
