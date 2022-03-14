@@ -17,22 +17,30 @@ class Add extends StatefulWidget {
 
 class _AddState extends State<Add> {
   var addlinkcontoller = TextEditingController();
-  var url;
-  String down = 'Downloading';
+  var url='';
+  double persentage = 0;
   ReceivePort _receiveport = ReceivePort();
 
   @override
   void initState() {
     IsolateNameServer.registerPortWithName(
         _receiveport.sendPort, 'DownloadingVideo');
-    _receiveport.listen((message) {});
+    _receiveport.listen((message) {
+      setState(() {
+        persentage=message;
+      });
+    });
     FlutterDownloader.registerCallback(downloadcallback);
     super.initState();
   }
-
-  static downloadcallback(id, status, progress) {
+  static downloadcallback(String id, DownloadTaskStatus status, int progress) {
     SendPort? sendPort = IsolateNameServer.lookupPortByName('DownloadingVideo');
-    sendPort!.send(progress);
+    sendPort!.send([id, status, progress]);
+  }
+  @override
+  void dispose() {
+    IsolateNameServer.removePortNameMapping('DownloadingVideo');
+    super.dispose();
   }
 
   @override
@@ -113,7 +121,7 @@ class _AddState extends State<Add> {
                     if (status.isGranted) {
                       final basestorage = await getExternalStorageDirectory();
                       final id = await FlutterDownloader.enqueue(
-                        url:"${url}",
+                        url:"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
                         savedDir: basestorage!.path,
                         fileName: 'Download',
                         showNotification: true,
@@ -143,6 +151,10 @@ class _AddState extends State<Add> {
                       },
                     ),
                   ),
+                ),
+                Text(
+                  "Downloading..${persentage/100} %",
+                  style: TextStyle(color: Colors.white),
                 ),
               ],
             ),
