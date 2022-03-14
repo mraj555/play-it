@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:play_it/Video/main_page.dart';
-import 'package:play_it/splash_screen.dart';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await FlutterDownloader.initialize();
 
-import 'Video/undefined.dart';
-
-
-void main() {
   runApp(
     MaterialApp(
       theme: ThemeData(
