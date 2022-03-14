@@ -4,7 +4,6 @@ import 'package:play_it/Video/main_page.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FlutterDownloader.initialize();
-
   runApp(
     MaterialApp(
       theme: ThemeData(

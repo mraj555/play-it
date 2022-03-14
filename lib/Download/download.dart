@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:disk_space/disk_space.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -9,14 +8,11 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pinput/pinput.dart';
 import 'package:play_it/Download/_Privacy.dart';
 import 'package:play_it/Download/_add.dart';
-
 import '../Nehal/Me/Downloadpage.dart';
 
 class Down extends StatefulWidget {
   var password;
-
   Down({this.password});
-
   @override
   _DownState createState() => _DownState();
 }

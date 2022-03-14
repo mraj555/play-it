@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:play_it/Download/_suggetionpage.dart';
 import 'package:play_it/Download/download.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -34,7 +35,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late CurvedAnimation _curvedAnimation;
   var _opacity = 1.0;
-  var onclick=false;
+  var onclick = false;
+  WebViewController? _webViewController;
+  var controller = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -65,7 +69,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -81,7 +84,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ),
           elevation: 0,
           title: GestureDetector(
-            onTap: _opensearch,
+            onTap: _openSearch,
             child: Container(
               alignment: Alignment.centerLeft,
               padding: EdgeInsets.only(left: 10),
@@ -117,7 +120,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         ),
         body: ListView(
           physics: NeverScrollableScrollPhysics(),
-          children:[
+          children: [
             Column(
               children: [
                 Container(
@@ -240,12 +243,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                           Navigator.pop(context);
                                         },
                                         child: Text('Cancel',
-                                            style: TextStyle(color: Colors.grey)),
+                                            style:
+                                                TextStyle(color: Colors.grey)),
                                       ),
                                       TextButton(
                                         onPressed: () {
                                           Navigator.pop(context);
-
                                         },
                                         child: Text(
                                           'Save',
@@ -272,7 +275,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 ),
                 AnimatedOpacity(
                   duration: Duration(seconds: 1),
-                   opacity: _opacity,
+                  opacity: _opacity,
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
@@ -282,13 +285,18 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     height: _width.value / 9.5,
                     width: _width.value,
                     child: TextButton.icon(
-                      onPressed: onclick==false?() {
-                        setState(() {
-                          _opacity = 1.0 - _opacity;
-                          onclick=true;
-                         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Suggest()));
-                        });
-                      }:null,
+                      onPressed: onclick == false
+                          ? () {
+                              setState(() {
+                                _opacity = 1.0 - _opacity;
+                                onclick = true;
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Suggest()));
+                              });
+                            }
+                          : null,
                       icon: ImageIcon(
                         AssetImage('assets/Icons/bulb.png'),
                         color: Colors.white,
@@ -310,7 +318,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     );
   }
 
-  _opensearch() {
+  _openSearch() {
     return Navigator.push(
       context,
       MaterialPageRoute(
@@ -336,6 +344,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         height: MediaQuery.of(context).size.height * 0.05,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextField(
+                          controller: controller,
                           autofocus: true,
                           style: TextStyle(color: Colors.white),
                           decoration: InputDecoration(
@@ -369,6 +378,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           cursorColor: Colors.green,
                           cursorHeight:
                               MediaQuery.of(context).size.height * 0.03,
+                          onSubmitted: (v){
+                          },
                         ),
                       ),
                     ],
