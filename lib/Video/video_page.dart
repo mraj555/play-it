@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:play_it/Video/video_player_screen.dart';
 import 'package:share_plus/share_plus.dart';
@@ -323,9 +324,7 @@ class _VideoPageState extends State<VideoPage> {
                                                             0
                                                         ? "${assets[index].videoDuration.inMinutes.remainder(60).toString().padLeft(2, '0')}:${assets[index].videoDuration.inSeconds.remainder(60).toString().padLeft(2, '0')}"
                                                         : '${assets[index].videoDuration.inHours.toString().padLeft(2, '0')}:${assets[index].videoDuration.inMinutes.remainder(60).toString().padLeft(2, '0')}:${assets[index].videoDuration.inSeconds.remainder(60).toString().padLeft(2, '0')}',
-                                                    assets[index]
-                                                        .modifiedDateTime
-                                                        .toString(),
+                                                    '${DateFormat('yyyy-MM-dd hh:mm:ss a').format(assets[index].modifiedDateTime)}',
                                                   ]);
                                                 }
                                                 if (ind == 10) {
@@ -422,6 +421,23 @@ class _VideoPageState extends State<VideoPage> {
                   ),
                 ).toList(),
               ),
+            ),
+            ButtonBar(
+              children: [
+                TextButton(
+                  style: TextButton.styleFrom(
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    padding: EdgeInsets.zero,
+                  ),
+                  onPressed: () => Navigator.pop(context),
+                  child: Text(
+                    'Close',
+                    style: GoogleFonts.inter(
+                      color: Color(0xff2bc877),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         );

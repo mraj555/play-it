@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:on_audio_query/on_audio_query.dart';
@@ -111,7 +113,7 @@ class _AudioPageState extends State<AudioPage> {
                   builder: (context) => ListView.builder(
                     itemCount: _name.length,
                     itemBuilder: (context, ind) => ListTile(
-                      onTap: () {
+                      onTap: () async {
                         if (ind == 0) {
                           Navigator.of(context).push(
                             MaterialPageRoute(
