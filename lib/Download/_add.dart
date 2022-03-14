@@ -92,6 +92,7 @@ class _AddState extends State<Add> {
                   ),
                   margin: EdgeInsets.all(size.width * 0.02),
                   child: TextField(
+                    maxLines: 3,
                     autofocus: true,
                     style: TextStyle(color: Colors.white),
                     cursorHeight: size.height * 0.03,
