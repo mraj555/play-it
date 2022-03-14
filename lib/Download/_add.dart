@@ -17,8 +17,7 @@ class Add extends StatefulWidget {
 
 class _AddState extends State<Add> {
   var addlinkcontoller = TextEditingController();
-  var url='';
-  double persentage = 0;
+  String url = '';
   ReceivePort _receiveport = ReceivePort();
 
   @override
@@ -26,17 +25,16 @@ class _AddState extends State<Add> {
     IsolateNameServer.registerPortWithName(
         _receiveport.sendPort, 'DownloadingVideo');
     _receiveport.listen((message) {
-      setState(() {
-        persentage=message;
-      });
     });
     FlutterDownloader.registerCallback(downloadcallback);
     super.initState();
   }
-  static downloadcallback(String id, DownloadTaskStatus status, int progress) {
+
+  static downloadcallback(id, status, progress) {
     SendPort? sendPort = IsolateNameServer.lookupPortByName('DownloadingVideo');
     sendPort!.send([id, status, progress]);
   }
+
   @override
   void dispose() {
     IsolateNameServer.removePortNameMapping('DownloadingVideo');
@@ -65,7 +63,7 @@ class _AddState extends State<Add> {
           ),
           actions: [
             GestureDetector(
-                onTap: () => _btfile(),
+                onTap: () => _btFile(),
                 child: Image.asset(
                   'assets/Icons/pdf.png',
                   height: size.height * 0.1,
@@ -109,7 +107,6 @@ class _AddState extends State<Add> {
                     cursorColor: Colors.green,
                     onChanged: (value) {
                       setState(() {
-                        value = addlinkcontoller.text;
                         url = addlinkcontoller.text;
                       });
                     },
@@ -119,10 +116,11 @@ class _AddState extends State<Add> {
                   onPressed: () async {
                     final status = await Permission.storage.request();
                     if (status.isGranted) {
-                      final basestorage = await getExternalStorageDirectory();
+                      final baseStorage = await getExternalStorageDirectory();
                       final id = await FlutterDownloader.enqueue(
-                        url:"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-                        savedDir: basestorage!.path,
+                        url: url,
+                        // "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+                        savedDir: baseStorage!.path,
                         fileName: 'Download',
                         showNotification: true,
                         openFileFromNotification: true,
@@ -153,7 +151,7 @@ class _AddState extends State<Add> {
                   ),
                 ),
                 Text(
-                  "Downloading..${persentage/100} %",
+                  "Downloading.. ${100} %",
                   style: TextStyle(color: Colors.white),
                 ),
               ],
@@ -223,7 +221,7 @@ class _AddState extends State<Add> {
     );
   }
 
-  _btfile() {
+  _btFile() {
     Navigator.push(
       context,
       MaterialPageRoute(
