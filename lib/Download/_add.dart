@@ -3,10 +3,8 @@ import 'dart:isolate';
 import 'dart:ui';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class Add extends StatefulWidget {
   const Add({Key? key}) : super(key: key);
@@ -17,30 +15,14 @@ class Add extends StatefulWidget {
 
 class _AddState extends State<Add> {
   var addlinkcontoller = TextEditingController();
-  String url = '';
-  ReceivePort _receiveport = ReceivePort();
-
+  String url =
+      'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
+  ReceivePort _receivePort = ReceivePort();
   @override
   void initState() {
-    IsolateNameServer.registerPortWithName(
-        _receiveport.sendPort, 'DownloadingVideo');
-    _receiveport.listen((message) {
-    });
-    FlutterDownloader.registerCallback(downloadcallback);
+    IsolateNameServer.registerPortWithName(_receivePort.sendPort, 'name');
     super.initState();
   }
-
-  static downloadcallback(id, status, progress) {
-    SendPort? sendPort = IsolateNameServer.lookupPortByName('DownloadingVideo');
-    sendPort!.send([id, status, progress]);
-  }
-
-  @override
-  void dispose() {
-    IsolateNameServer.removePortNameMapping('DownloadingVideo');
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -108,28 +90,13 @@ class _AddState extends State<Add> {
                     cursorColor: Colors.green,
                     onChanged: (value) {
                       setState(() {
-                        url = addlinkcontoller.text;
+                        // url = addlinkcontoller.text;
                       });
                     },
                   ),
                 ),
                 ElevatedButton.icon(
-                  onPressed: () async {
-                    final status = await Permission.storage.request();
-                    if (status.isGranted) {
-                      final baseStorage = await getExternalStorageDirectory();
-                      final id = await FlutterDownloader.enqueue(
-                        url: url,
-                        // "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-                        savedDir: baseStorage!.path,
-                        fileName: 'Download',
-                        showNotification: true,
-                        openFileFromNotification: true,
-                      );
-                    } else {
-                      print('No Permission');
-                    }
-                  },
+                  onPressed: () {},
                   icon: Icon(
                     Icons.download,
                     color: Colors.white,

@@ -55,8 +55,8 @@ dependencies:
   flutter_downloader: ^1.7.2
   qr_flutter: ^4.0.0
   qr_code_scanner: ^0.7.0
-
-
+  dio:  any
+  shared_preferences: ^2.0.13
 dev_dependencies:
   flutter_test:
     sdk: flutter
