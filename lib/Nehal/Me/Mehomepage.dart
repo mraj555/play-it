@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:play_it/Download/_Privacy.dart';
+import 'package:play_it/Download/_newpassword.dart';
 import 'package:play_it/Download/download.dart';
 import 'package:play_it/Nehal/Me/About%20us.dart';
 import 'package:play_it/Nehal/Me/Converter.dart';
@@ -12,8 +12,6 @@ import 'package:play_it/Ridham/Game.dart';
 import 'package:play_it/Ridham/Help_Page/Bug_Page.dart';
 import 'package:play_it/Ridham/Help_Page/Help_Page.dart';
 import 'package:play_it/Ridham/VIP_Page.dart';
-import 'package:play_it/Video/main_page.dart';
-
 import '../../Ridham/RateUs.dart';
 
 class Myme extends StatefulWidget {
@@ -44,7 +42,7 @@ class _MyappState extends State<Myme> {
   var _pagelist = [
     Down(),
     Converter(),
-    Privacy(),
+    Newpassword(),
     History(),
     Media(),
   ];

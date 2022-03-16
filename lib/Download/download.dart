@@ -8,6 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pinput/pinput.dart';
 import 'package:play_it/Download/_Privacy.dart';
 import 'package:play_it/Download/_add.dart';
+import 'package:play_it/Download/_newpassword.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Nehal/Me/Downloadpage.dart';
 
@@ -22,10 +23,6 @@ class Down extends StatefulWidget {
 
 class _DownState extends State<Down> {
   var groupValue = 0;
-  var newpasswordcontroller = TextEditingController();
-  var newpassword = '';
-  var error = 'Enter The PIN';
-  var errorcolor = Colors.green;
   late SharedPreferences _preferences;
   double _diskSpace = 0;
   double _disktotal = 0;
@@ -45,12 +42,6 @@ class _DownState extends State<Down> {
   }
 
   @override
-  void dispose() {
-    newpasswordcontroller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
@@ -65,7 +56,8 @@ class _DownState extends State<Down> {
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => Privacy()));
                 } else {
-                  _enterpassword();
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => Newpassword(oldpassword: widget.password)));
                 }
               },
               icon: ImageIcon(
@@ -176,98 +168,6 @@ class _DownState extends State<Down> {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  _enterpassword() {
-    return Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => Scaffold(
-          appBar: AppBar(
-            title: Text('Privacy Folder'),
-            backgroundColor: Colors.black,
-          ),
-          body: ListView(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.width * 0.01),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      '${error}',
-                      style: TextStyle(
-                          color: errorcolor,
-                          fontSize: MediaQuery.of(context).size.width * 0.04),
-                    ),
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.2,
-                      child: Pinput(
-                        length: 4,
-                        controller: newpasswordcontroller,
-                        defaultPinTheme: PinTheme(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                          height: MediaQuery.of(context).size.height * 0.08,
-                          textStyle: TextStyle(
-                              fontSize:
-                                  MediaQuery.of(context).size.height * 0.03,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600),
-                          decoration: BoxDecoration(
-                            color: Color.fromRGBO(243, 239, 243, 0.4),
-                            border: Border.all(
-                                color: Color.fromRGBO(234, 239, 243, 1)),
-                            borderRadius: BorderRadius.circular(
-                                MediaQuery.of(context).size.width * 0.03),
-                          ),
-                        ),
-                        obscureText: true,
-                        showCursor: true,
-                        autofocus: true,
-                        closeKeyboardWhenCompleted: false,
-                        onSubmitted: (value) {
-                          setState(() {
-                            print('${widget.password}');
-                            newpassword = newpasswordcontroller.text;
-                            print('${newpassword}');
-                            _preferences.setString('pass', newpassword);
-                            if (widget.password == newpassword) {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Privacy(),
-                                ),
-                              );
-                            }
-                          });
-                          newpasswordcontroller.clear();
-                        },
-                        onChanged: (value) {
-                          setState(() {
-                            value = newpassword;
-                            if (newpassword!=widget.password) {
-                              error = 'Password doesn\'t Not Match !!';
-                              errorcolor = Colors.red;
-                            } else {
-                              error = 'Enter The PIN';
-                              errorcolor = Colors.green;
-                            }
-                          });
-                        },
-                      ),
-                    ),
-                    Text("PIN ${widget.password}",
-                        style: TextStyle(color: Colors.white)),
-                  ],
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );

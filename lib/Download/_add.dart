@@ -118,10 +118,6 @@ class _AddState extends State<Add> {
                     ),
                   ),
                 ),
-                Text(
-                  "Downloading.. ${100} %",
-                  style: TextStyle(color: Colors.white),
-                ),
               ],
             ),
           ],

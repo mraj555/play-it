@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:play_it/Download/homepage.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Suggest extends StatefulWidget {
   const Suggest({Key? key}) : super(key: key);
+
   @override
   State<Suggest> createState() => _SuggestState();
 }
+
 class _SuggestState extends State<Suggest> {
   final PageController controller = PageController();
   var _image = [
@@ -14,7 +17,10 @@ class _SuggestState extends State<Suggest> {
     'assets/images/page3.jpg',
     'assets/images/page4.jpg',
   ];
-  var text='1.Enter the Website';
+  var text = '1.Enter the Website';
+    // '2.Play A Video',
+    // '3.Tap Download Button',
+    // '4.Youtube Player'
   List skip = [
     'Next',
     'Got it',
@@ -32,18 +38,18 @@ class _SuggestState extends State<Suggest> {
           Container(
             height: 380,
             child: PageView(
-                controller: controller,
-                children: List.generate(
-                  _image.length,
-                  (index) => Container(
-                    margin: EdgeInsets.only(top: size.height * 0.03),
-                    height: size.height * 0.6,
-                    child: Image.asset(
-                      _image[index],
-                      fit: BoxFit.cover,
-                    ),
+              controller: controller,
+              children: List.generate(
+                _image.length,
+                (index) => Container(
+                  margin: EdgeInsets.only(top: size.height * 0.03),
+                  height: size.height * 0.6,
+                  child: Image.asset(
+                    _image[index],
+                    fit: BoxFit.cover,
                   ),
                 ),
+              ),
             ),
           ),
           Container(
@@ -60,25 +66,23 @@ class _SuggestState extends State<Suggest> {
           ),
           Text(
             'How to download video and audio ?',
-            style: TextStyle(
-                fontSize: size.width * 0.04, color: Colors.grey),
+            style: TextStyle(fontSize: size.width * 0.04, color: Colors.grey),
           ),
           SizedBox(height: size.height * 0.02),
-          Text(
-            '${text}',
-            style: TextStyle(
-                fontSize: size.width * 0.06, color: Colors.white),
+          Text(text,
+            style: TextStyle(color: Colors.white),
           ),
           Spacer(),
           ElevatedButton(
             onPressed: () {
               controller.nextPage(
-                      duration: Duration(seconds: 1),
-                      curve: Curves.fastLinearToSlowEaseIn);
+                  duration: Duration(seconds: 1),
+                  curve: Curves.fastLinearToSlowEaseIn);
             },
-            child: Text('Next',
-              style: TextStyle(
-                  color: Colors.white, fontSize: size.height * 0.025),
+            child: Text(
+              'Next',
+              style:
+                  TextStyle(color: Colors.white, fontSize: size.height * 0.025),
             ),
             style: ElevatedButton.styleFrom(
                 primary: Color(0xff2bc877),

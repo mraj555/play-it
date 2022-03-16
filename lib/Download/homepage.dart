@@ -30,14 +30,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     'TED',
     'LinkFly VPN'
   ];
-
   late Animation<double> _width;
   late AnimationController _controller;
   late CurvedAnimation _curvedAnimation;
   var _opacity = 1.0;
   var onclick = false;
-  WebViewController? _webViewController;
-  var controller = TextEditingController();
 
   @override
   void initState() {
@@ -344,7 +341,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         height: MediaQuery.of(context).size.height * 0.05,
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: TextField(
-                          controller: controller,
                           autofocus: true,
                           style: TextStyle(color: Colors.white),
                           decoration: InputDecoration(
@@ -378,8 +374,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           cursorColor: Colors.green,
                           cursorHeight:
                               MediaQuery.of(context).size.height * 0.03,
-                          onSubmitted: (v){
-                          },
                         ),
                       ),
                     ],

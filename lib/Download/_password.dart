@@ -64,7 +64,7 @@ class _PasswordState extends State<Password> {
                     decoration: BoxDecoration(
                       color: Color.fromRGBO(243, 239, 243, 0.4),
                       border:
-                          Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
+                          Border.all(color: Colors.green,width: 2),
                       borderRadius: BorderRadius.circular(
                           MediaQuery.of(context).size.width * 0.03),
                     ),
@@ -120,11 +120,12 @@ class _PasswordState extends State<Password> {
                                             _preferences.setString(
                                                 'pass', password);
                                             Navigator.pushReplacement(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) => Down(
-                                                        password: password)));
-                                            //contoller.clear();
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    Down(password: password),
+                                              ),
+                                            );
                                           },
                                           child: Text(
                                             'Sure',
