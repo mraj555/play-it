@@ -65,6 +65,7 @@ class _AddState extends State<Add> {
             Column(
               children: [
                 Container(
+                  padding: EdgeInsets.only(top: 10),
                   alignment: Alignment.topLeft,
                   height: size.height * 0.2,
                   width: size.width * 0.9,
@@ -96,7 +97,7 @@ class _AddState extends State<Add> {
                   ),
                 ),
                 ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: addlinkcontoller.text.isNotEmpty? (){}:null,
                   icon: Icon(
                     Icons.download,
                     color: Colors.white,
@@ -112,7 +113,7 @@ class _AddState extends State<Add> {
                         if (states.contains(MaterialState.disabled)) {
                           return Color(0xff1d6b43);
                         } else {
-                          return Color(0xff50956b);
+                          return Color(0xff2bc877);
                         }
                       },
                     ),

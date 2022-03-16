@@ -9,8 +9,20 @@ class Media extends StatefulWidget {
 }
 
 class _MediaState extends State<Media> {
+  List _icon = [
+    Icons.videocam_outlined,
+    Icons.watch_later_outlined,
+    Icons.download,
+  ];
+  List _iconname = [
+    'Watched videos',
+    'Largest file',
+    'Download',
+  ];
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Color(0xff0E0E0E),
       appBar: AppBar(
@@ -52,138 +64,98 @@ class _MediaState extends State<Media> {
           ),
           Row(
             children: [
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(3),
-                    color: Colors.grey.withOpacity(0.6),
+              Container(
+                margin: EdgeInsets.only(left: size.width * 0.02),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(3),
+                  color: Colors.grey.withOpacity(0.6),
+                ),
+                height: size.height * 0.11,
+                width: size.height * 0.25,
+                child: ListTile(
+                  leading: Padding(
+                    padding: EdgeInsets.only(top: 5, bottom: 5),
+                    child: Image.network(
+                      'https://archive.org/download/mx-player-icon/mx-player-icon.png',
+                      height: size.height * 0.2,
+                      width: size.width * 0.12,
+                    ),
                   ),
-                  height: 70,
-                  width: 175,
-                  child: ListTile(
-                    leading: Padding(
-                      padding: EdgeInsets.only(top: 5, bottom: 5),
-                      child: Image.network(
-                        'https://archive.org/download/mx-player-icon/mx-player-icon.png',
-                        height: 40,
-                        width: 40,
-                      ),
+                  title: Text(
+                    'VIDEO',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  subtitle: Text(
+                    '14.12GB',
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.7),
                     ),
-                    title: Text(
-                      'VIDEO',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    subtitle: Text(
-                      '14.12GB',
-                      style: TextStyle(
-                        color: Colors.white.withOpacity(0.7),
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.arrow_forward_ios,
-                      size: 15,
-                      color: Colors.white.withOpacity(0.5),
-                    ),
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    size: size.height * 0.022,
+                    color: Colors.white.withOpacity(0.5),
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(3),
-                    color: Colors.grey.withOpacity(0.6),
+              Container(
+                margin: EdgeInsets.only(left: size.width * 0.03),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(3),
+                  color: Colors.grey.withOpacity(0.6),
+                ),
+                height: size.height * 0.11,
+                width: size.height * 0.25,
+                child: ListTile(
+                  leading: Padding(
+                    padding: EdgeInsets.only(top: 5, bottom: 5),
+                    child: Image.network(
+                      'https://cdn2.iconfinder.com/data/icons/mix-color-5/100/Mix_color_5__music-08-512.png',
+                      height: size.height * 0.2,
+                      width: size.width * 0.11,
+                    ),
                   ),
-                  height: 70,
-                  width: 175,
-                  child: ListTile(
-                    leading: Padding(
-                      padding: EdgeInsets.only(top: 5, bottom: 5),
-                      child: Image.network(
-                        'https://cdn2.iconfinder.com/data/icons/mix-color-5/100/Mix_color_5__music-08-512.png',
-                        height: 40,
-                        width: 40,
-                      ),
+                  title: Text(
+                    'MUSIC',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  subtitle: Text(
+                    '6.35GB',
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.7),
                     ),
-                    title: Text(
-                      'MUSIC',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    subtitle: Text(
-                      '6.35GB',
-                      style: TextStyle(
-                        color: Colors.white.withOpacity(0.7),
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.arrow_forward_ios,
-                      size: 15,
-                      color: Colors.white.withOpacity(0.5),
-                    ),
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    size: size.height * 0.022,
+                    color: Colors.white.withOpacity(0.5),
                   ),
                 ),
               ),
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Container(
-                child: Column(
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.videocam,
-                        color: Colors.red,
-                        size: 40,
+          Container(
+            height: size.height * 0.1,
+            child: ListView.builder(
+              itemCount: _icon.length,
+              scrollDirection: Axis.horizontal,
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) => Row(
+                children: [
+                  Column(
+                    children: [
+                      Icon(
+                        _icon[index],
+                        size: size.height * 0.05,
+                        color: index==0?Colors.orange:index==1?Colors.green:Colors.deepPurple,
                       ),
-                    ),
-                    Text(
-                      'Watched videos',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
+                      SizedBox(height: size.height * 0.02),
+                      Text(_iconname[index],style: TextStyle(color: Colors.white),),
+                    ],
+                  ),
+                ],
               ),
-              Container(
-                child: Column(
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.watch_later_outlined,
-                        color: Colors.green,
-                        size: 40,
-                      ),
-                    ),
-                    Text(
-                      '   Largest file',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                child: Column(
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.download,
-                        color: Colors.deepPurple,
-                        size: 40,
-                      ),
-                    ),
-                    Text(
-                      '  Download',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+            ),
           ),
           ListTile(
               title: Text(

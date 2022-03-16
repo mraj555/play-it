@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:pinput/pinput.dart';
 import 'package:play_it/Download/_Privacy.dart';
 import 'package:play_it/Download/_add.dart';
 import 'package:play_it/Download/_newpassword.dart';
@@ -144,7 +143,7 @@ class _DownState extends State<Down> {
                             onChanged: (value) {},
                           ),
                           data: SliderThemeData(
-                            trackHeight: 2,
+                            trackHeight: 1.5,
                             thumbShape: SliderComponentShape.noThumb,
                             overlayShape: SliderComponentShape.noThumb,
                           ),
