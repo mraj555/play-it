@@ -13,7 +13,9 @@ import '../Nehal/Me/Downloadpage.dart';
 
 class Down extends StatefulWidget {
   var password;
+
   Down({this.password});
+
   @override
   _DownState createState() => _DownState();
 }
@@ -50,9 +52,7 @@ class _DownState extends State<Down> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -74,9 +74,8 @@ class _DownState extends State<Down> {
               ),
             ),
             IconButton(
-              onPressed: () =>
-                  Navigator.pushReplacement(
-                      context, MaterialPageRoute(builder: (context) => Add())),
+              onPressed: () => Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => Add())),
               icon: Icon(
                 Icons.add,
                 color: Colors.white,
@@ -162,10 +161,9 @@ class _DownState extends State<Down> {
                           height: size.height * 0.01,
                         ),
                         Text(
-                            'Used ${_diskSpace.toStringAsFixed(
-                                2)}GB/${_disktotal.toStringAsFixed(2)}GB',
-                            style: TextStyle(color: Colors.white,
-                                fontSize: 11)),
+                            'Used ${_diskSpace.toStringAsFixed(2)}GB/${_disktotal.toStringAsFixed(2)}GB',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 11)),
                       ],
                     ),
                     Spacer(),
@@ -187,105 +185,90 @@ class _DownState extends State<Down> {
     return Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) =>
-            Scaffold(
-              appBar: AppBar(
-                title: Text('Privacy Folder'),
-                backgroundColor: Colors.black,
-              ),
-              body: ListView(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                        top: MediaQuery
-                            .of(context)
-                            .size
-                            .width * 0.01),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          '${error}',
-                          style: TextStyle(
-                              color: errorcolor,
-                              fontSize: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width * 0.04),
-                        ),
-                        Container(
-                          height: MediaQuery
-                              .of(context)
-                              .size
-                              .height * 0.2,
-                          child: Pinput(
-                            length: 4,
-                            controller: newpasswordcontroller,
-                            defaultPinTheme: PinTheme(
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width * 0.15,
-                              height: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .height * 0.08,
-                              textStyle: TextStyle(
-                                  fontSize:
-                                  MediaQuery
-                                      .of(context)
-                                      .size
-                                      .height * 0.03,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600),
-                              decoration: BoxDecoration(
-                                color: Color.fromRGBO(243, 239, 243, 0.4),
-                                border: Border.all(
-                                    color: Color.fromRGBO(234, 239, 243, 1)),
-                                borderRadius: BorderRadius.circular(
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width * 0.03),
-                              ),
-                            ),
-                            obscureText: true,
-                            showCursor: true,
-                            autofocus: true,
-                            closeKeyboardWhenCompleted: false,
-                            onSubmitted: (value) {
-                              setState(() {
-                                print('${widget.password}');
-                                newpassword = newpasswordcontroller.text;
-                                print('${newpassword}');
-                                _preferences.setString('pass', newpassword);
-                                if (widget.password == newpassword) {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => Privacy(),
-                                    ),
-                                  );
-                                }
-                              });
-                              newpasswordcontroller.clear();
-                            },
-                            onChanged: (value) {
-                              setState(() {
-                                value = newpassword;
-                                error = 'Password doesn\'t Not Match !!';
-                                errorcolor = Colors.red;
-                              });
-                            },
+        builder: (context) => Scaffold(
+          appBar: AppBar(
+            title: Text('Privacy Folder'),
+            backgroundColor: Colors.black,
+          ),
+          body: ListView(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.width * 0.01),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      '${error}',
+                      style: TextStyle(
+                          color: errorcolor,
+                          fontSize: MediaQuery.of(context).size.width * 0.04),
+                    ),
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.2,
+                      child: Pinput(
+                        length: 4,
+                        controller: newpasswordcontroller,
+                        defaultPinTheme: PinTheme(
+                          width: MediaQuery.of(context).size.width * 0.15,
+                          height: MediaQuery.of(context).size.height * 0.08,
+                          textStyle: TextStyle(
+                              fontSize:
+                                  MediaQuery.of(context).size.height * 0.03,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600),
+                          decoration: BoxDecoration(
+                            color: Color.fromRGBO(243, 239, 243, 0.4),
+                            border: Border.all(
+                                color: Color.fromRGBO(234, 239, 243, 1)),
+                            borderRadius: BorderRadius.circular(
+                                MediaQuery.of(context).size.width * 0.03),
                           ),
                         ),
-                      ],
+                        obscureText: true,
+                        showCursor: true,
+                        autofocus: true,
+                        closeKeyboardWhenCompleted: false,
+                        onSubmitted: (value) {
+                          setState(() {
+                            print('${widget.password}');
+                            newpassword = newpasswordcontroller.text;
+                            print('${newpassword}');
+                            _preferences.setString('pass', newpassword);
+                            if (widget.password == newpassword) {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Privacy(),
+                                ),
+                              );
+                            }
+                          });
+                          newpasswordcontroller.clear();
+                        },
+                        onChanged: (value) {
+                          setState(() {
+                            value = newpassword;
+                            if (newpassword!=widget.password) {
+                              error = 'Password doesn\'t Not Match !!';
+                              errorcolor = Colors.red;
+                            } else {
+                              error = 'Enter The PIN';
+                              errorcolor = Colors.green;
+                            }
+                          });
+                        },
+                      ),
                     ),
-                  ),
-                ],
+                    Text("PIN ${widget.password}",
+                        style: TextStyle(color: Colors.white)),
+                  ],
+                ),
               ),
-            ),
+            ],
+          ),
+        ),
       ),
     );
   }
