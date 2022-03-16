@@ -19,11 +19,6 @@ class _PrivacyState extends State<Privacy> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        // leading: IconButton(
-        //   icon: Icon(Icons.arrow_back, color: Colors.white),
-        //   onPressed: () => Navigator.pushAndRemoveUntil(
-        //       context, MaterialPageRoute(builder: (context) => Down()),(route) => true),
-        // ),
         title: Text('Privacy Folder'),
         actions: [
           IconButton(
@@ -135,8 +130,12 @@ class _PrivacyState extends State<Privacy> {
             enabled: true,
             onSelected: (value) {
               if (value == 0) {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Password()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Password(),
+                  ),
+                );
               }
             },
             itemBuilder: (context) => [
@@ -149,7 +148,7 @@ class _PrivacyState extends State<Privacy> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: () {},
         child: Icon(
           Icons.add,
           color: Colors.white,
@@ -159,5 +158,4 @@ class _PrivacyState extends State<Privacy> {
       ),
     );
   }
-
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:play_it/Download/_Privacy.dart';
+import 'package:play_it/Download/_newpassword.dart';
 import 'package:play_it/Download/download.dart';
 import 'package:play_it/Nehal/Me/About%20us.dart';
 import 'package:play_it/Nehal/Me/Converter.dart';
@@ -12,8 +12,6 @@ import 'package:play_it/Ridham/Game.dart';
 import 'package:play_it/Ridham/Help_Page/Bug_Page.dart';
 import 'package:play_it/Ridham/Help_Page/Help_Page.dart';
 import 'package:play_it/Ridham/VIP_Page.dart';
-import 'package:play_it/Video/main_page.dart';
-
 import '../../Ridham/RateUs.dart';
 
 class Myme extends StatefulWidget {
@@ -24,7 +22,6 @@ class Myme extends StatefulWidget {
 }
 
 class _MyappState extends State<Myme> {
-
   var _icons = [
     Icon(Icons.download_outlined),
     Icon(Icons.headset_mic_outlined),
@@ -44,12 +41,10 @@ class _MyappState extends State<Myme> {
   var _pagelist = [
     Down(),
     Converter(),
-    Privacy(),
+    Newpassword(),
     History(),
     Media(),
   ];
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -84,42 +79,53 @@ class _MyappState extends State<Myme> {
                           top: Radius.circular(10),
                         ),
                         child: Stack(
-                            children: [
-                              Image.asset("assets/me/AA2.jpg"),
-                              GestureDetector(
-                                onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Bugpage()));
-                                },
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      height: 80,
-                                      width: 200,
-                                      color: Colors.transparent,
-                                      child: Align(
-                                        alignment: Alignment.topLeft,
-                                      ),
+                          children: [
+                            Image.asset("assets/me/AA2.jpg"),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Bugpage(),
+                                  ),
+                                );
+                              },
+                              child: Row(
+                                children: [
+                                  Container(
+                                    height: 80,
+                                    width: 200,
+                                    color: Colors.transparent,
+                                    child: Align(
+                                      alignment: Alignment.topLeft,
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 10),
-                                      child: InkWell(
-                                        onTap: (){
-                                          Navigator.push(context, MaterialPageRoute(builder: (context) => Gamepage()));
-                                        },
-                                        child: Container(
-                                          height: 80,
-                                          width: 120,
-                                          color: Colors.transparent,
-                                          child: Align(
-                                            alignment: Alignment.topRight,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => Gamepage(),
                                           ),
+                                        );
+                                      },
+                                      child: Container(
+                                        height: 80,
+                                        width: 120,
+                                        color: Colors.transparent,
+                                        child: Align(
+                                          alignment: Alignment.topRight,
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            ],),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     onTap: () {},
@@ -136,8 +142,12 @@ class _MyappState extends State<Myme> {
                       ),
                     ),
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Vip_Page()));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Vip_Page(),
+                        ),
+                      );
                     },
                   ),
                   Padding(
@@ -163,7 +173,7 @@ class _MyappState extends State<Myme> {
                             children: [
                               GestureDetector(
                                 child: Container(
-                                  height: size.height * 0.05,
+                                  height: size.height * 0.06,
                                   width: size.width * 0.1,
                                   margin: EdgeInsets.only(right: 8),
                                   alignment: Alignment.center,
@@ -174,10 +184,16 @@ class _MyappState extends State<Myme> {
                                   child: Image.asset(
                                     'assets/me/transfer.png',
                                     color: Colors.white,
+                                    filterQuality: FilterQuality.high,
                                   ),
                                 ),
-                                onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => MyFlieTransfer()));
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => MyFlieTransfer(),
+                                    ),
+                                  );
                                 },
                               ),
                               Text(
@@ -237,45 +253,41 @@ class _MyappState extends State<Myme> {
                         (index) {
                           return Material(
                             color: Colors.transparent,
-                            child: InkWell(
-                              onTap: () {},
-                              splashFactory: InkRipple.splashFactory,
-                              splashColor: Colors.grey.withOpacity(0.3),
-                              child: Container(
-                                height: size.width * 0.25,
-                                width: size.width * 0.33,
-                                alignment: Alignment.center,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    GestureDetector(
-                                      child: IconTheme(
-                                        child: _icons[index],
-                                        data: IconThemeData(
-                                          color: Colors.white.withOpacity(0.9),
-                                          size: size.width * 0.08,
+                            child: Container(
+                              height: size.width * 0.25,
+                              width: size.width * 0.33,
+                              alignment: Alignment.center,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  GestureDetector(
+                                    child: IconTheme(
+                                      child: _icons[index],
+                                      data: IconThemeData(
+                                        color: Colors.white.withOpacity(0.9),
+                                        size: size.width * 0.08,
+                                      ),
+                                    ),
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                _pagelist[index],
                                         ),
-                                      ),
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  _pagelist[index]),
-                                        );
-                                      },
+                                      );
+                                    },
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    _names[index],
+                                    style: GoogleFonts.inter(
+                                      color: Colors.white,
                                     ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    Text(
-                                      _names[index],
-                                      style: GoogleFonts.inter(
-                                        color: Colors.white,
-                                      ),
-                                    )
-                                  ],
-                                ),
+                                  )
+                                ],
                               ),
                             ),
                           );
@@ -321,8 +333,8 @@ class _MyappState extends State<Myme> {
                 child: Column(children: [
                   GestureDetector(
                     child: ListTile(
-                      leading: Icon(
-                        Icons.settings,
+                      leading: ImageIcon(
+                        AssetImage('assets/Icons/setting.png'),
                         color: Colors.white,
                       ),
                       title: Text(
@@ -332,9 +344,11 @@ class _MyappState extends State<Myme> {
                     ),
                     onTap: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Mysettings()));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Mysettings(),
+                        ),
+                      );
                     },
                   ),
                   Divider(
@@ -346,8 +360,12 @@ class _MyappState extends State<Myme> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Help_Page()));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Help_Page(),
+                        ),
+                      );
                     },
                     child: ListTile(
                       leading: Icon(
@@ -394,8 +412,12 @@ class _MyappState extends State<Myme> {
                       color: Colors.white,
                     ),
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Aboutpage()));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Aboutpage(),
+                        ),
+                      );
                     },
                     title: Text(
                       "About",
