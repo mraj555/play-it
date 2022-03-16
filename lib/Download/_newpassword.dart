@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '_Privacy.dart';
 
 class Newpassword extends StatefulWidget {
   var oldpassword;
-
   Newpassword({this.oldpassword});
 
   @override
@@ -78,7 +76,7 @@ class _NewpasswordState extends State<Newpassword> {
                           color: Color.fromRGBO(243, 239, 243, 0.4),
                           border: Border.all(
                               width: 2,
-                              color:Colors.green),
+                              color:errorcolor),
                           borderRadius: BorderRadius.circular(
                               MediaQuery.of(context).size.width * 0.03),
                         ),
