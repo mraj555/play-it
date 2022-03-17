@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:play_it/Download/_password.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Privacy extends StatefulWidget {
   const Privacy({Key? key}) : super(key: key);
@@ -10,6 +11,21 @@ class Privacy extends StatefulWidget {
 
 class _PrivacyState extends State<Privacy> {
   var groupValue = 0;
+  late SharedPreferences _preferences;
+  var password;
+
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
+  getData() async {
+    _preferences = await SharedPreferences.getInstance();
+    setState(() {
+      password = _preferences.getString('pass');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +141,7 @@ class _PrivacyState extends State<Privacy> {
             ),
           ),
           PopupMenuButton(
-            enabled: true,
+            color: Colors.grey[900],
             onSelected: (value) {
               if (value == 0) {
                 Navigator.push(
@@ -139,7 +155,15 @@ class _PrivacyState extends State<Privacy> {
             itemBuilder: (context) => [
               PopupMenuItem(
                 value: 0,
-                child: Text('Set Password'),
+                child: password == null
+                    ? Text(
+                        'Set Password',
+                        style: TextStyle(color: Colors.white),
+                      )
+                    : Text(
+                        'Change Password',
+                        style: TextStyle(color: Colors.white),
+                      ),
               ),
             ],
           )

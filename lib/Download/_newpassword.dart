@@ -54,7 +54,7 @@ class _NewpasswordState extends State<Newpassword> {
                       fontWeight: FontWeight.w600),
                   decoration: BoxDecoration(
                     color: Color.fromRGBO(243, 239, 243, 0.4),
-                    border: Border.all(color: Colors.green, width: 2),
+                    border: Border.all(color:_color, width: 2),
                     borderRadius: BorderRadius.circular(
                         MediaQuery.of(context).size.width * 0.03),
                   ),
