@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'download.dart';
 
 class Password extends StatefulWidget {
@@ -14,18 +13,13 @@ class Password extends StatefulWidget {
 class _PasswordState extends State<Password> {
   var contoller = TextEditingController();
   var addlinkcontoller = TextEditingController();
-  var password = '';
+  String password = '';
   late SharedPreferences _preferences;
 
-  @override
-  void initState() {
-    super.initState();
-    getdata();
-  }
-
-  getdata() async {
+  setdata() async {
     _preferences = await SharedPreferences.getInstance();
-    _preferences.getString('pass');
+    _preferences.setString('pass', password);
+    return _preferences;
   }
 
   @override
@@ -63,8 +57,7 @@ class _PasswordState extends State<Password> {
                         fontWeight: FontWeight.w600),
                     decoration: BoxDecoration(
                       color: Color.fromRGBO(243, 239, 243, 0.4),
-                      border:
-                          Border.all(color: Colors.green,width: 2),
+                      border: Border.all(color: Colors.green, width: 2),
                       borderRadius: BorderRadius.circular(
                           MediaQuery.of(context).size.width * 0.03),
                     ),
@@ -74,9 +67,6 @@ class _PasswordState extends State<Password> {
                   autofocus: true,
                   closeKeyboardWhenCompleted: false,
                   onSubmitted: (value) {
-                    setState(() {
-                      password = contoller.text;
-                    });
                     contoller.text.isNotEmpty
                         ? showDialog(
                             context: context,
@@ -115,15 +105,13 @@ class _PasswordState extends State<Password> {
                                       children: [
                                         TextButton(
                                           onPressed: () {
+                                            print(password);
+                                            setdata();
                                             Navigator.pop(context);
-                                            var password = contoller.text;
-                                            _preferences.setString(
-                                                'pass', password);
                                             Navigator.pushReplacement(
                                               context,
                                               MaterialPageRoute(
-                                                builder: (context) =>
-                                                    Down(password: password),
+                                                builder: (context) => Down(),
                                               ),
                                             );
                                           },
@@ -138,7 +126,7 @@ class _PasswordState extends State<Password> {
                                           ),
                                         )
                                       ],
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -147,9 +135,8 @@ class _PasswordState extends State<Password> {
                         : null;
                   },
                   onChanged: (value) {
-                    setState(() {
                       value = password;
-                    });
+                      password = contoller.text;
                   },
                 ),
               ),

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:play_it/Download/_password.dart';
-import 'package:play_it/Download/download.dart';
-import 'package:play_it/Ridham/RateUs.dart';
 
 class Privacy extends StatefulWidget {
   const Privacy({Key? key}) : super(key: key);

@@ -1,3 +1,4 @@
+import 'package:disk_space/disk_space.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class Media extends StatefulWidget {
 
 class _MediaState extends State<Media> {
   List _icon = [
-    Icons.videocam_outlined,
+    Icons.videocam,
     Icons.watch_later_outlined,
     Icons.download,
   ];
@@ -120,7 +121,7 @@ class _MediaState extends State<Media> {
                     style: TextStyle(color: Colors.white),
                   ),
                   subtitle: Text(
-                    '6.35GB',
+                    '408M',
                     style: TextStyle(
                       color: Colors.white.withOpacity(0.7),
                     ),
@@ -135,6 +136,8 @@ class _MediaState extends State<Media> {
             ],
           ),
           Container(
+            margin: EdgeInsets.only(
+                top: size.height * 0.03, bottom: size.height * 0.03),
             height: size.height * 0.1,
             child: ListView.builder(
               itemCount: _icon.length,
@@ -142,45 +145,57 @@ class _MediaState extends State<Media> {
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) => Row(
                 children: [
-                  Column(
-                    children: [
-                      Icon(
-                        _icon[index],
-                        size: size.height * 0.05,
-                        color: index==0?Colors.orange:index==1?Colors.green:Colors.deepPurple,
-                      ),
-                      SizedBox(height: size.height * 0.02),
-                      Text(_iconname[index],style: TextStyle(color: Colors.white),),
-                    ],
+                  Container(
+                    margin: EdgeInsets.only(left: size.width * 0.1),
+                    child: Column(
+                      children: [
+                        Icon(
+                          _icon[index],
+                          size: size.height * 0.055,
+                          color: index == 0
+                              ? Colors.orange
+                              : index == 1
+                                  ? Colors.green
+                                  : Colors.deepPurple,
+                        ),
+                        SizedBox(height: size.height * 0.02),
+                        Text(
+                          _iconname[index],
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
           ),
           ListTile(
-              title: Text(
-                "Videos you haven't watchad",
-                style: TextStyle(color: Colors.white),
+            title: Text(
+              "Videos you haven't watchad",
+              style: TextStyle(color: Colors.white),
+            ),
+            subtitle: Text(
+              "You haven't watched these videos for along time.",
+              style:
+                  TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 12),
+            ),
+            trailing: Directionality(
+              textDirection: TextDirection.rtl,
+              child: TextButton.icon(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                  size: 20,
+                  color: Colors.green,
+                ),
+                label: Text(
+                  'All',
+                  style: TextStyle(color: Colors.green, fontSize: 15),
+                ),
               ),
-              subtitle: Text(
-                "You haven't watched these videos for along time.",
-                style: TextStyle(
-                    color: Colors.white.withOpacity(0.5), fontSize: 12),
-              ),
-              trailing: Directionality(
-                textDirection: TextDirection.rtl,
-                child: TextButton.icon(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.arrow_back_ios,
-                      size: 20,
-                      color: Colors.green,
-                    ),
-                    label: Text(
-                      'All',
-                      style: TextStyle(color: Colors.green, fontSize: 15),
-                    )),
-              )),
+            ),
+          ),
         ],
       ),
     );

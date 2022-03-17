@@ -12,10 +12,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../Nehal/Me/Downloadpage.dart';
 
 class Down extends StatefulWidget {
-  var password;
-
-  Down({this.password});
-
   @override
   _DownState createState() => _DownState();
 }
@@ -25,6 +21,7 @@ class _DownState extends State<Down> {
   late SharedPreferences _preferences;
   double _diskSpace = 0;
   double _disktotal = 0;
+  var password;
 
   @override
   void initState() {
@@ -32,12 +29,10 @@ class _DownState extends State<Down> {
     initDiskSpace();
     gettdata();
   }
-
   gettdata() async {
     _preferences = await SharedPreferences.getInstance();
-    setState(() {
-      widget.password = _preferences.getString('pass');
-    });
+    password = _preferences.getString('pass');
+    return password;
   }
 
   @override
@@ -51,12 +46,12 @@ class _DownState extends State<Down> {
           actions: [
             IconButton(
               onPressed: () {
-                if (widget.password == null) {
+                if (password == null) {
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => Privacy()));
                 } else {
                   Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => Newpassword(oldpassword: widget.password)));
+                      MaterialPageRoute(builder: (context) => Newpassword()));
                 }
               },
               icon: ImageIcon(
