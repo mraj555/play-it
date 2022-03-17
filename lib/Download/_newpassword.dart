@@ -23,8 +23,9 @@ class _NewpasswordState extends State<Newpassword> {
 
   getData() async {
     _preferences = await SharedPreferences.getInstance();
-    password = _preferences.getString('pass');
-    return password;
+    setState(() {
+      password = _preferences.getString('pass');
+    });
   }
 
   @override
@@ -72,7 +73,7 @@ class _NewpasswordState extends State<Newpassword> {
                       ),
                     );
                   } else {
-                    error='incorrect password';
+                    error='Incorrect Password !!';
                     _color=Colors.red;
                   }
                 },
@@ -83,11 +84,7 @@ class _NewpasswordState extends State<Newpassword> {
               ),
               SizedBox(height: 20),
               Text(
-                "PIN ${password}",
-                style: TextStyle(color: Colors.white),
-              ),
-              Text(
-                "New PIN ${newPassword}",
+                "Your PIN ${password}",
                 style: TextStyle(color: Colors.white),
               ),
             ],
