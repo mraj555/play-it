@@ -7,7 +7,6 @@ class Newpassword extends StatefulWidget {
   @override
   State<Newpassword> createState() => _NewpasswordState();
 }
-
 class _NewpasswordState extends State<Newpassword> {
   late SharedPreferences _preferences;
   var password;
