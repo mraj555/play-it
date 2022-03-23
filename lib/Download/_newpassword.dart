@@ -11,7 +11,7 @@ class Newpassword extends StatefulWidget {
 class _NewpasswordState extends State<Newpassword> {
   late SharedPreferences _preferences;
   var password;
-  var newPassword = '';
+  var newPassword ='';
   var newPasswordController = TextEditingController();
   var error='Enter The PIN';
   var _color = Colors.green;
@@ -73,6 +73,7 @@ class _NewpasswordState extends State<Newpassword> {
                       ),
                     );
                   } else {
+                    newPasswordController.clear();
                     error='Incorrect Password !!';
                     _color=Colors.red;
                   }

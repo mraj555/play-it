@@ -66,7 +66,7 @@ class _PasswordState extends State<Password> {
                   showCursor: true,
                   autofocus: true,
                   closeKeyboardWhenCompleted: false,
-                  onSubmitted: (value) {
+                  onCompleted: (value) {
                     contoller.text.isNotEmpty
                         ? showDialog(
                             context: context,
