@@ -287,10 +287,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               setState(() {
                                 _opacity = 1.0 - _opacity;
                                 onclick = true;
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Suggest()));
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Suggest(),
+                                  ),
+                                );
                               });
                             }
                           : null,
