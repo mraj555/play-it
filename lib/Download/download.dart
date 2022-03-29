@@ -29,6 +29,7 @@ class _DownState extends State<Down> {
     initDiskSpace();
     gettdata();
   }
+
   gettdata() async {
     _preferences = await SharedPreferences.getInstance();
     password = _preferences.getString('pass');
@@ -47,11 +48,19 @@ class _DownState extends State<Down> {
             IconButton(
               onPressed: () {
                 if (password == null) {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => Privacy()));
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Privacy(),
+                    ),
+                  );
                 } else {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => Newpassword()));
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Newpassword(),
+                    ),
+                  );
                 }
               },
               icon: ImageIcon(
