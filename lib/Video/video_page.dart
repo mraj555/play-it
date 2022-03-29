@@ -9,7 +9,9 @@ import 'package:share_plus/share_plus.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 
 class VideoPage extends StatefulWidget {
-  const VideoPage({Key? key}) : super(key: key);
+  var isList;
+
+  VideoPage({Key? key, required this.isList}) : super(key: key);
 
   @override
   State<VideoPage> createState() => _VideoPageState();
@@ -70,38 +72,242 @@ class _VideoPageState extends State<VideoPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    // return GridView.builder(
-    //   gridDelegate:
-    //       SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-    //     itemCount: assets.length,
-    //   itemBuilder: (context, index) {
-    //     return FutureBuilder<Uint8List?>(
-    //       future: assets[index].thumbData,
-    //       builder: (context, snapshot) {
-    //         final bytes = snapshot.data;
-    //         if (bytes == null) {
-    //           return CircularProgressIndicator();
-    //         }
-    //         return Image.memory(
-    //           bytes,
-    //           fit: BoxFit.cover,
-    //         );
-    //       },
-    //     );
-    //   },
-    // );
-    return Scaffold(
-      body: ListView.builder(
-        itemCount: assets.length,
-        itemBuilder: (context, index) => FutureBuilder<Uint8List?>(
-          future: assets[index].thumbData,
-          builder: (context, snapshot) {
-            List title = assets[index].relativePath!.split('/').toList();
-            final bytes = snapshot.data;
-            if (bytes == null) {
-              return Shimmer(
-                color: Colors.grey,
-                enabled: true,
+    return widget.isList == false
+        ? GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1.4,
+                crossAxisSpacing: 1,
+                mainAxisSpacing: 3),
+            itemCount: assets.length,
+            itemBuilder: (context, index) {
+              return FutureBuilder<Uint8List?>(
+                future: assets[index].thumbData,
+                builder: (context, snapshot) {
+                  final bytes = snapshot.data;
+                  if (bytes == null) {
+                    return Shimmer(
+                      color: Colors.grey,
+                      enabled: true,
+                      direction: ShimmerDirection.fromLeftToRight(),
+                      duration: Duration(seconds: 3),
+                      interval: Duration(seconds: 5),
+                      child: Container(
+                        color: Colors.grey.shade900,
+                        height: size.height * 0.12,
+                        width: size.width * 0.06,
+                        margin: EdgeInsets.only(left: 20, top: 5, bottom: 5),
+                      ),
+                    );
+                  }
+                  return InkWell(
+                    onTap: () {
+                      setState(
+                            () {
+                          print(assets[index].relativePath.toString());
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  VideoPlayerScreen(file: assets[index].file),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          height: size.height * 0.115,
+                          width: size.width * 0.45,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(3),
+                            image: DecorationImage(
+                              image: MemoryImage(bytes),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          child: Stack(
+                            children: [
+                              Align(
+                                alignment: Alignment.bottomLeft,
+                                child: ClipRRect(
+                                  child: Image.asset(
+                                    assets[index]
+                                                .relativePath!
+                                                .contains('WhatsApp') ||
+                                            assets[index]
+                                                .relativePath!
+                                                .contains('What\'s app')
+                                        ? 'assets/Icons/whatsapp.png'
+                                        : assets[index]
+                                                .relativePath!
+                                                .contains('Camera')
+                                            ? 'assets/Icons/camera.png'
+                                            : assets[index]
+                                                    .relativePath!
+                                                    .contains('Snapchat')
+                                                ? 'assets/Icons/snapchat.png'
+                                                : assets[index]
+                                                        .relativePath!
+                                                        .contains('UC')
+                                                    ? 'assets/Icons/uc.png'
+                                                    : assets[index]
+                                                            .relativePath!
+                                                            .contains('Movie')
+                                                        ? 'assets/Icons/movie.png'
+                                                        : assets[index]
+                                                                .relativePath!
+                                                                .contains(
+                                                                    'Instagram')
+                                                            ? 'assets/Icons/ig.png'
+                                                            : 'assets/Icons/vf.png',
+                                    height: 18,
+                                    width: 18,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(1),
+                                margin: EdgeInsets.fromLTRB(
+                                    0, 0, size.width * 0.012, size.width * 0.012),
+                                decoration: BoxDecoration(
+                                  color: Colors.black54,
+                                  borderRadius: BorderRadius.circular(2),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.play_arrow_rounded,
+                                      color: Colors.white,
+                                      size: size.width * 0.035,
+                                    ),
+                                    Text(
+                                      assets[index].videoDuration.inHours == 0
+                                          ? "${assets[index].videoDuration.inMinutes.remainder(60).toString().padLeft(2, '0')}:${assets[index].videoDuration.inSeconds.remainder(60).toString().padLeft(2, '0')}"
+                                          : '${assets[index].videoDuration.inHours.toString().padLeft(2, '0')}:${assets[index].videoDuration.inMinutes.remainder(60).toString().padLeft(2, '0')}:${assets[index].videoDuration.inSeconds.remainder(60).toString().padLeft(2, '0')}',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: size.width * 0.025),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                            alignment: Alignment.bottomRight,
+                          ),
+                        ),
+                        Container(
+                          width: size.width * 0.47,
+                          // color: Colors.white,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                width: size.width * 0.40,
+                                child: Text(
+                                  // assets[index].relativePath.toString(),
+                                  assets[index].title!.toString(),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.inter(
+                                    color: Colors.white,
+                                    fontSize: size.width * 0.03,
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    backgroundColor: Colors.grey[800],
+                                    context: context,
+                                    builder: (context) =>
+                                        DraggableScrollableSheet(
+                                      maxChildSize: 0.5,
+                                      expand: false,
+                                      builder: (_, controller) {
+                                        return Container(
+                                          child: ListView.builder(
+                                            controller: controller,
+                                            itemCount: _name.length,
+                                            itemBuilder: (context, ind) =>
+                                                ListTile(
+                                              onTap: () async {
+                                                if (ind == 8) {
+                                                  _fileinfo([
+                                                    assets[index].title!,
+                                                    '${assets[index].width}X${assets[index].height}',
+                                                    assets[index].mimeType!,
+                                                    assets[index].relativePath!,
+                                                    assets[index]
+                                                                .videoDuration
+                                                                .inHours ==
+                                                            0
+                                                        ? "${assets[index].videoDuration.inMinutes.remainder(60).toString().padLeft(2, '0')}:${assets[index].videoDuration.inSeconds.remainder(60).toString().padLeft(2, '0')}"
+                                                        : '${assets[index].videoDuration.inHours.toString().padLeft(2, '0')}:${assets[index].videoDuration.inMinutes.remainder(60).toString().padLeft(2, '0')}:${assets[index].videoDuration.inSeconds.remainder(60).toString().padLeft(2, '0')}',
+                                                    '${DateFormat('yyyy-MM-dd hh:mm:ss a').format(assets[index].modifiedDateTime)}',
+                                                  ]);
+                                                }
+                                                if (ind == 10) {
+                                                  final video =
+                                                      await assets[index].file;
+                                                  await Share.shareFiles(
+                                                    [video!.path],
+                                                  );
+                                                }
+                                              },
+                                              title: Text(
+                                                _name[ind],
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 15),
+                                              ),
+                                              leading: ImageIcon(
+                                                AssetImage('assets/Video/' +
+                                                    _icons[ind]),
+                                                color: Colors.blueGrey[100],
+                                                size: 25,
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  );
+                                },
+                                child: Icon(
+                                  Icons.more_vert,
+                                  color: Colors.white,
+                                  size: 21,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+            },
+          )
+        : Scaffold(
+            body: ListView.builder(
+              itemCount: assets.length,
+              itemBuilder: (context, index) => FutureBuilder<Uint8List?>(
+                future: assets[index].thumbData,
+                builder: (context, snapshot) {
+                  List title = assets[index].relativePath!.split('/').toList();
+                  final bytes = snapshot.data;
+                  if (bytes == null) {
+                    return Shimmer(
+                      color: Colors.grey,
+                      enabled: true,
                 direction: ShimmerDirection.fromLeftToRight(),
                 duration: Duration(seconds: 3),
                 interval: Duration(seconds: 5),

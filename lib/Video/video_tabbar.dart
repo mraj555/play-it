@@ -18,6 +18,8 @@ class _HomeVideoState extends State<HomeVideo>
     with SingleTickerProviderStateMixin {
   TabController? _tabController;
 
+  static bool isGrid = false;
+
   var _tabs = [
     Tab(
       text: 'Video',
@@ -31,7 +33,7 @@ class _HomeVideoState extends State<HomeVideo>
   ];
 
   var _tabView = [
-    VideoPage(),
+    VideoPage(isList: isGrid),
     Center(
       child: Icon(Icons.height),
     ),
@@ -137,18 +139,28 @@ class _HomeVideoState extends State<HomeVideo>
                   ButtonBar(
                     children: [
                       _tabController!.index == 0
-                          ? Icon(
-                              Icons.list,
-                              color: Colors.white.withOpacity(0.8),
+                          ? InkWell(
+                              onTap: () {},
+                              child: ImageIcon(
+                                AssetImage('assets/Video/sort.png'),
+                                color: Colors.white.withOpacity(0.8),
+                              ),
                             )
                           : SizedBox(),
                       SizedBox(
                         width: 2,
                       ),
                       _tabController!.index == 0
-                          ? Icon(
-                              Icons.list_alt,
-                              color: Colors.white.withOpacity(0.8),
+                          ? InkWell(
+                              onTap: () {
+                                setState(() {
+                                  isGrid = !isGrid;
+                                });
+                              },
+                              child: ImageIcon(
+                                AssetImage('assets/Video/ls.png'),
+                                color: Colors.white.withOpacity(0.8),
+                              ),
                             )
                           : SizedBox(),
                       _tabController!.index == 1
